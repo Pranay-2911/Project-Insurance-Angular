@@ -1,0 +1,11 @@
+<form [formGroup]="newState" (ngSubmit)="addNewState()">
+    <input type="text" formControlName="stateName" placeholder="Enter State Name">
+    <br>
+
+    <input type="text" placeholder="Enter City Name" formControlName = "cityName">
+    <br>
+    <br>
+
+    <button>Submit</button>
+
+</form>

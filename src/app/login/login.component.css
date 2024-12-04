@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+}
+form{
+    width: 35%;
+    border: 1px solid ;
+    border-radius: 10px;
+    height: 50vh;
+    box-sizing: border-box;
+} 
+h1{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 30px;
+    font-weight: 500;
+}
+.field{
+    padding: 30px 30px 0px 30px;
+}
+.field1{
+    padding: 0px 30px 20px 30px;
+}
+#button{
+    text-align: center;
+}
+.btn{   
+    display: block;
+    margin: 0 auto;
+}
+

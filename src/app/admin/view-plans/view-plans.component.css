@@ -1,0 +1,45 @@
+
+/* Style for the plan table */
+.plan-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style for the plan title and button container */
+  .plan-title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style for the plan name */
+  .plan-title {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* Style for the add schema button */
+  .add-schema-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-schema-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style for the details table */
+  table {
+    margin-top: 50px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  

@@ -1,0 +1,10 @@
+<table>
+    <tr>
+        <th>City Name</th>
+    </tr>
+    <tr *ngFor="let city of cities">
+        <td>{{city.name}}</td>
+    </tr>
+</table>
+
+<button (click)="addCity()">Add City</button>

@@ -1,0 +1,53 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Minimum Amount</th>
+        <th>Maximum Amount</th>
+        <th>Minimum Age</th>
+        <th>Maximum Age</th>
+        <th>Minimum Policy Term</th>
+        <th>Maximum Policy Term</th>
+        <th>Policy Registration Commission</th>
+        <th>Policy Premium Commission</th>
+        <th>Documents Required</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let scheme of schemes">
+        <td>{{scheme.title}}</td>
+        <td>{{scheme.description}}</td>
+        <td>{{scheme.minAmount}}</td>
+        <td>{{scheme.maxAmount}}</td>
+        <td>{{scheme.minAge}}</td>
+        <td>{{scheme.maxAge}}</td>
+        <td>{{scheme.minPolicyTerm}}</td>
+        <td>{{scheme.maxPolicyTerm}}</td>
+        <td>{{scheme.registrationCommisionAmount}}</td>
+        <td>{{scheme.installmentCommisionRatio}}</td>
+        <td *ngIf="scheme.documentType == 0">
+            AdharCard
+        </td>
+        <td *ngIf="scheme.documentType == 1">
+            PanCard
+        </td>
+        <td *ngIf="scheme.documentType == 2">
+            VoterId
+        </td>
+        <td *ngIf="scheme.documentType == 3">
+            Passport
+        </td>
+        <td *ngIf="scheme.documentType == 4">
+            Driving License
+        </td>
+        <td *ngIf="scheme.documentType == 5">
+            Bank Passbook
+        </td>
+        <td *ngIf="scheme.policyStatus==true">
+            Active
+        </td>
+        <td *ngIf="scheme.policyStatus==false">
+            Deactive
+        </td>
+    </tr>
+</table>
+

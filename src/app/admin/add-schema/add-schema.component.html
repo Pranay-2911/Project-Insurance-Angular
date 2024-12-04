@@ -1,0 +1,45 @@
+<form [formGroup]="newSchemaForm" (ngSubmit)="addnewSchema()">
+    <input type="text" placeholder="Enter titlr" formControlName = "title">
+    <br>
+    <br>
+    <input type="text" placeholder="Enter description" formControlName = "description">
+    <br>
+    <br>
+    <input type="number" placeholder="Enter minimum amount" formControlName = "minAmount">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter maximum amount" formControlName = "maxAmount">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter min age" formControlName = "minAge">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter max age" formControlName = "maxAge">
+    <br>
+    <br>
+    <input type = "number" placeholder="Enter minimum Policy Term" formControlName = "minPolicyTerm">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter maximum Policy Term" formControlName = "maxPolicyTerm">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter Policy Ratio" formControlName = "policyRatio">
+    <br>
+    <br>
+    <input type ="checkbox" formControlName = "policyStatus"> Status
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter Register Commissions Amount" formControlName = "registrationCommisionAmount">(INR)
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter Insallation Commissions Amount" formControlName = "installmentCommisionRatio">(INR)
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter Document" formControlName = "documentType">(INR)
+    <br>
+    <br>
+
+    <button>Submit</button>
+
+
+</form>

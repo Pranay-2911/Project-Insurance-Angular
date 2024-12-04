@@ -1,0 +1,19 @@
+<form [formGroup]="newEmployeeForm" (ngSubmit)="addEmployee()">
+    <input type="text" placeholder="Enter FirstName" formControlName = "firstName">
+    <br>
+    <input type="text" placeholder="Enter Lastname" formControlName = "lastName">
+    <br>
+    <input type ="number" placeholder="Enter Mobile Number" formControlName = "mobileNumber">
+    <br>
+    <input type ="text" placeholder="Enter email" formControlName = "email">
+    <br>
+    <input type ="number" placeholder="Enter Salary" formControlName = "salary">
+    <br>
+    <input type ="text" placeholder="Enter UserName" formControlName = "username">
+    <br>
+    <input type ="password" placeholder="Enter password" formControlName = "password">
+    <br>
+    <button>Submit</button>
+
+
+</form>

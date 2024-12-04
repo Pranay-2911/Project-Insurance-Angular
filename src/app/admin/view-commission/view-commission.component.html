@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Commissions</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Agent Name</th>
+          <th>Schema Name</th>
+          <th>Customer Name</th>
+          <th>Commission Amount</th>
+          <th>Commission Date</th>
+          <th>Commission Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commission of commissions">
+          <td>{{ commission.agentName }}</td>
+          <td>{{ commission.schemaName }}</td>
+          <td>{{ commission.customerName }}</td>
+          <td>{{ commission.commissionAmount }}</td>
+          <td>{{ commission.commissionDate }}</td> 
+          <td>{{ commission.commissionType === 0 ? 'REGISTRATION' : 'PREMIUM' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
