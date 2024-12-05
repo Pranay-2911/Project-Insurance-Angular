@@ -1,0 +1,30 @@
+<div class="policy-table-container">
+    <h2>Policy Accounts</h2>
+    <table class="policy-table">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Policy Name</th>
+          <th>Agent Name</th>
+          <th>Purchased Date</th>
+          <th>Nominee</th>
+          <th>Nominee Relation</th>
+          <th>Policy Amount</th>
+          <th>Policy Duration (Months)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let policy of policyAccounts">
+          <td>{{ policy.customerName }}</td>
+          <td>{{ policy.policyName }}</td>
+          <td>{{ policy.agentName }}</td>
+          <td>{{ policy.purchasedDate | date: 'medium' }}</td>
+          <td>{{ policy.nominee }}</td>
+          <td>{{ policy.nomineeRelation }}</td>
+          <td>{{ policy.policyAmount | currency: 'INR' }}</td>
+          <td>{{ policy.policyDuration }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

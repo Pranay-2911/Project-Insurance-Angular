@@ -10,6 +10,7 @@
           <th>Mobile Number</th>
           <th>Current Commission Balance</th>
           <th>Total Commission Earned</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,9 @@
           <td>{{ agent.mobileNumber }}</td>
           <td>{{ agent.currentCommisionBalance }}</td>
           <td>{{ agent.totalCommissionEarned }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteAgent(agent.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

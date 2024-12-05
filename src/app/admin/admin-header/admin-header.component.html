@@ -1,4 +1,4 @@
-\<ul class="nav nav-pills justify-content-end">
+<ul class="nav nav-pills justify-content-end">
   <li class="nav-item">
     <a class="nav-link active" routerLink="tabs">Dashboard</a>
   </li>
@@ -16,7 +16,7 @@
       Agent
     </div>
     <ul class="dropdown-menu" aria-labelledby="insuranceDropdown">
-      <li><a class="dropdown-item" href="admin-dashboard/add-agent">Add Agent</a></li>
+      <li><a class="dropdown-item" href="admin-dashboard/add-agent">Verify Agent</a></li>
       <li><a class="dropdown-item" href="admin-dashboard/view-agent">View Agent</a></li>
     </ul>
   </li>
@@ -29,6 +29,14 @@
       <li><a class="dropdown-item" href="admin-dashboard/view-employee">View Employee</a></li>
     </ul>
   </li>
+  <li class="nav-item dropdown">
+    <div class="nav-link dropdown-toggle" id="insuranceDropdown" role="button">
+      Customer
+    </div>
+    <ul class="dropdown-menu" aria-labelledby="insuranceDropdown">
+      <li><a class="dropdown-item" href="admin-dashboard/view-customer">View Customer</a></li>
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Settings</a>
   </li>
@@ -36,7 +44,7 @@
     <a class="nav-link" href="#">Account</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Logout</a>
+    <a class="nav-link" (click)="logOut()" href="">Logout</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">{{userName}}</a>

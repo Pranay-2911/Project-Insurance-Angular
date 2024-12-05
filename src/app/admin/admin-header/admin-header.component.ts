@@ -16,4 +16,10 @@ export class AdminHeaderComponent {
 //     });
 // }
 @Input() userName!: string;
+
+logOut(){
+  localStorage.removeItem('token');
+  this.userName='';
+  
+}
 }

@@ -1,0 +1,6 @@
+<h1>Do Payments</h1>
+
+<form [formGroup]="newPayment" (ngSubmit)="onPay()">
+    <input type="number" formControlName="amount" [readOnly]="true">
+    <button>Pay</button>
+</form>

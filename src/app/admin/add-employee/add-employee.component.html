@@ -1,17 +1,39 @@
 <form [formGroup]="newEmployeeForm" (ngSubmit)="addEmployee()">
     <input type="text" placeholder="Enter FirstName" formControlName = "firstName">
+    <span>*</span>
+    <div *ngIf="newEmployeeForm.get('firstName')?.invalid && newEmployeeForm.get('firstName')?.touched">
+        First name is required.
+      </div>
     <br>
     <input type="text" placeholder="Enter Lastname" formControlName = "lastName">
+    <span>*</span>
+    <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched">
+        Last name is required.
+      </div>
     <br>
     <input type ="number" placeholder="Enter Mobile Number" formControlName = "mobileNumber">
+    <span>*</span>
+    <div *ngIf="newEmployeeForm.get('mobileNumber')?.invalid && newEmployeeForm.get('mobileNumber')?.touched">
+        Mobile Number is required.
+      </div>
     <br>
     <input type ="text" placeholder="Enter email" formControlName = "email">
+    <span>*</span>
+    <div *ngIf="newEmployeeForm.get('email')?.invalid && newEmployeeForm.get('email')?.touched">
+        Email is required.
+      </div> 
     <br>
     <input type ="number" placeholder="Enter Salary" formControlName = "salary">
+    <span>*</span>
+
     <br>
     <input type ="text" placeholder="Enter UserName" formControlName = "username">
+    <span>*</span>
+
     <br>
     <input type ="password" placeholder="Enter password" formControlName = "password">
+    <span>*</span>
+
     <br>
     <button>Submit</button>
 

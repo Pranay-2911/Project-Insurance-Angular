@@ -17,7 +17,7 @@ plans: number =0;
 schemes: number =0;
 commissions: number =0;
 userName: string ="";
-constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router){}
+constructor( private adminService: AdminService, private router: Router){}
 
 
 
@@ -106,5 +106,10 @@ viewSchemes(){
 
 viewCommission(){
   this.router.navigate(['admin-dashboard/view-commission']);
+}
+
+viewPolicyAccounts()
+{
+  this.router.navigate(['admin-dashboard/view-policy-account']);
 }
 }

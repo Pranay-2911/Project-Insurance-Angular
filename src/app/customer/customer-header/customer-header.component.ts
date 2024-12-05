@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./customer-header.component.css']
 })
 export class CustomerHeaderComponent {
-name:string = 'customer';
+  name:string = 'customer';
+  plan:any;
+
+  constructor(){}
+
+  
 }

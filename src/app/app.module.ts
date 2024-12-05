@@ -31,12 +31,23 @@ import { FormsModule } from '@angular/forms';
 import { ViewStatesComponent } from './admin/view-states/view-states.component';
 import { ViewCitiesComponent } from './admin/view-cities/view-cities.component';
 import { ViewSchemaComponent } from './admin/view-schema/view-schema.component';
-import { AddAgentComponent } from './admin/add-agent/add-agent.component';
-import {RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { AddAgentComponent } from './admin/verify-agent/add-agent.component';
 import { ViewAgentComponent } from './admin/view-agent/view-agent.component';
 import { ViewCommissionComponent } from './admin/view-commission/view-commission.component';
 import { AddEmployeeComponent } from './admin/add-employee/add-employee.component';
 import { ViewEmployeeComponent } from './admin/view-employee/view-employee.component';
+import { ViewPolicyAccountComponent } from './admin/view-policy-account/view-policy-account.component';
+import { AddDocumentsComponent } from './customer/add-documents/add-documents.component';
+import {NgxDropzoneModule } from 'ngx-dropzone';
+import { CustomerTabsComponent } from './customer/customer-tabs/customer-tabs.component';
+import { ViewCustomerComponent } from './admin/view-customer/view-customer.component';
+import { AddCustomerComponent } from './landing-page/add-customer/add-customer.component';
+import { ViewCustomerPolicyComponent } from './customer/view-customer-policy/view-customer-policy.component';
+import { CustomerProfileComponent } from './customer/customer-profile/customer-profile.component';
+import { PremiumComponent } from './customer/premium/premium.component';
+import { PayPremiumComponent } from './customer/pay-premium/pay-premium.component';
+import { PaymentComponent } from './customer/payment/payment.component';
+import { PlanComponent } from './customer/plan/plan.component';
 
 
 @NgModule({
@@ -69,6 +80,18 @@ import { ViewEmployeeComponent } from './admin/view-employee/view-employee.compo
     ViewCommissionComponent,
     AddEmployeeComponent,
     ViewEmployeeComponent,
+    ViewPolicyAccountComponent,
+    AddDocumentsComponent,
+    CustomerTabsComponent,
+    ViewCustomerComponent,
+    AddCustomerComponent,
+    ViewCustomerPolicyComponent,
+    CustomerProfileComponent,
+    PremiumComponent,
+    PayPremiumComponent,
+    PaymentComponent,
+    PlanComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -80,8 +103,7 @@ import { ViewEmployeeComponent } from './admin/view-employee/view-employee.compo
     NgbNavModule,
     FormsModule,
     CommonModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
+    NgxDropzoneModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

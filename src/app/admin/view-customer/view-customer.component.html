@@ -1,0 +1,40 @@
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+<div class="customer-table-container">
+    <h2>Customer Details</h2>
+    <table class="customer-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Date of Birth</th>
+          <th>Is Verified</th>
+          <th>Total Policies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.mobileNumber }}</td>
+          <td>{{ customer.dateOfBirth }}</td>
+          <td>
+            <ng-container *ngIf="customer.isKYC; else notVerified">
+              <i class="bi bi-check2" style="color: green;"></i>
+            </ng-container>
+            <ng-template #notVerified>
+              <i class="bi bi-ban" style="color: red;"></i>
+            </ng-template>
+          </td>
+          <td>{{ customer.totalPolicies }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,14 +1,3 @@
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf60pEqAAAAAO7PO_11efguBgFYWrvWYqLQD4M2"></script>
-
-<script>
-  function onClick(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6Lf60pEqAAAAAO7PO_11efguBgFYWrvWYqLQD4M2', {action: 'LOGIN'});
-    });
-  }
-</script>
 <div class="container">
 <form [formGroup]="loginForm" (ngSubmit)="logIn()">
     <h1>Login</h1>
@@ -21,7 +10,21 @@
       <input type="password" class="form-control" formControlName="password">
     </div>
 
-    <!-- <re-captcha formControlName="reCaptcha" class="form-control" siteKey="6LemLJEqAAAAAD5VficS3TQsjNeNUHcuSDl12-0j"></re-captcha> -->
+    <div>
+      <!-- Display the generated CAPTCHA -->
+      <label for="captcha">CAPTCHA:</label>
+      <span class="captcha-display">{{ generatedCaptcha }}</span>
+      <button type="button" (click)="generateCaptcha()">Refresh</button>
+    </div>
+  
+    <div>
+      <label for="reCaptcha">Enter CAPTCHA:</label>
+      <input id="captchaInput" formControlName="reCaptcha" type="text" />
+    </div>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
     <div id="button">
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,0 +1,45 @@
+<!-- <ngx-dropzone (change)="onSelect($event)">
+    <ngx-dropzone-label>Select and Drop File</ngx-dropzone-label>
+    <ngx-dropzone-preview *ngFor="let f of file" [removable]="true" (removed)="onRemove($event)">
+        <ngx-dropzone-label>{{f.name}}{{f.type}}</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+</ngx-dropzone>
+
+<button (click)="upload()">Upload Files</button> -->
+
+<form [formGroup]="newDocument" (ngSubmit)="addNewDocument()">
+  <select formControlName="name">
+      <option value="" disabled>Select a document type</option> <!-- Placeholder -->
+      <option *ngFor="let id of documentTypes" [value]="id">{{ id }}</option>
+    </select>
+    <span>*</span>
+    <div *ngIf="newDocument.get('name')?.invalid && newDocument.get('name')?.touched">
+      Document Type is required.
+    </div>  
+    <br>
+
+    <input type="file" (change)="onSelect($event)" accept="image/*, application/pdf" />
+  
+    <!-- Display Selected File -->
+    <div *ngIf="file">
+      <p>Selected File: {{ file.name }}</p>
+      <button (click)="onRemove()">Remove File</button>
+    </div>
+  
+    <!-- Upload Button -->
+    <button (click)="upload()">Upload File</button>
+
+  
+
+</form>
+
+<!-- <div>
+    <input type="file" (change)="onSelect($event)" accept="image/*, application/pdf" />
+  
+    <div *ngIf="file">
+      <p>Selected File: {{ file.name }}</p>
+      <button (click)="onRemove()">Remove File</button>
+    </div>
+  
+    <button (click)="upload()">Upload File</button>
+  </div> -->

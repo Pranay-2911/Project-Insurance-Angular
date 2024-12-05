@@ -1,0 +1,39 @@
+<h1>Policy Details</h1>
+
+<div class="policy-details">
+  <h3>Policy Scheme Name: {{ policy.policyName }}</h3>
+  <h3>Agent Name: {{ policy.agentName }}</h3>
+  <h3>Nominee Name: {{ policy.nominee }}</h3>
+  <h3>Nominee Relation: {{ nomineeRelationMap[policy.nomineeRelation] || 'Unknown' }}</h3>
+  <h3>Policy Purchased Amount: Rs. {{ policy.policyAmount }}</h3>
+  <h3>Policy Duration: {{ policy.policyDuration }} months</h3>
+</div>
+
+<h2>Premium Details</h2>
+
+<table class="premium-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Due Date</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Payment Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let premium of premiums; let i = index">
+      <td>{{ i+1 }}</td>
+      <td>{{ premium.dueDate | date: 'MMM d, y' }}</td>
+      <td>Rs. {{ premium.amount.toFixed(2) }}</td>
+      <td [ngClass]="{'paid': premium.status === 'Paid', 'unpaid': premium.status === 'Unpaid'}">
+        {{ premium.status }}
+      </td>
+      <td>{{ premium.paymentDate ? (premium.paymentDate | date: 'MMM d, y') : 'N/A' }}</td>
+      <td>
+        <button (click)="onPay(premium.amount)">Pay</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

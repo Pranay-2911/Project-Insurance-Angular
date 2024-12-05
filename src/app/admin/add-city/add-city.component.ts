@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -10,23 +10,26 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AddCityComponent {
   constructor(private route: ActivatedRoute, private adminService:AdminService){}
-  state:any='';
+  states:any='';
+  
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.state = params['name'];
-      console.log(this.state);
+    this.adminService.getState().subscribe({
+      next: (data:any) => {
+        this.states = data;
+        console.log(this.states);
+      },
+      error: (error:any) => {
+        console.log(error);
+      }
     });
 
-    this.newCity.patchValue({
-      stateName: this.state,
-      cityName: ''  
-     });
+    
     
   }
 
   newCity = new FormGroup({
-    stateName: new FormControl(),  
-    cityName: new FormControl()
+    stateName: new FormControl('',Validators.required),  
+    cityName: new FormControl('', Validators.required)
   });
   
   addNewCity()

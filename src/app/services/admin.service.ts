@@ -10,7 +10,7 @@ export class AdminService {
   planUrl = 'https://localhost:7217/api/Plan';
   agentUrl = 'https://localhost:7217/api/Agent';
   employeeUrl = 'https://localhost:7217/api/Employee';
-
+  
   constructor(private http:HttpClient) { }
 
   getState()
@@ -63,4 +63,17 @@ export class AdminService {
   getEmployee(){
     return this.http.get(this.employeeUrl);
   }
+  getUnverifiedAgents(){
+    return this.http.get(this.agentUrl+'/UnVerified');
+  }
+  verifyAgent(id: any) {
+    return this.http.put(`${this.agentUrl}/Verify?id=${id}`, null);
+  }
+  deleteAgent(id: any) {
+    return this.http.delete(this.agentUrl+ "/" +id);
+  }
+  deleteEmployee(id: any) {
+    return this.http.delete(this.employeeUrl+ "/" +id);
+  }
+  
 }

@@ -21,4 +21,10 @@ export class ViewEmployeeComponent {
     });
   }
 
+  deleteEmployee(id: any){
+    this.adminService.deleteEmployee(id).subscribe(()=>{});
+    alert('Employee deleted successfully!');
+    location.reload();
+  }
+
 }

@@ -1,8 +1,16 @@
 <form [formGroup]="newCity" (ngSubmit)="addNewCity()">
-    <input type="text" formControlName="stateName">
-    <br>
+    <select formControlName="stateName">
+        <option value="" disabled>Select a state</option> <!-- Placeholder -->
+        <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
+      </select><span>*</span>
+      <div *ngIf="newCity.get('stateName')?.invalid && newCity.get('stateName')?.touched">
+        State is required.
+      </div>  <br>
 
-    <input type="text" placeholder="Enter City Name" formControlName = "cityName">
+    <input type="text" placeholder="Enter City Name" formControlName = "cityName"><span>*</span>
+    <div *ngIf="newCity.get('cityName')?.invalid && newCity.get('cityName')?.touched">
+        City name is required.
+      </div>
     <br>
     <br>
 

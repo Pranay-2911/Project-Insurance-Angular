@@ -21,4 +21,10 @@ export class ViewAgentComponent {
     });
   }
 
+  deleteAgent(id: any){
+    this.adminService.deleteAgent(id).subscribe(()=>{});
+    alert('Agent deleted successfully!');
+    location.reload();
+  }
+
 }

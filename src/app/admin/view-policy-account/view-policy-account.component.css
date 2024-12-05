@@ -1,0 +1,64 @@
+.policy-table-container {
+    margin: 50px, auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .policy-table-container h2 {
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .policy-table {
+    margin: 50px auto;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .policy-table thead {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .policy-table th,
+  .policy-table td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .policy-table th {
+    font-weight: bold;
+  }
+  
+  .policy-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .policy-table tbody tr:hover {
+    background-color: #f1f9ff;
+  }
+  
+  .policy-table td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    .policy-table th,
+    .policy-table td {
+      padding: 8px;
+    }
+  }
+  
