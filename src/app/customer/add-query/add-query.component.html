@@ -1,0 +1,19 @@
+<form [formGroup]="newQueryForm" (ngSubmit)="addQuery()">
+    <input type="text" placeholder="Enter Query Title" formControlName = "title">
+    <span>*</span>
+    <div *ngIf="newQueryForm.get('title')?.invalid && newQueryForm.get('title')?.touched">
+        Title is required.
+      </div>
+    <br>
+
+    <input type="text" placeholder="Enter Your Query" formControlName = "message">
+    <span>*</span>
+    <div *ngIf="newQueryForm.get('message')?.invalid && newQueryForm.get('message')?.touched">
+        Message is required.
+      </div>
+    <br>
+    
+    <button>Submit</button>
+
+
+</form>

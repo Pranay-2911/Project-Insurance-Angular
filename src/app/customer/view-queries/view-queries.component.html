@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Queries</h1>
+    <table class="queries-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Message</th>
+          <th>Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let query of queries; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ query.title }}</td>
+          <td>{{ query.message }}</td>
+          <td>{{ query.reply ? query.Reply : 'No Reply Yet' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

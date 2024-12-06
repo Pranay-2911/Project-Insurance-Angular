@@ -1,3 +1,74 @@
-form{
+form {
     margin-top: 50px;
-}
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  form select,
+  form input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  form select:focus,
+  form input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  form span {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  form p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  form .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -5px;
+  }
+  
+  form .selected-file {
+    margin-top: 10px;
+    background-color: #e9f7e9;
+    border: 1px solid #d4edda;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    word-break: break-word;
+  }
+  

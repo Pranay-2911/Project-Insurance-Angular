@@ -15,7 +15,6 @@ export class AddDocumentsComponent {
   newDocument = new FormGroup({
     name: new FormControl(),
     location: new FormControl(),
-    customerId: new FormControl()
   })
 
   constructor(private uploadService: UploadService, private documentService: DocumentService) {}
@@ -76,7 +75,6 @@ export class AddDocumentsComponent {
         // Now, update the form with the location after successful upload
         this.newDocument.patchValue({
           location: res.url, // Assuming the URL of the uploaded image is in res.url
-          customerId: localStorage.getItem('id')
         });
 
         // Proceed to submit the form after setting the location

@@ -11,6 +11,10 @@ export class PlanComponent {
 
   plansData: any;
   selectedPlanId: any ;
+  selectedSchemeId: any ;
+
+  selectedPlanSchemes: any[] = [];
+  selectedScheme: any | null = null;
   constructor(private router: Router, private planService: PlanService) {}
   ngOnInit() {
     this.planService.getAllPlans().subscribe({
@@ -25,8 +29,15 @@ export class PlanComponent {
      
 
   }
-  onPlanSelect() {
-    console.log("Selected Plan ID:", this.selectedPlanId);
+  onPlanSelect(): void {
+    const selectedPlan = this.plansData.find((plan:any) => plan.id === +this.selectedPlanId);
+    this.selectedPlanSchemes = selectedPlan ? selectedPlan.schemes : [];
+    this.selectedSchemeId = null;
+    this.selectedScheme = null;
+  }
+
+  onSchemeSelect(): void {
+    this.selectedScheme = this.selectedPlanSchemes.find(scheme => scheme.id === +this.selectedSchemeId);
   }
   
   getSchemesForSelectedPlan() {
@@ -34,7 +45,9 @@ export class PlanComponent {
     return selectedPlan ? selectedPlan.schemes : [];
   }
 
-  buyScheme(id : any) {
+  buyScheme(schemeId: number): void {
+    console.log('Buying scheme with ID:', schemeId);
+    this.router.navigate(['customer-dashboard/buy-policy'], { queryParams: { schemeId: schemeId}});
   }
   
 

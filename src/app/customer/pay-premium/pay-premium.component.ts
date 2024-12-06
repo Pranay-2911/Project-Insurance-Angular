@@ -28,8 +28,9 @@ export class PayPremiumComponent {
     });
   }
 
-  onPay(amount:any){
-    this.router.navigate(['customer-dashboard/payment', this.policy.amount],);
+  onPay(amount:any, id:any){
+    console.log(amount);
+    this.router.navigate(['customer-dashboard/payment'], {queryParams: {amount:amount, premiumId: id}});
   }
 
 }

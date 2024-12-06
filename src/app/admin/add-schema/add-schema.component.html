@@ -1,45 +1,109 @@
 <form [formGroup]="newSchemaForm" (ngSubmit)="addnewSchema()">
-    <input type="text" placeholder="Enter titlr" formControlName = "title">
+    <input type="text" placeholder="Enter title" formControlName = "title">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('title')?.invalid && newSchemaForm.get('title')?.touched">
+      Title is required.
+    </div> 
     <br>
     <br>
     <input type="text" placeholder="Enter description" formControlName = "description">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('description')?.invalid && newSchemaForm.get('description')?.touched">
+      Description is required.
+    </div> 
     <br>
     <br>
     <input type="number" placeholder="Enter minimum amount" formControlName = "minAmount">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('minAmount')?.invalid && newSchemaForm.get('minAmount')?.touched">
+      Minimum Amount is required.
+    </div> 
     <br>
     <br>
     <input type ="number" placeholder="Enter maximum amount" formControlName = "maxAmount">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('maxAmount')?.invalid && newSchemaForm.get('maxAmount')?.touched">
+      Maximum Amount is required.
+    </div> 
     <br>
     <br>
     <input type ="number" placeholder="Enter min age" formControlName = "minAge">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('minAge')?.invalid && newSchemaForm.get('minAge')?.touched">
+      Minimum Age is required.
+    </div> 
     <br>
     <br>
     <input type ="number" placeholder="Enter max age" formControlName = "maxAge">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('maxAge')?.invalid && newSchemaForm.get('maxAge')?.touched">
+      Maximum Age is required.
+    </div> 
     <br>
     <br>
     <input type = "number" placeholder="Enter minimum Policy Term" formControlName = "minPolicyTerm">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('minPolicyTerm')?.invalid && newSchemaForm.get('minPolicyTerm')?.touched">
+      Minimum Policy Term is required.
+    </div> 
     <br>
     <br>
     <input type ="number" placeholder="Enter maximum Policy Term" formControlName = "maxPolicyTerm">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('maxPolicyTerm')?.invalid && newSchemaForm.get('maxPolicyTerm')?.touched">
+      Maximum Policy Term is required.
+    </div> 
     <br>
     <br>
     <input type ="number" placeholder="Enter Policy Ratio" formControlName = "policyRatio">
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('policyRatio')?.invalid && newSchemaForm.get('policyRatio')?.touched">
+      Policy Ratio is required.
+    </div> 
     <br>
     <br>
     <input type ="checkbox" formControlName = "policyStatus"> Status
+    <span>*</span>
+    
     <br>
     <br>
     <input type ="number" placeholder="Enter Register Commissions Amount" formControlName = "registrationCommisionAmount">(INR)
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('registrationCommisionAmount')?.invalid && newSchemaForm.get('registrationCommisionAmount')?.touched">
+      Registration Commission Amount is required.
+    </div> 
     <br>
     <br>
-    <input type ="number" placeholder="Enter Insallation Commissions Amount" formControlName = "installmentCommisionRatio">(INR)
+    <input type ="number" placeholder="Enter Installment Commissions Ratio" formControlName = "installmentCommisionRatio">(%)
+    <span>*</span>
+    <div *ngIf="newSchemaForm.get('installmentCommisionRatio')?.invalid && newSchemaForm.get('installmentCommisionRatio')?.touched">
+      Registration Commission Amount is required.
+    </div> 
     <br>
     <br>
-    <input type ="number" placeholder="Enter Document" formControlName = "documentType">(INR)
+    <div *ngFor="let doc of documentsList">
+      <input
+        type="checkbox"
+        [value]="doc"
+        (change)="onCheckboxChange($event)"
+      />
+      {{ doc }}
+    </div>
     <br>
     <br>
 
-    <button>Submit</button>
+    <input type="file" (change)="onSelect($event)" accept="image/*" />
+  
+    <!-- Display Selected File -->
+    <div *ngIf="file">
+      <p>Selected File: {{ file.name }}</p>
+      <button (click)="onRemove()">Remove File</button>
+    </div>
+  
+    <!-- Upload Button -->
+    <!-- <button (click)="upload()">Upload File</button> -->
+
+    <button (click)="upload()">Submit</button>
 
 
 </form>

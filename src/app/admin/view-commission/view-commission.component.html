@@ -1,5 +1,5 @@
-<div class="container">
-    <h1>Commissions</h1>
+<div class="table-container">
+  <h1>Agent Commission</h1>
     <table>
       <thead>
         <tr>
@@ -17,8 +17,8 @@
           <td>{{ commission.schemaName }}</td>
           <td>{{ commission.customerName }}</td>
           <td>{{ commission.commissionAmount }}</td>
-          <td>{{ commission.commissionDate }}</td> 
-          <td>{{ commission.commissionType === 0 ? 'REGISTRATION' : 'PREMIUM' }}</td>
+          <td>{{ commission.commssionDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
         </tr>
       </tbody>
     </table>

@@ -24,4 +24,16 @@ export class CustomerTabsComponent {
   PayPremium(){
     this.router.navigate(['customer-dashboard/premium']);
   }
+
+  viewQueries(){
+    this.router.navigate(['customer-dashboard/view-queries']);
+  }
+
+  addQuery(){
+    this.router.navigate(['customer-dashboard/add-query']);
+  }
+  chnagePassword()
+  {
+    this.router.navigate(['customer-dashboard/change-password']);
+  }
 }

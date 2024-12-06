@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl,FormsModule } from '@angular/forms';
+import { FormGroup,FormControl,FormsModule, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-add-plan',
@@ -8,7 +8,7 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AddPlanComponent {
   newPlanForm = new FormGroup({
-    name: new FormControl()
+    name: new FormControl('', Validators.required)
   });
 
   constructor(private adminService: AdminService) {}

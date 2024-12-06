@@ -13,26 +13,32 @@ export class PaymentComponent {
   amount: any;
   premiumId: any;
   newPayment = new FormGroup({
-    amount: new FormControl(),
+    amount: new FormControl({ value:'', disabled: true }),
     status: new FormControl()
   })
 
   constructor(private route:ActivatedRoute, private premiumService:PremiumService, private router:Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.amount = params['amount'];
-      console.log(this.amount)
-    });
+      this.premiumId = params['premiumId'];
+      console.log(this.amount);  // Logs the correct 'amount'
+      console.log(this.premiumId);  // Logs the correct 'premiumId'
+
+      this.newPayment.patchValue({
+        amount: this.amount
+      });
+  });
 
   }
 
   onPay() {
-    this.premiumService.pay(this.premiumId, this.newPayment).subscribe({
+    this.premiumService.pay(this.premiumId).subscribe({
       next: (response: any) => {
         console.log(response);
         alert("Payment successful!!");
-        this.router.navigate(['customer-dashboard/pay-premium']);
+        // this.router.navigate(['customer-dashboard/pay-premium']);
       },
       error: (error: any) => {
         console.log(error);

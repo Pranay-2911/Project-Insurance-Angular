@@ -1,48 +1,103 @@
+/* Policy Details Section */
 .policy-details {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.policy-details h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Premium Table */
+.premium-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.premium-table th,
+.premium-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.premium-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.premium-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.premium-table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.premium-table .paid {
+  color: green;
+  font-weight: bold;
+}
+
+.premium-table .unpaid {
+  color: red;
+  font-weight: bold;
+}
+
+/* Buttons */
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .policy-details {
+    font-size: 14px;
+    padding: 15px;
   }
-  
-  .policy-details h3 {
-    margin: 8px 0;
-  }
-  
+
   .premium-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 16px;
+    font-size: 14px;
   }
-  
+
   .premium-table th, .premium-table td {
-    border: 1px solid #ddd;
     padding: 10px;
-    text-align: left;
   }
-  
-  .premium-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+
+  button {
+    padding: 6px 10px;
+    font-size: 12px;
   }
-  
-  .premium-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .premium-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .premium-table .paid {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .premium-table .unpaid {
-    color: red;
-    font-weight: bold;
-  }
-  
+}

@@ -48,6 +48,15 @@ import { PremiumComponent } from './customer/premium/premium.component';
 import { PayPremiumComponent } from './customer/pay-premium/pay-premium.component';
 import { PaymentComponent } from './customer/payment/payment.component';
 import { PlanComponent } from './customer/plan/plan.component';
+import { BuyPolicyComponent } from './customer/buy-policy/buy-policy.component';
+import { ViewQueriesComponent } from './customer/view-queries/view-queries.component';
+import { AddQueryComponent } from './customer/add-query/add-query.component';
+import { ChangePasswordComponent } from './customer/change-password/change-password.component';
+import { EmployeeTabsComponent } from './employee/employee-tabs/employee-tabs.component';
+import { AgentDetailsComponent } from './employee/agent-details/agent-details.component';
+import { CommissionDetailsComponent } from './employee/commission-details/commission-details.component';
+import { EmpAddAgentComponent } from './employee/emp-add-agent/emp-add-agent.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 
 
 @NgModule({
@@ -91,6 +100,16 @@ import { PlanComponent } from './customer/plan/plan.component';
     PayPremiumComponent,
     PaymentComponent,
     PlanComponent,
+    BuyPolicyComponent,
+    ViewQueriesComponent,
+    AddQueryComponent,
+    ChangePasswordComponent,
+    EmployeeTabsComponent,
+    AgentDetailsComponent,
+    CommissionDetailsComponent,
+    EmpAddAgentComponent,
+    RegisterCustomerComponent,
+    
  
   ],
   imports: [

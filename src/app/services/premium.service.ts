@@ -10,8 +10,8 @@ export class PremiumService {
   constructor(private http:HttpClient) { }
 
 
-  pay(id:any, data: any) {
-    return this.http.post(`${this.paymentUrl}/premium/${id}`, data);
+  pay(id:any) {
+    return this.http.post(`${this.paymentUrl}/${id}`, null);
   }
 
   getPremium(id:any) {

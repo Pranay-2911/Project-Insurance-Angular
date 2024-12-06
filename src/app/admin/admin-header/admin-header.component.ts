@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -15,11 +15,14 @@ export class AdminHeaderComponent {
 //       this.userName=params['userName'];
 //     });
 // }
+constructor(private router: Router){}
+
 @Input() userName!: string;
 
 logOut(){
   localStorage.removeItem('token');
   this.userName='';
-  
+  this.router.navigate(['']);
+
 }
 }

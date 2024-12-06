@@ -32,7 +32,7 @@
       </td>
       <td>{{ premium.paymentDate ? (premium.paymentDate | date: 'MMM d, y') : 'N/A' }}</td>
       <td>
-        <button (click)="onPay(premium.amount)">Pay</button>
+        <button (click)="onPay(premium.amount, premium.id)" [disabled]="premium.status === 'Paid'">Pay</button>
       </td>
     </tr>
   </tbody>

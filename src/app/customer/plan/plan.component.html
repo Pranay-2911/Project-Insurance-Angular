@@ -13,6 +13,7 @@
       <table class="schemes-table">
         <thead>
           <tr>
+            <td>Scheme Image</td>
             <th>Title</th>
             <th>Description</th>
             <th>Min Amount</th>
@@ -21,11 +22,12 @@
             <th>Max Age</th>
             <th>Min Policy Term</th>
             <th>Max Policy Term</th>
-            <th>Buy Pol</th>
+            <th>Buy Policy</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let scheme of getSchemesForSelectedPlan()">
+            <td><img [src]="scheme.imageLink" alt="Scheme Image" height="50"></td>
             <td>{{ scheme.title }}</td>
             <td>{{ scheme.description }}</td>
             <td>{{ scheme.minAmount }}</td>

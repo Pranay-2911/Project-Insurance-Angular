@@ -19,5 +19,14 @@ export class CustomerService {
   getPolicyAccount(id:any){
     return this.http.get(`${this.url}/PolicyAccount?id=${id}`);
   }
+  buyPolicy( data:any){
+    return this.http.post(`${this.url}/purchase-policy`, data);
+  }
+  changePassword(data:any){
+    return this.http.post(`${this.url}/changepassword`, data);
+  }
+  addCustomer(data:any){
+    return this.http.post(this.url, data);
+  }
 
 }
