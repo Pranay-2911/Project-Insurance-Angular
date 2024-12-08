@@ -14,7 +14,7 @@ export class PremiumService {
     return this.http.post(`${this.paymentUrl}/${id}`, null);
   }
 
-  getPremium(id:any) {
-    return this.http.get(this.paymentUrl+'/Account/'+id);
+  getPremium(id:any, page:number, pageSize:number) {
+    return this.http.get(this.paymentUrl+'/Account/'+id+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
 }

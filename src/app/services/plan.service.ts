@@ -12,4 +12,10 @@ export class PlanService {
     return this.http.get(this.planUrl);
   }
 
+  getScheme(id:any){
+    return this.http.get(this.planUrl + '/Policy/' + id);
+  }
+  updateSchema(data:any){
+    return this.http.put(this.planUrl+ '/Policy', data);
+  }
 }

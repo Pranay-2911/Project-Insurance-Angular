@@ -11,13 +11,15 @@ export class EmployeeTabsComponent {
 
   reports:any;
   agent:any;
+  page = 1;
+  pageSize = 100;
   userName: string ="";
   constructor( private router: Router, private agentService: AgentService){}
 
 
 
 ngOnInit(){
- this.agentService.getAgents().subscribe({
+ this.agentService.getAgents(this.page, this.pageSize).subscribe({
   next: (data:any) => {
     this.reports = data.length;
     this.agent = data;
@@ -45,13 +47,17 @@ viewProfile(){
 }
 
 verify(){
-
+  this.router.navigate(['employee-dashboard/verify-document'])
 }
 
 viewAgents(){
   this.router.navigate(['employee-dashboard/view-agents'])
 }
 changePassword(){
-  
+  this.router.navigate(['employee-dashboard/change-password']);
+}
+query()
+{
+  this.router.navigate(['employee-dashboard/query-response']);
 }
 }

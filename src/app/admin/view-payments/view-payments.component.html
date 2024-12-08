@@ -1,0 +1,36 @@
+<div class="payments-container">
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Policy Name"
+      [(ngModel)]="searchQuery"
+      (input)="filterDocuments()"
+      class="form-control"
+    />
+  </div>
+    <table class="payments-table">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Policy Name</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of filteredDocuments">
+          <td>{{ payment.customerName }}</td>
+          <td>{{ payment.policyName }}</td>
+          <td>{{ payment.amount | currency:'INR' }}</td>
+          <td>{{ payment.paymentDate | date:'medium' }}</td>
+          <td>{{ payment.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+  </div>
+  <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+  </mat-paginator>
+  

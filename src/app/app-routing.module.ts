@@ -42,6 +42,17 @@ import { AgentDetailsComponent } from './employee/agent-details/agent-details.co
 import { CommissionDetailsComponent } from './employee/commission-details/commission-details.component';
 import { EmpAddAgentComponent } from './employee/emp-add-agent/emp-add-agent.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { AgentTabsComponent } from './agent/agent-tabs/agent-tabs.component';
+import { ViewAgentCommissionComponent } from './agent/view-agent-commission/view-agent-commission.component';
+import { WithdrawCommissionComponent } from './agent/withdraw-commission/withdraw-commission.component';
+import { WithdrawApproveComponent } from './admin/withdraw-approve/withdraw-approve.component';
+import { VerifyDocumentComponent } from './employee/verify-document/verify-document.component';
+import { QueryResponseComponent } from './employee/query-response/query-response.component';
+import { ViewPaymentsComponent } from './admin/view-payments/view-payments.component';
+import { SettingComponent } from './admin/setting/setting.component';
+import { EmpChangePasswordComponent } from './employee/emp-change-password/emp-change-password.component';
+import { AgentChangePasswordComponent } from './agent/agent-change-password/agent-change-password.component';
+import { UpdateSchemaComponent } from './admin/update-schema/update-schema.component';
 
 const routes: Routes = [
   {
@@ -131,6 +142,22 @@ const routes: Routes = [
       {
         path: 'view-customer',
         component: ViewCustomerComponent
+      },
+      {
+        path: 'withdraw-approve',
+        component: WithdrawApproveComponent
+      },
+      {
+        path: 'view-payments',
+        component: ViewPaymentsComponent
+      },
+      {
+        path:'setting',
+        component: SettingComponent
+      },
+      {
+        path: 'update-schema',
+        component: UpdateSchemaComponent
       }
      
 
@@ -158,6 +185,18 @@ const routes: Routes = [
       {
         path: 'add-agent',
         component: EmpAddAgentComponent
+      },
+      {
+        path: 'verify-document',
+        component: VerifyDocumentComponent
+      },
+      {
+        path: 'query-response',
+        component: QueryResponseComponent
+      },
+      {
+        path: 'change-password',
+        component: EmpChangePasswordComponent
       }
     ]
   },
@@ -166,10 +205,24 @@ const routes: Routes = [
     component:AgentDashboardComponent,
     canActivate: [AuthGuard],
     data: {role: "AGENT"},
-    children:[{
-      path:'tabs',
-      component: TabsComponent
-    }]
+    children:[
+    {
+      path: 'agent-tabs',
+      component: AgentTabsComponent
+    },
+    {
+      path: 'view-agent-commission',
+      component: ViewAgentCommissionComponent
+    },
+    {
+      path: 'withdraw-commission',
+      component: WithdrawCommissionComponent
+    },
+    {
+      path: 'change-password',
+      component: AgentChangePasswordComponent
+    }
+  ]
   },
   {
     path:'customer-dashboard',

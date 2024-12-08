@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-header',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeeHeaderComponent {
 name: string= "employee";
+constructor(private router:Router){}
+logOut(){
+  localStorage.removeItem('token');
+  localStorage.removeItem('id');
+  this.router.navigate(['']);
+}
 }

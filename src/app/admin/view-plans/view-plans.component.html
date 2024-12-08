@@ -26,6 +26,7 @@
                     <th>MAX POLICY TERM</th>
                     <th>REGISTRATION COMMISSION AMOUNT</th>
                     <th>INSTALLMENT COMMISSION RATE</th>
+                    <th>UPDATE</th>
                 </tr>
                 <tr *ngFor="let scheme of plan.schemes">
                     <td><img [src]="scheme.imageLink" alt="Scheme Image" height="50"></td>
@@ -39,6 +40,9 @@
                     <td>{{ scheme.maxPolicyTerm }}</td>
                     <td>{{ scheme.registrationCommisionAmount }}</td>
                     <td>{{ scheme.installmentCommisionRatio }}</td>
+                    <td>
+                        <button class="btn btn-warning" (click)="updateSchemma(scheme.id)">Update</button>
+                    </td>   
                 </tr>
             </table>
         </td>

@@ -8,8 +8,8 @@ export class QueryService {
   url="https://localhost:7217/api/Query"
   constructor(private http:HttpClient) { }
 
-  getQueries(){
-    return this.http.get(this.url);
+  getQueries(id: any, page: number, pageSize: number){
+    return this.http.get(this.url+ '/' + id);
   }
 
   addQuery(data:any){

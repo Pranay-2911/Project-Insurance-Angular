@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agent-header',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AgentHeaderComponent {
 name: string='Agent'
+
+constructor(private router:Router){}
+
+logOut(){
+  localStorage.removeItem('token');
+  localStorage.removeItem('id');
+  this.router.navigate(['']);
+}
 }

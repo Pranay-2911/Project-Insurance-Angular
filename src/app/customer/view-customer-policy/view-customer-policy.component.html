@@ -1,6 +1,20 @@
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
 <div class="container">
     <h2>Customer Policy Details</h2>
     
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Policy Name"
+        [(ngModel)]="searchQuery"
+        (input)="filterDocuments()"
+        class="form-control"
+      />
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -12,10 +26,11 @@
           <th>Nominee Relation</th>
           <th>Policy Amount</th>
           <th>Policy Duration (Months)</th>
+          <th>DOCUMENT VERIFICATION</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let policy of policyAccounts">
+        <tr *ngFor="let policy of filteredDocuments">
           <td>{{ policy.customerName }}</td>
           <td>{{ policy.policyName }}</td>
           <td>{{ policy.agentName }}</td>
@@ -24,8 +39,16 @@
           <td>{{ nomineeRelationMap[policy.nomineeRelation] || 'Unknown' }}</td>
           <td>Rs.{{ policy.policyAmount }}</td>
           <td>{{ policy.policyDuration }} months</td>
+          <td>
+            <span *ngIf="policy.isVerified === 1" class="approved">Approved</span>
+            <span *ngIf="policy.isVerified === 2" class="not-approved">Rejected</span>
+            <span *ngIf="policy.isVerified === 0" class="pending">Pending</span>
+          </td>
         </tr>
       </tbody>
     </table>
+
+    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
   

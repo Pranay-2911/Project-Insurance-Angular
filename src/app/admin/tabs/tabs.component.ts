@@ -16,7 +16,11 @@ policyAccounts: number =0;
 plans: number =0;
 schemes: number =0;
 commissions: number =0;
+withdrawCommission = 0;
+payments = 0;
 userName: string ="";
+page = 1;
+pageSize=100;
 constructor( private adminService: AdminService, private router: Router){}
 
 
@@ -45,7 +49,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getPolicyAccount().subscribe({
+  this.adminService.getPolicyAccount(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       console.log(data);
       this.policyAccounts = data.length;
@@ -65,7 +69,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getScheme().subscribe({
+  this.adminService.getScheme(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       this.schemes = data.length;
       console.log(this.schemes);
@@ -75,7 +79,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getCommissions().subscribe({
+  this.adminService.getCommissions(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       this.commissions = data.length;
       console.log(this.commissions);
@@ -85,6 +89,25 @@ ngOnInit(){
     }
   })
 
+  this.adminService.getAllRequest(this.page, this.pageSize).subscribe({
+    next: (data:any) => {
+      this.withdrawCommission = data.length;
+      console.log(this.withdrawCommission);
+    },
+    error: (error:any) => {
+      console.log(error);
+    }
+  })
+
+  this.adminService.getPayments(this.page, this.pageSize).subscribe({
+    next: (data:any) => {
+      this.payments = data.length;
+      console.log(this.payments);
+    },
+    error: (error:any) => {
+      console.log(error);
+    }
+  })
 }
 
 StateView()
@@ -111,5 +134,13 @@ viewCommission(){
 viewPolicyAccounts()
 {
   this.router.navigate(['admin-dashboard/view-policy-account']);
+}
+viewRequest()
+{
+  this.router.navigate(['admin-dashboard/withdraw-approve']);
+}
+viewPayments()
+{
+  this.router.navigate(['admin-dashboard/view-payments']);
 }
 }

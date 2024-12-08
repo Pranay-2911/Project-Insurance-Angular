@@ -27,6 +27,10 @@ export class ViewPlansComponent {
   {
     this.router.navigate(['admin-dashboard/schemas'], { queryParams: {id: id} });
   }
+  updateSchemma(id : any)
+  {
+      this.router.navigate(['admin-dashboard/update-schema'], { queryParams: {id: id} });
+  }
   
 
 }

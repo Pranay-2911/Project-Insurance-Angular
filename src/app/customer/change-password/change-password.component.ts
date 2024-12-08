@@ -20,7 +20,7 @@ export class ChangePasswordComponent {
    
     this.customerService.changePassword(this.newForm.value).subscribe({
       next:()=>{
-        alert("Your password have been chnage successfully")
+        alert("Your password have been change successfully")
         this.newForm.reset(); // Reset the form after adding the query
       },
       error: (error: any) => {

@@ -1,5 +1,15 @@
 <div class="table-container">
     <h2>Employee Details</h2>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Employee First Name"
+        [(ngModel)]="searchQuery"
+        (input)="filterDocuments()"
+        class="form-control"
+      />
+    </div>
     <table class="employee-table">
       <thead>
         <tr>
@@ -13,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees; let i = index">
+        <tr *ngFor="let employee of filteredDocuments; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ employee.firstName }}</td>
           <td>{{ employee.lastName }}</td>
@@ -26,5 +36,8 @@
         </tr>
       </tbody>
     </table>
+
+    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
   

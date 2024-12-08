@@ -10,6 +10,7 @@ export class AdminService {
   planUrl = 'https://localhost:7217/api/Plan';
   agentUrl = 'https://localhost:7217/api/Agent';
   employeeUrl = 'https://localhost:7217/api/Employee';
+
   
   constructor(private http:HttpClient) { }
 
@@ -21,15 +22,15 @@ export class AdminService {
     return this.http.get(this.url + '/City');
   }
 
-  getPolicyAccount(){
-    return this.http.get(this.url + '/PolicyAccount');
+  getPolicyAccount(page:number, pageSize:number){
+    return this.http.get(this.url + '/PolicyAccount'+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
 
   getPlan(){
     return this.http.get(this.planUrl)
   }
-  getScheme(){
-    return this.http.get(this.planUrl+'/Schema')
+  getScheme(page:number, pageSize:number){
+    return this.http.get(this.planUrl+'/Schema'+`?pageNumber=${page}&pageSize=${pageSize}`)
   }
 
   addPlan(plan : any){
@@ -51,20 +52,20 @@ export class AdminService {
   addAgent(agent:any){
     return this.http.post(this.agentUrl, agent);
   }
-  getAgent(){
-    return this.http.get(this.agentUrl);
+  getAgent(page:number, pageSize:number){
+    return this.http.get(this.agentUrl+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
-  getCommissions(){
-    return this.http.get(this.url + '/Commission');
+  getCommissions(page:number, pageSize:number){
+    return this.http.get(this.url + '/Commission'+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
   addEmployee(employee:any){
     return this.http.post(this.employeeUrl, employee);
   }
-  getEmployee(){
-    return this.http.get(this.employeeUrl);
+  getEmployee(page:number, pageSize:number){
+    return this.http.get(this.employeeUrl+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
-  getUnverifiedAgents(){
-    return this.http.get(this.agentUrl+'/UnVerified');
+  getUnverifiedAgents(page:number, pageSize:number){
+    return this.http.get(this.agentUrl+'/UnVerified'+`?pageNumber=${page}&pageSize=${pageSize}`);
   }
   verifyAgent(id: any) {
     return this.http.put(`${this.agentUrl}/Verify?id=${id}`, null);
@@ -74,6 +75,31 @@ export class AdminService {
   }
   deleteEmployee(id: any) {
     return this.http.delete(this.employeeUrl+ "/" +id);
+  }
+  getAllRequest(page:number, pageSize:number)
+  {
+    return this.http.get(this.url+'/CommissionRequest');
+  }
+
+  approve(id: any) {
+    return this.http.put(this.url +"/CommissionRequest/Approve/" +id, null);
+  }
+  reject(id: any)
+  {
+    return this.http.put(this.url +"/CommissionRequest/Reject/" +id, null);
+  }
+
+  getPayments(page: number, pageSize: number)
+  {
+    return this.http.get(this.url+'/Payments'+`?pageNumber=${page}&pageSize=${pageSize}`);
+  }
+  getGlobalvariable()
+  {
+    return this.http.get(this.url+'/Global');
+  }
+  updateGlobalvariable(data: any)
+  {
+    return this.http.put(this.url+'/Global',data);
   }
   
 }

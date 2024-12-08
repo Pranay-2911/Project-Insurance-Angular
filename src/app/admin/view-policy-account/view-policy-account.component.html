@@ -1,5 +1,26 @@
 <div class="policy-table-container">
     <h2>Policy Accounts</h2>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Customer Name"
+        [(ngModel)]="searchQuery"
+        (input)="filterDocuments()"
+        class="form-control"
+      />
+    </div>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Policy Name"
+        [(ngModel)]="searchQuery1"
+        (input)="filterDocumentsbyPolicy()"
+        class="form-control"
+      />
+    </div>
+
     <table class="policy-table">
       <thead>
         <tr>
@@ -14,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let policy of policyAccounts">
+        <tr *ngFor="let policy of filteredDocuments">
           <td>{{ policy.customerName }}</td>
           <td>{{ policy.policyName }}</td>
           <td>{{ policy.agentName }}</td>
@@ -26,5 +47,7 @@
         </tr>
       </tbody>
     </table>
+    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
   

@@ -35,4 +35,17 @@
   .table td {
     color: #555;
   }
+  .approved {
+    color: #28a745;
+    font-size: 20px;
+  }
+  
+  .not-approved {
+    color: #dc3545;
+    font-size: 20px;
+  }
+  .pending {
+    color: #ffc107; /* Yellow for Pending */
+    font-size: 20px;
+  }
   

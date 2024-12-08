@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { EnumService } from 'src/app/services/enum.service';
+import { PlanService } from 'src/app/services/plan.service';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-buy-policy',
@@ -14,23 +16,34 @@ export class BuyPolicyComponent {
   schemeId: any = '';
   nominees:any;
   customerId:any;
-  newPolicyForm = new FormGroup({
-    policyId: new FormControl(),
-    totalAmount: new FormControl(),
-    durationInMonths: new FormControl(),
-    nominee: new FormControl(),
-    nomineeRelation: new FormControl(),
-    customerId: new FormControl()
-  });
+  scheme:any;
+  newPolicyForm : FormGroup; 
 
  
-  constructor(private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private enumService: EnumService) { }
+  constructor(private customerService: CustomerService, private uploadService: UploadService, private route: ActivatedRoute, private router: Router, private enumService: EnumService, private planService: PlanService, private fb: FormBuilder) { 
+    this.newPolicyForm = this.fb.group({
+      policyId: [null, Validators.required],
+      totalAmount: [null, Validators.required],
+      durationInMonths: [null, Validators.required],
+      nominee: ['', Validators.required],
+      nomineeRelation: ['', Validators.required],
+      customerId: [null, Validators.required],
+    });
+  }
 
   ngOnInit(){
     this.route.queryParams.subscribe(params=>{
       this.schemeId = params['schemeId']
+
     });
 
+    this.planService.getScheme(this.schemeId).subscribe({
+      next:(data:any)=>{
+        this.scheme = data;
+      },
+      error:(err) => console.error('There was an error!', err)
+    })
+    
     this.enumService.getNominee().subscribe({
       next:(data:any)=>{
         this.nominees = data;
@@ -41,23 +54,20 @@ export class BuyPolicyComponent {
     this.customerId = localStorage.getItem('id');
   }
 
-  addnewPolicy()
-  {
+  onSubmit(){
     this.newPolicyForm.patchValue({
+      customerId : localStorage.getItem('id'),
       policyId : this.schemeId,
-      customerId: localStorage.getItem('id')
-    });
-    
+    })
     console.log(this.newPolicyForm.value);
     this.customerService.buyPolicy(this.newPolicyForm.value).subscribe({
-      next: (data: any) => {
-        alert("Policy Purchase Successfully");
+      next:(data:any)=>{
+        console.log(data);
+        this.router.navigate(['customer-dashboard/add-documents'], {queryParams:{ id: data.accountId, documents: this.scheme.documents}});
       },
-      error: (err) => {
-        console.error('There was an error!', err);
-      }
-     });
-    
+      error:(err) => console.error('There was an error!', err)
+    })
+
   }
   
 

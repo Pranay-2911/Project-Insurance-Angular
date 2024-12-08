@@ -9,11 +9,21 @@ import { Router } from '@angular/router';
 export class ViewCommissionComponent {
 
   commissions : any;
+  page = 1;
+  pageSize = 5;
+  totalAgents = 0;
+  filteredDocuments: any[] = []; // For displaying the filtered data
+  searchQuery: string = ''; 
   constructor(private router: Router, private adminService: AdminService) {}
   ngOnInit(){
-    this.adminService.getCommissions().subscribe({
+    this.getAllCommission();
+  }
+  
+  getAllCommission(){
+    this.adminService.getCommissions(this.page, this.pageSize).subscribe({
       next: (data) => {
         this.commissions = data;
+        this.filteredDocuments = this.commissions;
         console.log(this.commissions);
       },
       error: (error) => {
@@ -21,7 +31,20 @@ export class ViewCommissionComponent {
       }
     });
   }
-  
 
+  filterDocuments() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredDocuments = this.commissions.filter((item:any) =>
+      item.agentName.toLowerCase().includes(query)
+    );
+  }
+
+onPageChange(event: any) {
+    console.log(event);
+    this.page = event.pageIndex +1;
+    this.pageSize = event.pageSize;
+    // this.page = page;
+    this.getAllCommission();
+  }
 
 }

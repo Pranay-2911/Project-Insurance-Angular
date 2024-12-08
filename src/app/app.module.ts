@@ -57,6 +57,20 @@ import { AgentDetailsComponent } from './employee/agent-details/agent-details.co
 import { CommissionDetailsComponent } from './employee/commission-details/commission-details.component';
 import { EmpAddAgentComponent } from './employee/emp-add-agent/emp-add-agent.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { AgentTabsComponent } from './agent/agent-tabs/agent-tabs.component';
+import { ViewAgentCommissionComponent } from './agent/view-agent-commission/view-agent-commission.component';
+import { WithdrawCommissionComponent } from './agent/withdraw-commission/withdraw-commission.component';
+import { WithdrawApproveComponent } from './admin/withdraw-approve/withdraw-approve.component';
+import { NgxStripeModule} from 'ngx-stripe';
+import { VerifyDocumentComponent } from './employee/verify-document/verify-document.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { QueryResponseComponent } from './employee/query-response/query-response.component';
+import { GloabalVariableComponent } from './admin/gloabal-variable/gloabal-variable.component';
+import { ViewPaymentsComponent } from './admin/view-payments/view-payments.component';
+import { SettingComponent } from './admin/setting/setting.component';
+import { EmpChangePasswordComponent } from './employee/emp-change-password/emp-change-password.component';
+import { AgentChangePasswordComponent } from './agent/agent-change-password/agent-change-password.component';
+import { UpdateSchemaComponent } from './admin/update-schema/update-schema.component';
 
 
 @NgModule({
@@ -109,6 +123,19 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
     CommissionDetailsComponent,
     EmpAddAgentComponent,
     RegisterCustomerComponent,
+    AgentTabsComponent,
+    ViewAgentCommissionComponent,
+    WithdrawCommissionComponent,
+    WithdrawApproveComponent,
+    VerifyDocumentComponent,
+    QueryResponseComponent,
+    GloabalVariableComponent,
+    ViewPaymentsComponent,
+    SettingComponent,
+    EmpChangePasswordComponent,
+    AgentChangePasswordComponent,
+    UpdateSchemaComponent,
+  
     
  
   ],
@@ -123,6 +150,8 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
     FormsModule,
     CommonModule,
     NgxDropzoneModule,
+    NgxStripeModule.forRoot('pk_test_51QT1NPCFiPRnAkVSVdNAkUATpbeEUVM3LSYEwTJOXwPjbYVRYzgSeI85FEH3KcRd0b7zNcIMJv5qE9WgY31Oc51b00GTedZXAQ'),
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

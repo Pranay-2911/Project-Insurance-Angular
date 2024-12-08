@@ -1,3 +1,13 @@
+<div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Scheme Name"
+      [(ngModel)]="searchQuery"
+      (input)="filterDocuments()"
+      class="form-control"
+    />
+  </div>
+
 <table>
     <tr>
         <th>Name</th>
@@ -13,7 +23,7 @@
         <th>Documents Required</th>
         <th>Status</th>
     </tr>
-    <tr *ngFor="let scheme of schemes">
+    <tr *ngFor="let scheme of filteredDocuments">
         <td>{{scheme.title}}</td>
         <td>{{scheme.description}}</td>
         <td>{{scheme.minAmount}}</td>
@@ -50,4 +60,8 @@
         </td>
     </tr>
 </table>
+
+<mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+</mat-paginator>
+
 

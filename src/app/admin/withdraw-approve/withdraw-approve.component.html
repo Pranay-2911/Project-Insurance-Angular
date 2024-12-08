@@ -1,0 +1,40 @@
+<div class="request-table-container">
+    <h2 class="text-center">Withdrawal Requests</h2>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Agent Name"
+        [(ngModel)]="searchQuery"
+        (input)="filterDocuments()"
+        class="form-control"
+      />
+    </div>
+    <table class="request-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Agent Name</th>
+          <th>Amount</th>
+          <th>Request Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of filteredDocuments; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ request.agentName }}</td>
+          <td>{{ request.amount | currency: 'INR' }}</td>
+          <td>{{ request.requestDate | date: 'medium' }}</td>
+          <td>
+            <button class="btn btn-success" (click)="approveRequest(request.id)">Approve</button>
+            <button class="btn btn-danger" (click)="rejectRequest(request.id)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  

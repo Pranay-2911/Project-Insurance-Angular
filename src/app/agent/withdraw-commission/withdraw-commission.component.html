@@ -1,0 +1,54 @@
+<div class="withdraw-container">
+  <h2 class="text-center">Withdraw Commission</h2>
+
+  <div class="balance-display">
+    <h3>Your Current Balance: <span>{{ balance | currency: 'INR' }}</span></h3>
+  </div>
+
+  <form [formGroup]="commissonForm" (ngSubmit)="commissionRequest()" class="withdraw-form">
+    <div class="form-group">
+      <label for="amount">Withdraw Amount:</label>
+      <input 
+        type="number" 
+        id="amount" 
+        formControlName="amount" 
+        class="form-control" 
+        placeholder="Enter amount" 
+        required 
+        min="1" 
+        [max]="balance" />
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn btn-primary">
+        Request Withdrawal
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="request-container">
+  <h3 class="text-center">Your Withdrawal Requests</h3>
+  <table class="request-table">
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th>Amount</th>
+        <th>Request Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ request.amount | currency: 'INR' }}</td>
+        <td>{{ request.requestDate | date: 'short' }}</td>
+        <td>
+          <span *ngIf="request.status === 1" class="approved">Approved</span>
+          <span *ngIf="request.status === 2" class="not-approved">Rejected</span>
+          <span *ngIf="request.status === 0" class="pending">Pending</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

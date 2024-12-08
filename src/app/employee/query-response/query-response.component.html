@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Query Responses</h2>
+    
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Sr no</th>
+          <th>Title</th>
+          <th>Message</th>
+          <th>Customer Name</th>
+          <th>Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let query of queries; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{ query.title }}</td>
+          <td>{{ query.message }}</td>
+          <td>{{ query.customerName }}</td>
+          <td>
+            <form [formGroup]="newReplyForm" (ngSubmit)="addReply(query.id)">
+              <input
+                type="text"
+                formControlName="reply"
+                placeholder="Enter your reply"
+                class="reply-input"
+              />
+              <button
+              class="btn btn-primary"
+              >
+              Submit Reply
+            </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  

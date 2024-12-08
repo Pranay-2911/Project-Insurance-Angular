@@ -1,0 +1,130 @@
+/* Container for the entire page */
+.container {
+  margin: 100px auto;
+  max-width: 800px;
+  font-family: Arial, sans-serif;
+}
+
+/* Main title styling */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* Customer card container */
+.customer-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header section for each customer */
+.customer-header {
+  margin-bottom: 15px;
+}
+
+/* Customer name heading */
+.customer-header h2 {
+  color: #007bff;
+  margin: 0;
+}
+
+/* Customer details text */
+.customer-header p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Document list styling */
+.documents-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center; /* Center alignment for all cards */
+  margin-bottom: 15px;
+}
+
+/* Individual document card */
+.document-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center alignment for content inside the card */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 200px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Document image styling */
+.document-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Document information text */
+.document-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+/* Action buttons container */
+.customer-actions {
+  display: flex;
+  justify-content: center; /* Center align buttons */
+  gap: 10px; /* Reduced gap between buttons */
+  margin-top: 15px;
+}
+
+/* Approve button styling */
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Approve button hover effect */
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Reject button styling */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Reject button hover effect */
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Adjusting document card buttons for responsiveness */
+@media (max-width: 768px) {
+  .customer-actions {
+      flex-direction: column;
+      gap: 5px; /* Further reduce gap for small screens */
+  }
+}

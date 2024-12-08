@@ -9,6 +9,9 @@ import { PremiumService } from 'src/app/services/premium.service';
 export class PayPremiumComponent {
   policy:any;
   premiums:any;
+  page = 1;
+  pageSize = 5;
+  totalPremium = 0;
   nomineeRelationMap: { [key: number]: string } = {
     0: 'Father',
     1: 'Mother',
@@ -22,7 +25,11 @@ export class PayPremiumComponent {
       console.log(this.policy);  
     })
 
-    this.premiumService.getPremium(this.policy.id).subscribe((res:any) => {
+    this.getAllPremiums();
+  }
+
+  getAllPremiums(){
+    this.premiumService.getPremium(this.policy.id, this.page, this.pageSize).subscribe((res:any) => {
       this.premiums = res;
       console.log(this.premiums);
     });
@@ -33,5 +40,12 @@ export class PayPremiumComponent {
     this.router.navigate(['customer-dashboard/payment'], {queryParams: {amount:amount, premiumId: id}});
   }
 
+  onPageChange(event: any) {
+    console.log(event);
+    this.page = event.pageIndex +1;
+    this.pageSize = event.pageSize;
+    // this.page = page;
+    this.getAllPremiums();
+  }
 }
 

@@ -1,47 +1,71 @@
 <div class="container">
-    <h1>Insurance Plans</h1>
-  
-    <!-- Dropdown for Plans -->
-    <label for="plansDropdown">Select Plan:</label>
-    <select id="plansDropdown" [(ngModel)]="selectedPlanId" (change)="onPlanSelect()">
-      <option *ngFor="let plan of plansData" [value]="plan.id">{{ plan.name }}</option>
+  <h1>Insurance Plans</h1>
+
+  <!-- Dropdown for Plans -->
+  <label for="plansDropdown">Select Plan:</label>
+  <select id="plansDropdown" [(ngModel)]="selectedPlanId" (change)="onPlanSelect()">
+    <option value="" disabled selected>Select a Plan</option>
+    <option *ngFor="let plan of plansData" [value]="plan.id">{{ plan.name }}</option>
+  </select>
+
+  <!-- Dropdown for Schemes -->
+  <div *ngIf="selectedPlanSchemes.length > 0" class="dropdown-section">
+    <label for="schemesDropdown">Select Scheme:</label>
+    <select id="schemesDropdown" [(ngModel)]="selectedSchemeId" (change)="onSchemeSelect()">
+      <option value="" disabled selected>Select a Scheme</option>
+      <option *ngFor="let scheme of selectedPlanSchemes" [value]="scheme.id">{{ scheme.title }}</option>
     </select>
-  
-    <!-- Table for Schemes -->
-    <div *ngIf="selectedPlanId">
-      <h2>Schemes</h2>
-      <table class="schemes-table">
-        <thead>
-          <tr>
-            <td>Scheme Image</td>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Min Amount</th>
-            <th>Max Amount</th>
-            <th>Min Age</th>
-            <th>Max Age</th>
-            <th>Min Policy Term</th>
-            <th>Max Policy Term</th>
-            <th>Buy Policy</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let scheme of getSchemesForSelectedPlan()">
-            <td><img [src]="scheme.imageLink" alt="Scheme Image" height="50"></td>
-            <td>{{ scheme.title }}</td>
-            <td>{{ scheme.description }}</td>
-            <td>{{ scheme.minAmount }}</td>
-            <td>{{ scheme.maxAmount }}</td>
-            <td>{{ scheme.minAge }}</td>
-            <td>{{ scheme.maxAge }}</td>
-            <td>{{ scheme.minPolicyTerm }}</td>
-            <td>{{ scheme.maxPolicyTerm }}</td>
-            <td>
-              <button (click)="buyScheme(scheme.id)">Buy Policy</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
-  
+
+  <!-- Display Selected Scheme Details -->
+  <div *ngIf="selectedScheme" class="scheme-details">
+    <h2>Scheme Details</h2>
+    <table class="details-table">
+      <tbody>
+        <tr>
+          <th>Scheme Image:</th>
+          <td>
+            <img [src]="selectedScheme.imageLink" alt="Scheme Image" height="100" />
+          </td>
+        </tr>
+        <tr>
+          <th>Title:</th>
+          <td>{{ selectedScheme.title }}</td>
+        </tr>
+        <tr>
+          <th>Description:</th>
+          <td>{{ selectedScheme.description }}</td>
+        </tr>
+        <tr>
+          <th>Min Amount:</th>
+          <td>{{ selectedScheme.minAmount }}</td>
+        </tr>
+        <tr>
+          <th>Max Amount:</th>
+          <td>{{ selectedScheme.maxAmount }}</td>
+        </tr>
+        <tr>
+          <th>Min Age:</th>
+          <td>{{ selectedScheme.minAge }}</td>
+        </tr>
+        <tr>
+          <th>Max Age:</th>
+          <td>{{ selectedScheme.maxAge }}</td>
+        </tr>
+        <tr>
+          <th>Min Policy Term:</th>
+          <td>{{ selectedScheme.minPolicyTerm }}</td>
+        </tr>
+        <tr>
+          <th>Max Policy Term:</th>
+          <td>{{ selectedScheme.maxPolicyTerm }}</td>
+        </tr>
+        <tr>
+          <th>Required Documents:</th>
+          <td>{{ selectedScheme.documents }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="buy-btn" (click)="buyScheme(selectedScheme.id)">Buy Policy</button>
+  </div>
+</div>

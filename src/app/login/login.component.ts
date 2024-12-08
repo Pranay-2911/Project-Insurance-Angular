@@ -68,7 +68,7 @@ logIn() {
           else if(this.role.roleName === "AGENT"){
             localStorage.setItem('roleName', this.role.roleName);
             localStorage.setItem('id', tokenInfo.Id);
-              this.route.navigate(['agent-dashboard/tabs']);
+              this.route.navigate(['agent-dashboard/agent-tabs']);
           }
           else{
             localStorage.setItem('roleName', this.role.roleName);

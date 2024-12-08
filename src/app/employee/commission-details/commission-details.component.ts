@@ -11,6 +11,12 @@ export class CommissionDetailsComponent {
   agentId:any;
   agent:any;
   commissions:any;
+  page = 1;
+  pageSize = 5;
+  totalCommissions = 0; 
+  filteredDocuments: any[] = []; // For displaying the filtered data
+  searchQuery: string = ''; 
+
   constructor(private route: ActivatedRoute, private agentService: AgentService){}
 
   ngOnInit() {
@@ -23,13 +29,30 @@ export class CommissionDetailsComponent {
       console.log(this.agent);
     });
 
-    this.agentService.getCommission(this.agentId).subscribe(data=>{
-      this.commissions = data;
-      console.log(this.commissions);
-    })
+    this.getAllCommissions();
 
   }
 
-  
+  filterDocuments() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredDocuments = this.commissions.filter((item:any) =>
+      item.agentName.toLowerCase().includes(query)
+    );
+  }
+  getAllCommissions() {
+    this.agentService.getCommission(this.agentId, this.page, this.pageSize).subscribe(data=>{
+      this.commissions = data;
+      this.filteredDocuments = this.commissions;
+      console.log(this.commissions);
+    })
+  }
+
+  onPageChange(event: any) {
+    console.log(event);
+    this.page = event.pageIndex +1;
+    this.pageSize = event.pageSize;
+    // this.page = page;
+    this.getAllCommissions();
+  }
   
 }

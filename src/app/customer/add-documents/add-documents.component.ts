@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DocumentService } from 'src/app/services/document.service';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -11,24 +12,25 @@ import { UploadService } from 'src/app/services/upload.service';
 export class AddDocumentsComponent {
   file: any | null = null; 
   documentTypes: any;
+  policyId: any;
 
   newDocument = new FormGroup({
     name: new FormControl(),
     location: new FormControl(),
+    policyAccountId: new FormControl()
+
   })
 
-  constructor(private uploadService: UploadService, private documentService: DocumentService) {}
+  constructor(private uploadService: UploadService, private documentService: DocumentService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.documentService.getDocumentType().subscribe({
-      next: (types) => {
-        console.log(types);
-        this.documentTypes = types;
-      },
-      error: (error) => {
-        console.error(error);
-      }
+    
+    this.route.queryParams.subscribe((params) => {
+      this.policyId = params['id'],
+      this.documentTypes = params['documents']
+      console.log(this.policyId);
     });
+
   }
 
   onSelect(event: any) {
@@ -58,12 +60,13 @@ export class AddDocumentsComponent {
     this.file = null;
   }
 
-  upload() {
+  upload(document:any) {
     if (!this.file) {
       alert("Please select a file to upload");
       return;
     }
 
+    console.log(this.newDocument.value);
     const data = new FormData();
     data.append('file', this.file);
     data.append('upload_preset', 'documents');
@@ -74,6 +77,7 @@ export class AddDocumentsComponent {
 
         // Now, update the form with the location after successful upload
         this.newDocument.patchValue({
+          name: document,
           location: res.url, // Assuming the URL of the uploaded image is in res.url
         });
 
@@ -87,6 +91,8 @@ export class AddDocumentsComponent {
   }
 
   addNewDocument() {
+
+    this.newDocument.patchValue({ policyAccountId: this.policyId });
     console.log(this.newDocument.value);
 
     this.documentService.addDocument(this.newDocument.value).subscribe({

@@ -1,6 +1,11 @@
 <h1>Do Payments</h1>
 
-<form [formGroup]="newPayment" (ngSubmit)="onPay()">
+<!-- <form [formGroup]="newPayment" (ngSubmit)="onPay()">
     <input type="number" formControlName="amount" [readOnly]="true">
     <button>Pay</button>
-</form>
+</form> -->
+
+<!-- <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+<button type="submit" (click)="createToken()">Create Token</button> -->
+
+<div #paymentRef></div>
