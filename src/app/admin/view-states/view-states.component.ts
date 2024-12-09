@@ -25,7 +25,7 @@ export class ViewStatesComponent {
   addCities(name:any) {
     // this.stateId = this.route.snapshot.paramMap.get('id');
     console.log(name);
-    this.router.navigate(['admin-dashboard/add-city'], {queryParams:{name:name}});
+    this.router.navigate(['admin-dashboard/add-state-city'], {queryParams:{name:name}});
 
   }
   addState(){

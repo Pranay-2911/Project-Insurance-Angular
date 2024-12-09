@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 import { PlanService } from 'src/app/services/plan.service';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-update-schema',
@@ -21,7 +22,8 @@ export class UpdateSchemaComponent implements OnInit {
     private planService: PlanService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private uploadService: UploadService
   ) {
     this.updateSchemaForm = this.fb.group({
       id: [''],
@@ -95,12 +97,56 @@ export class UpdateSchemaComponent implements OnInit {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
-      this.file = input.files[0];
+      const selectedFile = input.files[0];
+
+      const maxSize = 5 * 1024 * 1024; // 5 MB
+  
+        // Validate file size
+        if (selectedFile.size > maxSize) {
+          alert('File size exceeds 5 MB');
+          return;
+        }
+  
+        // Validate file type
+        if (!['image/jpeg', 'image/png'].includes(selectedFile.type)) {
+          alert('Invalid file type. Only JPEG and PNG are allowed.');
+          return;
+        }
+  
+        this.file = selectedFile;
     }
   }
 
   onRemove(): void {
     this.file = null;
+  }
+
+  upload() {
+    if (!this.file) {
+      alert("Please select a file to upload");
+      return;
+    }
+
+    const data = new FormData();
+    data.append('file', this.file);
+    data.append('upload_preset', 'documents');
+
+    this.uploadService.uploadImage(data).subscribe({
+      next: (res: any) => {
+        console.log(res);
+
+        // Now, update the form with the location after successful upload
+        this.updateSchemaForm.patchValue({
+          imageLink: res.url, // Assuming the URL of the uploaded image is in res.url
+        });
+        console.log(this.updateSchemaForm.value);
+        // Proceed to submit the form after setting the location
+        this.onUpdateSchema();
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
   }
 
   onUpdateSchema(): void {
@@ -109,7 +155,7 @@ export class UpdateSchemaComponent implements OnInit {
     this.planService.updateSchema(formData).subscribe({
       next:()=>{
         alert("Schema Updated Successfully")
-        this.router.navigate(['admin-dashboard/viewplans']);// Reset the form after adding the query
+        this.router.navigate(['admin-dashboard/tabs']);// Reset the form after adding the query
       },
       error: (error: any) => {
         console.error('Error adding query:', error);

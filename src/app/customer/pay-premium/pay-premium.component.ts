@@ -31,6 +31,7 @@ export class PayPremiumComponent {
   getAllPremiums(){
     this.premiumService.getPremium(this.policy.id, this.page, this.pageSize).subscribe((res:any) => {
       this.premiums = res;
+      this.totalPremium = this.premiums.length;
       console.log(this.premiums);
     });
   }

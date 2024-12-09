@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-withdraw-approve',
@@ -10,10 +11,11 @@ import { AdminService } from 'src/app/services/admin.service';
 export class WithdrawApproveComponent {
 page=1;
 pageSize=5;
+totalRequests=0;
 filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   requests : any;
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private emailService:EmailService) {}
   ngOnInit(){
     this.getAllRequest();
   }
@@ -23,6 +25,7 @@ filteredDocuments: any[] = []; // For displaying the filtered data
       next: (data) => {
         this.requests = data;
         this.filteredDocuments = this.requests;
+        this.totalRequests = this.filteredDocuments.length;
         console.log(this.requests);
       },
       error: (error) => {
@@ -41,6 +44,14 @@ filteredDocuments: any[] = []; // For displaying the filtered data
     this.adminService.approve(requestId).subscribe({
       next: () => {
         alert('Request approved successfully!');
+        this.emailService.sendEmail(
+          'pranayraut129@gmail.com',
+          'Withdraw commission request approved',
+          'Hello Agent, Your withdraw request is approved. Your withdraw amount is credited in 2 to 3 working days.'
+        ).subscribe({
+          next: () => console.log('Email sent successfully!'),
+          error: (err) => console.error('Error sending email:', err),
+        });
         this.ngOnInit(); // Refresh the table
       },
       error: (error) => {
@@ -54,6 +65,14 @@ filteredDocuments: any[] = []; // For displaying the filtered data
     this.adminService.reject(requestId).subscribe({
       next: () => {
         alert('Request rejected successfully!');
+        this.emailService.sendEmail(
+          'pranayraut129@gmail.com',
+          'Withdraw commission request rejected',
+          'Hello Agent, Your withdraw request is rejected. We cannot able to send your request amount'
+        ).subscribe({
+          next: () => console.log('Email sent successfully!'),
+          error: (err) => console.error('Error sending email:', err),
+        });
         this.ngOnInit(); // Refresh the table
       },
       error: (error) => {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { AgentService } from 'src/app/services/agent.service';
 @Component({
   selector: 'app-view-agent',
   templateUrl: './view-agent.component.html',
@@ -13,7 +14,7 @@ export class ViewAgentComponent {
   totalAgents = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private agentService: AgentService) {}
   ngOnInit(){
     this.getAllAgents()
   }
@@ -23,6 +24,7 @@ export class ViewAgentComponent {
       next: (data) => {
         this.agents = data;
         this.filteredDocuments = this.agents;
+        this.totalAgents = this.filteredDocuments.length;
         console.log(this.agents);
       },
       error: (error) => {
@@ -40,6 +42,19 @@ export class ViewAgentComponent {
   deleteAgent(id: any){
     this.adminService.deleteAgent(id).subscribe(()=>{});
     alert('Agent deleted successfully!');
+    location.reload();
+  }
+  activeAgent(id: any)
+  {
+    this.agentService.activeAgent(id).subscribe({
+      next: () => {
+        alert('Agent activated successfully!');
+        this.ngOnInit(); // Refresh the table
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
     location.reload();
   }
 

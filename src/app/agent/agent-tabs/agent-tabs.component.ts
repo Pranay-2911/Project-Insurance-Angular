@@ -23,5 +23,7 @@ export class AgentTabsComponent {
   {
     this.router.navigate(['agent-dashboard/change-password']);
   }
-
+  onMarketing(){
+    this.router.navigate(['agent-dashboard/marketing']);
+  }
 }

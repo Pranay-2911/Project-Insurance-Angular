@@ -8,7 +8,7 @@ import { AgentService } from 'src/app/services/agent.service';
   styleUrls: ['./employee-tabs.component.css']
 })
 export class EmployeeTabsComponent {
-
+  queries = 0;
   reports:any;
   agent:any;
   page = 1;

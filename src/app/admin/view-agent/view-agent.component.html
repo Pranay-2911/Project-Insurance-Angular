@@ -1,46 +1,64 @@
 <div class="agent-container">
-    <h1>Agent Information</h1>
+  <h1>Agent Information</h1>
 
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search by Agent Name"
-        [(ngModel)]="searchQuery"
-        (input)="filterDocuments()"
-        class="form-control"
-      />
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Qualification</th>
-          <th>Email</th>
-          <th>Mobile Number</th>
-          <th>Current Commission Balance</th>
-          <th>Total Commission Earned</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let agent of filteredDocuments">
-          <td>{{ agent.firstName }}</td>
-          <td>{{ agent.lastName }}</td>
-          <td>{{ agent.qualification }}</td>
-          <td>{{ agent.email }}</td>
-          <td>{{ agent.mobileNumber }}</td>
-          <td>{{ agent.currentCommisionBalance }}</td>
-          <td>{{ agent.totalCommissionEarned }}</td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteAgent(agent.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
-    </mat-paginator>
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Agent Name"
+      [(ngModel)]="searchQuery"
+      (input)="filterDocuments()"
+      class="form-control"
+    />
   </div>
-  
+
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Qualification</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>Current Commission Balance</th>
+        <th>Total Commission Earned</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agent of filteredDocuments">
+        <td>{{ agent.firstName }}</td>
+        <td>{{ agent.lastName }}</td>
+        <td>{{ agent.qualification }}</td>
+        <td>{{ agent.email }}</td>
+        <td>{{ agent.mobileNumber }}</td>
+        <td>{{ agent.currentCommisionBalance }}</td>
+        <td>{{ agent.totalCommissionEarned }}</td>
+        <td>
+          <button
+            *ngIf="agent.isActive"
+            class="btn btn-danger"
+            (click)="deleteAgent(agent.id)"
+          >
+            Delete
+          </button>
+          <button
+            *ngIf="!agent.isActive"
+            class="btn btn-success"
+            (click)="activeAgent(agent.id)"
+          >
+            Activate
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-paginator
+    [length]="totalAgents"
+    pageSize="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    aria-label="Select page"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

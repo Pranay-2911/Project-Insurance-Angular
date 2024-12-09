@@ -1,0 +1,56 @@
+<div class="scheme-container">
+    <h1>Scheme Details</h1>
+    <div *ngIf="scheme" class="scheme-details">
+      <table class="details-table">
+        <tbody>
+          <tr>
+            <th>Scheme Image:</th>
+            <td>
+              <img [src]="scheme.imageLink" alt="Scheme Image" height="100" />
+            </td>
+          </tr>
+          <tr>
+            <th>Title:</th>
+            <td>{{ scheme.title }}</td>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <td>{{ scheme.description }}</td>
+          </tr>
+          <tr>
+            <th>Min Amount:</th>
+            <td>{{ scheme.minAmount }}</td>
+          </tr>
+          <tr>
+            <th>Max Amount:</th>
+            <td>{{ scheme.maxAmount }}</td>
+          </tr>
+          <tr>
+            <th>Min Age:</th>
+            <td>{{ scheme.minAge }}</td>
+          </tr>
+          <tr>
+            <th>Max Age:</th>
+            <td>{{ scheme.maxAge }}</td>
+          </tr>
+          <tr>
+            <th>Min Policy Term:</th>
+            <td>{{ scheme.minPolicyTerm }}</td>
+          </tr>
+          <tr>
+            <th>Max Policy Term:</th>
+            <td>{{ scheme.maxPolicyTerm }}</td>
+          </tr>
+          <tr>
+            <th>Required Documents:</th>
+            <td>{{ scheme.documents }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="buy-btn" (click)="buyScheme(scheme.id)">Buy Policy</button>
+    </div>
+    <div *ngIf="!scheme" class="no-data">
+      <p>No scheme details available. Please try again later.</p>
+    </div>
+  </div>
+  

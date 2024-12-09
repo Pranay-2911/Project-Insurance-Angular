@@ -18,4 +18,7 @@ export class PlanService {
   updateSchema(data:any){
     return this.http.put(this.planUrl+ '/Policy', data);
   }
+  deleteSchema(id:any){  
+    return this.http.delete(this.planUrl + '/' + id);
+  }
 }

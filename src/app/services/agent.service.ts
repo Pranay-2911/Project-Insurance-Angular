@@ -32,5 +32,8 @@ export class AgentService {
   changePassword(data:any) {
     return this.http.put(`${this.url}/ChangePassword`, data);
   }
+  activeAgent(id:any) {
+    return this.http.put(`${this.url}/Active/${id}`, null);
+  }
 
 }

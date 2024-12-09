@@ -71,6 +71,12 @@ import { SettingComponent } from './admin/setting/setting.component';
 import { EmpChangePasswordComponent } from './employee/emp-change-password/emp-change-password.component';
 import { AgentChangePasswordComponent } from './agent/agent-change-password/agent-change-password.component';
 import { UpdateSchemaComponent } from './admin/update-schema/update-schema.component';
+import { DeleteSchemaComponent } from './admin/delete-schema/delete-schema.component';
+import { MarketingComponent } from './agent/marketing/marketing.component';
+import { ReferCustomerComponent } from './agent/refer-customer/refer-customer.component';
+import { AddStateCityComponent } from './admin/add-state-city/add-state-city.component';
+import { ReferPolicyComponent } from './customer/refer-policy/refer-policy.component';
+import { BuyPolicyAgentComponent } from './customer/buy-policy-agent/buy-policy-agent.component';
 
 
 @NgModule({
@@ -135,6 +141,12 @@ import { UpdateSchemaComponent } from './admin/update-schema/update-schema.compo
     EmpChangePasswordComponent,
     AgentChangePasswordComponent,
     UpdateSchemaComponent,
+    DeleteSchemaComponent,
+    MarketingComponent,
+    ReferCustomerComponent,
+    AddStateCityComponent,
+    ReferPolicyComponent,
+    BuyPolicyAgentComponent,
   
     
  

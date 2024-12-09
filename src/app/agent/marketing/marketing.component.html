@@ -1,0 +1,72 @@
+<div class="container">
+    <h1>Insurance Plans</h1>
+  
+    <!-- Dropdown for Plans -->
+    <label for="plansDropdown">Select Plan:</label>
+    <select id="plansDropdown" [(ngModel)]="selectedPlanId" (change)="onPlanSelect()">
+      <option value="" disabled selected>Select a Plan</option>
+      <option *ngFor="let plan of plansData" [value]="plan.id">{{ plan.name }}</option>
+    </select>
+  
+    <!-- Dropdown for Schemes -->
+    <div *ngIf="selectedPlanSchemes.length > 0" class="dropdown-section">
+      <label for="schemesDropdown">Select Scheme:</label>
+      <select id="schemesDropdown" [(ngModel)]="selectedSchemeId" (change)="onSchemeSelect()">
+        <option value="" disabled selected>Select a Scheme</option>
+        <option *ngFor="let scheme of selectedPlanSchemes" [value]="scheme.id">{{ scheme.title }}</option>
+      </select>
+    </div>
+  
+    <!-- Display Selected Scheme Details -->
+    <div *ngIf="selectedScheme" class="scheme-details">
+      <h2>Scheme Details</h2>
+      <table class="details-table">
+        <tbody>
+          <tr>
+            <th>Scheme Image:</th>
+            <td>
+              <img [src]="selectedScheme.imageLink" alt="Scheme Image" height="100" />
+            </td>
+          </tr>
+          <tr>
+            <th>Title:</th>
+            <td>{{ selectedScheme.title }}</td>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <td>{{ selectedScheme.description }}</td>
+          </tr>
+          <tr>
+            <th>Min Amount:</th>
+            <td>{{ selectedScheme.minAmount }}</td>
+          </tr>
+          <tr>
+            <th>Max Amount:</th>
+            <td>{{ selectedScheme.maxAmount }}</td>
+          </tr>
+          <tr>
+            <th>Min Age:</th>
+            <td>{{ selectedScheme.minAge }}</td>
+          </tr>
+          <tr>
+            <th>Max Age:</th>
+            <td>{{ selectedScheme.maxAge }}</td>
+          </tr>
+          <tr>
+            <th>Min Policy Term:</th>
+            <td>{{ selectedScheme.minPolicyTerm }}</td>
+          </tr>
+          <tr>
+            <th>Max Policy Term:</th>
+            <td>{{ selectedScheme.maxPolicyTerm }}</td>
+          </tr>
+          <tr>
+            <th>Required Documents:</th>
+            <td>{{ selectedScheme.documents }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="buy-btn" (click)="referPolicy(selectedScheme.id)">Refer Policy</button>
+    </div>
+  </div>
+  

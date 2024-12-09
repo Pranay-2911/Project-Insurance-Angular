@@ -12,6 +12,7 @@ export class ViewPaymentsComponent {
   payments : any;
   page=1;
   pageSize=5;
+  totalPayments = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   constructor(private router: Router, private adminService: AdminService) {}
@@ -21,9 +22,10 @@ export class ViewPaymentsComponent {
 
   getAllPayments(){
     this.adminService.getPayments(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.payments = data;
+      next: (data:any) => {
+        this.payments = data.payments;
         this.filteredDocuments=this.payments;
+        this.totalPayments = data.count;
         console.log(this.payments);
       },
       error: (error) => {
@@ -38,6 +40,7 @@ export class ViewPaymentsComponent {
       item.policyName.toLowerCase().includes(query)
     );
   }
+
   onPageChange(event: any) {
     console.log(event);
     this.page = event.pageIndex +1;

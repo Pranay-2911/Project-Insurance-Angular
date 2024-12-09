@@ -47,7 +47,7 @@
         </tr>
       </tbody>
     </table>
-    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    <mat-paginator [length]="totalAccounts" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
     </mat-paginator>
   </div>
   

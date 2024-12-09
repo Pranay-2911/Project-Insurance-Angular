@@ -1,0 +1,21 @@
+<form [formGroup]="newPolicyForm" (ngSubmit)="onSubmit()">
+    <input type="number" placeholder="Enter total amount" formControlName = "totalAmount">
+    <br>
+    <br>
+    <input type ="number" placeholder="Enter Duration in Months" formControlName = "durationInMonths">
+    <br>
+    <br>
+    <input type ="text" placeholder="Enter nominee" formControlName = "nominee">
+    <br>
+    <br>
+    <select formControlName="nomineeRelation">
+        <option value="" disabled>Select a Nominee Relation</option> <!-- Placeholder -->
+        <option *ngFor="let nominee of nominees; let i = index" [value]="nominee">{{ nominee }}</option>
+      </select>
+    <br>
+    <br>
+
+    <button>Submit</button>
+
+
+</form>

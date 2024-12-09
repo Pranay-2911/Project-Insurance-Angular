@@ -10,7 +10,9 @@ import { AgentService } from 'src/app/services/agent.service';
 })
 export class WithdrawCommissionComponent {
 
-
+  page = 1;
+  pageSize = 5;
+  totalCommissions = 0;
   requests: any;
   balance: any;
   agentId = localStorage.getItem('id');
@@ -32,9 +34,14 @@ export class WithdrawCommissionComponent {
       }
     });
 
+    this.getAllRequests();
+  }
+    
+  getAllRequests(){
     this.agentService.getRequests(this.agentId).subscribe({
       next: (data) => {
         this.requests = data;
+        this.totalCommissions = this.requests.length;
         console.log(this.requests);
       },
       error: (error) => {
@@ -42,7 +49,6 @@ export class WithdrawCommissionComponent {
       }
     });
   }
-    
   commissionRequest()
   {
     this.commissonForm.patchValue({ agentId: this.agentId})
@@ -54,6 +60,12 @@ export class WithdrawCommissionComponent {
       });
   };
 
-
+  onPageChange(event: any) {
+    console.log(event);
+    this.page = event.pageIndex +1;
+    this.pageSize = event.pageSize;
+    // this.page = page;
+    this.getAllRequests();
+  }
 
 }

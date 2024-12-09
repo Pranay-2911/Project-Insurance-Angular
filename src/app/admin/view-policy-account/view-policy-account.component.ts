@@ -11,6 +11,7 @@ export class ViewPolicyAccountComponent {
   policyAccounts : any;
   page = 1;
   pageSize = 5;
+  totalAccounts = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   searchQuery1: string = ''; 
@@ -21,9 +22,11 @@ export class ViewPolicyAccountComponent {
 
   getPolicyAccounts(){
     this.adminService.getPolicyAccount(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.policyAccounts = data;
+      next: (data:any) => {
+        console.log(data);
+        this.policyAccounts = data.accounts;
         this.filteredDocuments = this.policyAccounts;
+        this.totalAccounts = data.count;
         console.log(this.policyAccounts);
       },
       error: (error) => {

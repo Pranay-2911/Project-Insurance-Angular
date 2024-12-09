@@ -10,6 +10,7 @@ export class ViewEmployeeComponent {
   employees : any;
   page = 1;
   pageSize = 5;
+  totalEmployees = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   constructor(private router: Router, private adminService: AdminService) {}
@@ -22,6 +23,7 @@ getAllEmployees(){
     next: (data) => {
       this.employees = data;
       this.filteredDocuments = this.employees;
+      this.totalEmployees = this.filteredDocuments.length;
       console.log(this.employees);
     },
     error: (error) => {

@@ -24,6 +24,7 @@ export class ViewCommissionComponent {
       next: (data) => {
         this.commissions = data;
         this.filteredDocuments = this.commissions;
+        this.totalAgents = this.filteredDocuments.length;
         console.log(this.commissions);
       },
       error: (error) => {

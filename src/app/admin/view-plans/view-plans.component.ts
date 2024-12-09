@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { PlanService } from 'src/app/services/plan.service';
 @Component({
   selector: 'app-view-plans',
   templateUrl: './view-plans.component.html',
@@ -9,7 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class ViewPlansComponent {
   plansData: any;
   selectedPlanId: any ;
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private planService: PlanService) {}
   ngOnInit() {
     this.adminService.getPlan().subscribe({
       next: (data) => {
@@ -30,6 +31,12 @@ export class ViewPlansComponent {
   updateSchemma(id : any)
   {
       this.router.navigate(['admin-dashboard/update-schema'], { queryParams: {id: id} });
+  }
+  deleteSchema(id : any)
+  {
+    this.planService.deleteSchema(id).subscribe(()=>{});
+    alert('Scheme deleted successfully!');
+    location.reload();
   }
   
 

@@ -31,9 +31,10 @@ export class AddAgentComponent {
 
   getAllAgents(){
     this.adminService.getUnverifiedAgents(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.agents = data;
-        this.filteredAgents = this.agents;;
+      next: (data:any) => {
+        this.agents = data.agents;
+        this.filteredAgents = this.agents;
+        this.totalAgents = data.count;
         console.log(this.agents);
       },
       error: (error) => {

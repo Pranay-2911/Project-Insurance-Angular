@@ -9,7 +9,7 @@ import { AgentService } from 'src/app/services/agent.service';
 export class ViewAgentCommissionComponent {
   page = 1;
   pageSize = 5;
-  toaCommissions = 0;
+  totalCommissions = 0;
   commissions: any;
   agentId = localStorage.getItem('id');
   filteredDocuments: any[] = []; // For displaying the filtered data
@@ -28,6 +28,7 @@ export class ViewAgentCommissionComponent {
     this.agentService.getCommission(this.agentId, this.page, this.pageSize).subscribe(data=>{
       this.commissions = data;
       this.filteredDocuments = this.commissions;
+      this.totalCommissions = this.filteredDocuments.length;
       console.log(this.commissions);
     })
   }

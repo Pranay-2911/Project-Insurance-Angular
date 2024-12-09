@@ -53,6 +53,12 @@ import { SettingComponent } from './admin/setting/setting.component';
 import { EmpChangePasswordComponent } from './employee/emp-change-password/emp-change-password.component';
 import { AgentChangePasswordComponent } from './agent/agent-change-password/agent-change-password.component';
 import { UpdateSchemaComponent } from './admin/update-schema/update-schema.component';
+import { DeleteSchemaComponent } from './admin/delete-schema/delete-schema.component';
+import { MarketingComponent } from './agent/marketing/marketing.component';
+import { ReferCustomerComponent } from './agent/refer-customer/refer-customer.component';
+import { AddStateCityComponent } from './admin/add-state-city/add-state-city.component';
+import { ReferPolicyComponent } from './customer/refer-policy/refer-policy.component';
+import { BuyPolicyAgentComponent } from './customer/buy-policy-agent/buy-policy-agent.component';
 
 const routes: Routes = [
   {
@@ -91,6 +97,10 @@ const routes: Routes = [
       {
         path:'add-city', 
         component: AddCityComponent
+      },
+      {
+        path:'add-state-city',
+        component: AddStateCityComponent
       },
       {
         path:'plans',
@@ -158,6 +168,10 @@ const routes: Routes = [
       {
         path: 'update-schema',
         component: UpdateSchemaComponent
+      },
+      {
+        path: 'delete-schema',
+        component: DeleteSchemaComponent
       }
      
 
@@ -221,6 +235,14 @@ const routes: Routes = [
     {
       path: 'change-password',
       component: AgentChangePasswordComponent
+    },
+    {
+      path: 'marketing',
+      component: MarketingComponent
+    },
+    {
+      path: 'refer-customers',
+      component: ReferCustomerComponent
     }
   ]
   },
@@ -277,6 +299,14 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordComponent
+      },
+      {
+        path: 'details/:id1/:id2',
+        component: ReferPolicyComponent
+      },
+      {
+        path: 'buy-policy-agent',
+        component: BuyPolicyAgentComponent
       }
   ]
   }

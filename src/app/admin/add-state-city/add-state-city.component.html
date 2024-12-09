@@ -1,0 +1,15 @@
+<form [formGroup]="newCity" (ngSubmit)="addNewCity()">
+    <input type="text" placeholder="Enter State Name" formControlName = "stateName" [readOnly]="true">
+    <span>*</span>
+      <br><br>
+
+    <input type="text" placeholder="Enter City Name" formControlName = "cityName"><span>*</span>
+    <div *ngIf="newCity.get('cityName')?.invalid && newCity.get('cityName')?.touched">
+        City name is required.
+      </div>
+    <br>
+    <br>
+
+    <button>Submit</button>
+
+</form>

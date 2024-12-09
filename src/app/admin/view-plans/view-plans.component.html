@@ -27,6 +27,7 @@
                     <th>REGISTRATION COMMISSION AMOUNT</th>
                     <th>INSTALLMENT COMMISSION RATE</th>
                     <th>UPDATE</th>
+                    <th>DELETE</th>
                 </tr>
                 <tr *ngFor="let scheme of plan.schemes">
                     <td><img [src]="scheme.imageLink" alt="Scheme Image" height="50"></td>
@@ -43,6 +44,9 @@
                     <td>
                         <button class="btn btn-warning" (click)="updateSchemma(scheme.id)">Update</button>
                     </td>   
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteSchema(scheme.id)">Delete</button>
+                    </td>
                 </tr>
             </table>
         </td>

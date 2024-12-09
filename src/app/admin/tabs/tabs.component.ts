@@ -52,7 +52,7 @@ ngOnInit(){
   this.adminService.getPolicyAccount(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       console.log(data);
-      this.policyAccounts = data.length;
+      this.policyAccounts = data.count;
     },
     error: (error:any) => {
       console.log(error);
@@ -101,7 +101,7 @@ ngOnInit(){
 
   this.adminService.getPayments(this.page, this.pageSize).subscribe({
     next: (data:any) => {
-      this.payments = data.length;
+      this.payments = data.count;
       console.log(this.payments);
     },
     error: (error:any) => {
