@@ -25,10 +25,11 @@ export class PremiumComponent {
   }
 
   getAllAccounts(){
-    this.customerService.getPolicyAccount(localStorage.getItem('id'), this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.policyAccounts = data;
+    this.customerService.getPolicyAccount(localStorage.getItem('id'), this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.policyAccounts = data.policyAccount;
         this.filteredDocuments = this.policyAccounts;
+        this.totalPremium = data.count;
         console.log(this.policyAccounts);
       },
       error: (error) => {
@@ -38,10 +39,12 @@ export class PremiumComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.policyAccounts.filter((item:any) =>
-      item.policyName.toLowerCase().includes(query)
-    );
+    this.page=1;
+    this.getAllAccounts()
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.policyAccounts.filter((item:any) =>
+    //   item.policyName.toLowerCase().includes(query)
+    // );
   }
   PayPremium(policy: any)
   {

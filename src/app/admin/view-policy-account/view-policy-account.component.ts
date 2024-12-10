@@ -21,7 +21,7 @@ export class ViewPolicyAccountComponent {
   }
 
   getPolicyAccounts(){
-    this.adminService.getPolicyAccount(this.page, this.pageSize).subscribe({
+    this.adminService.getPolicyAccount(this.page, this.pageSize, this.searchQuery, this.searchQuery1).subscribe({
       next: (data:any) => {
         console.log(data);
         this.policyAccounts = data.accounts;
@@ -35,18 +35,33 @@ export class ViewPolicyAccountComponent {
     });
   }
 
+  getNomineeRelation(relation: number): string {
+    const relations = ['Father', 'Mother', 'Brother', 'Sister'];
+    return relations[relation] || 'Unknown';
+  }
+
+  formatDate(date: string): string {
+    const parsedDate = new Date(date);
+    return parsedDate.toLocaleDateString(); // Adjust locale as needed
+  }
+
   filterDocumentsbyPolicy() {
-    const query = this.searchQuery1.toLowerCase();
-    this.filteredDocuments = this.policyAccounts.filter((item:any) =>
-      item.policyName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getPolicyAccounts();
+
+    // const query = this.searchQuery1.toLowerCase();
+    // this.filteredDocuments = this.policyAccounts.filter((item:any) =>
+    //   item.policyName.toLowerCase().includes(query)
+    // );
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.policyAccounts.filter((item:any) =>
-      item.customerName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getPolicyAccounts();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.policyAccounts.filter((item:any) =>
+    //   item.customerName.toLowerCase().includes(query)
+    // );
   }
   
   onPageChange(event: any) {

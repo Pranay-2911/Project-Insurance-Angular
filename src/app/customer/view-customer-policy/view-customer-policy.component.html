@@ -43,12 +43,15 @@
             <span *ngIf="policy.isVerified === 1" class="approved">Approved</span>
             <span *ngIf="policy.isVerified === 2" class="not-approved">Rejected</span>
             <span *ngIf="policy.isVerified === 0" class="pending">Pending</span>
+            
+            <!-- Reupload button displayed only when policy is rejected -->
+            <button *ngIf="policy.isVerified === 2" class="btn btn-warning" (click)="reUpload(policy.policyId, policy.id)">Reupload</button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    <mat-paginator [length]="totalPremium" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
     </mat-paginator>
   </div>
   

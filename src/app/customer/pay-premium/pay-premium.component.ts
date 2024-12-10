@@ -30,12 +30,17 @@ export class PayPremiumComponent {
 
   getAllPremiums(){
     this.premiumService.getPremium(this.policy.id, this.page, this.pageSize).subscribe((res:any) => {
-      this.premiums = res;
-      this.totalPremium = this.premiums.length;
+      this.premiums = res.premiums;
+      this.totalPremium = res.count;
       console.log(this.premiums);
     });
   }
 
+  isDueDatePassed(dueDate: string): boolean {
+    const today = new Date();
+    const dueDateObj = new Date(dueDate);
+    return dueDateObj <= today;
+  }
   onPay(amount:any, id:any){
     console.log(amount);
     this.router.navigate(['customer-dashboard/payment'], {queryParams: {amount:amount, premiumId: id}});

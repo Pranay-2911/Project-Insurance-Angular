@@ -21,7 +21,7 @@ export class ViewPaymentsComponent {
   }
 
   getAllPayments(){
-    this.adminService.getPayments(this.page, this.pageSize).subscribe({
+    this.adminService.getPayments(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
         this.payments = data.payments;
         this.filteredDocuments=this.payments;
@@ -35,10 +35,12 @@ export class ViewPaymentsComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.payments.filter((item:any) =>
-      item.policyName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllPayments();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.payments.filter((item:any) =>
+    //   item.policyName.toLowerCase().includes(query)
+    // );
   }
 
   onPageChange(event: any) {

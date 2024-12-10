@@ -14,17 +14,19 @@ export class ViewCommissionComponent {
   totalAgents = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
+  selectedCommissionType: string = ''; // Holds the selected value of the radio button
+
   constructor(private router: Router, private adminService: AdminService) {}
   ngOnInit(){
     this.getAllCommission();
   }
   
   getAllCommission(){
-    this.adminService.getCommissions(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.commissions = data;
+    this.adminService.getCommissions(this.page, this.pageSize, this.searchQuery, this.selectedCommissionType).subscribe({
+      next: (data:any) => {
+        this.commissions = data.viewCommissionDto;
         this.filteredDocuments = this.commissions;
-        this.totalAgents = this.filteredDocuments.length;
+        this.totalAgents = data.count;
         console.log(this.commissions);
       },
       error: (error) => {
@@ -32,12 +34,14 @@ export class ViewCommissionComponent {
       }
     });
   }
+  formatDate(date: string): string {
+    const parsedDate = new Date(date);
+    return parsedDate.toLocaleDateString(); // Adjust locale as needed
+  }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.commissions.filter((item:any) =>
-      item.agentName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllCommission();
   }
 
 onPageChange(event: any) {

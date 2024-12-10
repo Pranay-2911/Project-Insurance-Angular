@@ -11,6 +11,40 @@
     />
   </div>
   
+  <div class="filter-options">
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value=""
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      All
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value="0"
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      Register
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value="1"
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      Premium
+    </label>
+  </div>
+
+
     <table>
       <thead>
         <tr>
@@ -28,7 +62,7 @@
           <td>{{ commission.schemaName }}</td>
           <td>{{ commission.customerName }}</td>
           <td>{{ commission.commissionAmount }}</td>
-          <td>{{ commission.commssionDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ commission.commssionDate | date: 'yyyy-MM-dd' }}</td>
           <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
         </tr>
       </tbody>

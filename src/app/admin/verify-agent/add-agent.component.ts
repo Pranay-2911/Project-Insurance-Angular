@@ -23,14 +23,13 @@ export class AddAgentComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredAgents = this.agents.filter((item:any) =>
-      item.firstName.toLowerCase().includes(query)
-    );
+    this.page=1;
+    this.getAllAgents();
+
   }
 
   getAllAgents(){
-    this.adminService.getUnverifiedAgents(this.page, this.pageSize).subscribe({
+    this.adminService.getUnverifiedAgents(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
         this.agents = data.agents;
         this.filteredAgents = this.agents;

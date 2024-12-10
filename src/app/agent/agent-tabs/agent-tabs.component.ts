@@ -26,4 +26,8 @@ export class AgentTabsComponent {
   onMarketing(){
     this.router.navigate(['agent-dashboard/marketing']);
   }
+  viewCustomer()
+  {
+    this.router.navigate(['agent-dashboard/view-customer']);
+  }
 }

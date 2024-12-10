@@ -16,6 +16,9 @@ export class QueryResponseComponent {
   queries: any;
   page = 1;
   pageSize = 5;
+  totalQueries=0;
+  searchQuery ="";
+
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(){
@@ -23,15 +26,21 @@ export class QueryResponseComponent {
   }
 
   getAllQueies(){
-    this.employeeService.getAllQuery(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.queries = data;
+    this.employeeService.getAllQuery(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.queries = data.queries;
+        this.totalQueries = data.count;
         console.log(this.queries);
       },
       error: (error) => {
         console.log(error);
       }
     });
+  }
+
+  filterDocuments(){
+    this.page=1;
+    this.getAllQueies();
   }
 
   addReply(id: any)

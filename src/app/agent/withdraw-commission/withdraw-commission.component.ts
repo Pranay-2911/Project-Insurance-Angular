@@ -38,10 +38,10 @@ export class WithdrawCommissionComponent {
   }
     
   getAllRequests(){
-    this.agentService.getRequests(this.agentId).subscribe({
-      next: (data) => {
-        this.requests = data;
-        this.totalCommissions = this.requests.length;
+    this.agentService.getRequests(this.agentId,this.page, this.pageSize).subscribe({
+      next: (data:any) => {
+        this.requests = data.requests;
+        this.totalCommissions = data.count;
         console.log(this.requests);
       },
       error: (error) => {
@@ -49,6 +49,7 @@ export class WithdrawCommissionComponent {
       }
     });
   }
+
   commissionRequest()
   {
     this.commissonForm.patchValue({ agentId: this.agentId})

@@ -21,11 +21,11 @@ filteredDocuments: any[] = []; // For displaying the filtered data
   }
 
   getAllRequest(){
-    this.adminService.getAllRequest(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.requests = data;
+    this.adminService.getAllRequest(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.requests = data.requests;
         this.filteredDocuments = this.requests;
-        this.totalRequests = this.filteredDocuments.length;
+        this.totalRequests = data.count;
         console.log(this.requests);
       },
       error: (error) => {
@@ -35,10 +35,12 @@ filteredDocuments: any[] = []; // For displaying the filtered data
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.requests.filter((item:any) =>
-      item.agentName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllRequest();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.requests.filter((item:any) =>
+    //   item.agentName.toLowerCase().includes(query)
+    // );
   }
   approveRequest(requestId: string) {
     this.adminService.approve(requestId).subscribe({

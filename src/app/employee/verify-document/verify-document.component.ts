@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { MatPaginator } from '@angular/material/paginator';
-
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-verify-document',
@@ -10,82 +9,116 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./verify-document.component.css']
 })
 export class VerifyDocumentComponent {
+  searchQuery: string = '';
+  documents: any[] = [];
+  filteredDocuments: any[] = [];
+  totalDocuments: number = 0;
+  page: number = 1;
+  pageSize: number = 5;
 
-  page = 1;
-  pageSize = 5;
-  totalDocuments = 0; 
-  documents: any;
-  filteredDocuments: any[] = []; // For displaying the filtered data
-  searchQuery: string = ''; // For capturing the user's search input
+  isImageModalOpen = false;
+  selectedImage = '';
 
-  constructor(public employeeService: EmployeeService, private router: Router){}
-  ngOnInit(){
+  constructor(private employeeService: EmployeeService, private emailService: EmailService) {}
+
+  ngOnInit() {
     this.getAllDocuments();
   }
 
-  getAllDocuments(){
-    this.employeeService.getDocument(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.documents = data;
-        this.filteredDocuments = this.documents; // Initialize filteredDocuments
-        console.log(this.documents);
+  getAllDocuments() {
+    this.employeeService.getDocument(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.documents = response.documents.map((doc: any) => ({
+          ...doc,
+          rejecting: false,
+          rejectionReason: '',
+          documents: doc.documents
+        }));
+        this.filteredDocuments = this.documents;
+        this.totalDocuments = response.count;
       },
       error: (error) => {
-        console.log(error);
+        console.error('Error fetching documents:', error);
       }
     });
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.documents.filter((item:any) =>
-      item.customerName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllDocuments();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.documents.filter((doc: any) =>
+    //   doc.customerName.toLowerCase().includes(query)
+    // );
   }
 
-  approveAllDocuments(id:any) {
-    // Logic for verifying the document
-    // Example: Call the service to mark the document as verified
-    console.log(id);
-    this.employeeService.verifyDocument(id).subscribe({
+  openRejectBox(customer: any) {
+    customer.rejecting = true;
+  }
+
+  submitRejection(policyAccountId: string, customer: any) {
+    if (customer.rejectionReason.trim() === '') {
+      alert('Rejection reason cannot be empty.');
+      return;
+    }
+
+    this.employeeService.rejectDocument(policyAccountId).subscribe({
       next: () => {
-        alert('Document verified successfully!');
-        // Refresh the document list or update the UI as needed
-        this.ngOnInit();
+        alert('All documents for the customer have been rejected successfully!');
+        this.sendRejectionEmail(customer.rejectionReason);
+        customer.rejecting = false;
+        this.getAllDocuments();
       },
       error: (error) => {
-        console.error('Error verifying document:', error);
+        console.error('Error rejecting documents:', error);
       }
     });
-    
+  }
+
+  sendRejectionEmail(reason: string) {
+    const emailBody = 
+      'Hello,\n\n' +
+      'We regret to inform you that all your document verification requests have been rejected due to the following reason:\n' +
+      `${reason}\n\n` +
+      'Please review the details and resubmit your documents for verification.\n\n' +
+      'Thank you,\n' +
+      'MONOCEPT';
+
+    // Use sendEmail service to send the rejection email
+    this.emailService.sendEmail('pranayraut129@gmail.com', 'Document Rejection Notification', emailBody).subscribe({
+      next: () => console.log('Rejection email sent successfully!'),
+      error: (error) => console.error('Error sending rejection email:', error)
+    });
+}
+
+
+  approveAllDocuments(policyAccountId: string) {
+    this.employeeService.verifyDocument(policyAccountId).subscribe({
+      next: () => {
+        alert('Documents approved successfully!');
+        this.getAllDocuments();
+      },
+      error: (error) => {
+        console.error('Error approving documents:', error);
+      }
+    });
   }
 
   onPageChange(event: any) {
-    console.log(event);
-    this.page = event.pageIndex +1;
+    this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;
-    // this.page = page;
     this.getAllDocuments();
   }
 
-  rejectAllDocuments(id: any)
-  {
-     // Logic for verifying the document
-    // Example: Call the service to mark the document as verified
-    console.log(id);
-    this.employeeService.rejectDocument(id).subscribe({
-      next: () => {
-        alert('Document verified successfully!');
-        // Refresh the document list or update the UI as needed
-        this.ngOnInit();
-      },
-      error: (error) => {
-        console.error('Error verifying document:', error);
-      }
-    });
+  openImageModal(imageUrl: string) {
+    this.selectedImage = imageUrl;
+    this.isImageModalOpen = true;
   }
 
-  
-  
-
+  // Close the image modal
+  closeImageModal() {
+    this.isImageModalOpen = false;
+    this.selectedImage = '';
+  }
 }

@@ -71,7 +71,7 @@ ngOnInit(){
 
   this.adminService.getScheme(this.page, this.pageSize).subscribe({
     next: (data:any) => {
-      this.schemes = data.length;
+      this.schemes = data.count;
       console.log(this.schemes);
     },
     error: (error:any) => {
@@ -79,9 +79,9 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getCommissions(this.page, this.pageSize).subscribe({
+  this.adminService.getCommissions(this.page, this.pageSize, '', '').subscribe({
     next: (data:any) => {
-      this.commissions = data.length;
+      this.commissions = data.count;
       console.log(this.commissions);
     },
     error: (error:any) => {
@@ -91,7 +91,7 @@ ngOnInit(){
 
   this.adminService.getAllRequest(this.page, this.pageSize).subscribe({
     next: (data:any) => {
-      this.withdrawCommission = data.length;
+      this.withdrawCommission = data.count;
       console.log(this.withdrawCommission);
     },
     error: (error:any) => {
@@ -99,7 +99,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getPayments(this.page, this.pageSize).subscribe({
+  this.adminService.getPayments(this.page, this.pageSize, '').subscribe({
     next: (data:any) => {
       this.payments = data.count;
       console.log(this.payments);

@@ -25,26 +25,30 @@ export class ViewAgentCommissionComponent {
   }
 
   getAllCommissions(){
-    this.agentService.getCommission(this.agentId, this.page, this.pageSize).subscribe(data=>{
-      this.commissions = data;
+    this.agentService.getCommission(this.agentId, this.page, this.pageSize, this.searchQuery).subscribe((data:any)=>{
+      this.commissions = data.viewCommissionDto;
       this.filteredDocuments = this.commissions;
-      this.totalCommissions = this.filteredDocuments.length;
+      this.totalCommissions = data.count;
       console.log(this.commissions);
     })
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.commissions.filter((item:any) =>
-      item.customerName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllCommissions();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.commissions.filter((item:any) =>
+    //   item.customerName.toLowerCase().includes(query)
+    // );
   }
 
   filterDocumentsbyScheme() {
-    const query = this.searchQuery1.toLowerCase();
-    this.filteredDocuments = this.commissions.filter((item:any) =>
-      item.schemaName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllCommissions();
+    // const query = this.searchQuery1.toLowerCase();
+    // this.filteredDocuments = this.commissions.filter((item:any) =>
+    //   item.schemaName.toLowerCase().includes(query)
+    // );
   }
   onPageChange(event: any) {
     console.log(event);

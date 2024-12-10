@@ -19,11 +19,11 @@ export class ViewEmployeeComponent {
   }
 
 getAllEmployees(){
-  this.adminService.getEmployee(this.page, this.pageSize).subscribe({
-    next: (data) => {
-      this.employees = data;
+  this.adminService.getEmployee(this.page, this.pageSize, this.searchQuery).subscribe({
+    next: (data:any) => {
+      this.employees = data.employeeDtos;
       this.filteredDocuments = this.employees;
-      this.totalEmployees = this.filteredDocuments.length;
+      this.totalEmployees = data.count;
       console.log(this.employees);
     },
     error: (error) => {
@@ -33,10 +33,12 @@ getAllEmployees(){
 }
 
 filterDocuments() {
-  const query = this.searchQuery.toLowerCase();
-  this.filteredDocuments = this.employees.filter((item:any) =>
-    item.firstName.toLowerCase().includes(query)
-  );
+  this.page = 1;
+  this.getAllEmployees();
+  // const query = this.searchQuery.toLowerCase();
+  // this.filteredDocuments = this.employees.filter((item:any) =>
+  //   item.firstName.toLowerCase().includes(query)
+  // );
 }
   deleteEmployee(id: any){
     this.adminService.deleteEmployee(id).subscribe(()=>{});

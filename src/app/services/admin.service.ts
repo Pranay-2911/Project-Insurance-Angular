@@ -22,15 +22,15 @@ export class AdminService {
     return this.http.get(this.url + '/City');
   }
 
-  getPolicyAccount(page:number, pageSize:number){
-    return this.http.get(this.url + '/PolicyAccount'+`?pageNumber=${page}&pageSize=${pageSize}`);
+  getPolicyAccount(page:number, pageSize:number, searchQuery:string='', searchQuery1:string=''){
+    return this.http.get(this.url + '/PolicyAccount'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}&searchQuery1=${searchQuery1}`);
   }
 
   getPlan(){
     return this.http.get(this.planUrl)
   }
-  getScheme(page:number, pageSize:number){
-    return this.http.get(this.planUrl+'/Schema'+`?pageNumber=${page}&pageSize=${pageSize}`)
+  getScheme(page:number, pageSize:number, searchQuery:string=''){
+    return this.http.get(this.planUrl+'/Schema'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`)
   }
 
   addPlan(plan : any){
@@ -52,20 +52,20 @@ export class AdminService {
   addAgent(agent:any){
     return this.http.post(this.agentUrl, agent);
   }
-  getAgent(page:number, pageSize:number){
-    return this.http.get(this.agentUrl+`?pageNumber=${page}&pageSize=${pageSize}`);
+  getAgent(page:number, pageSize:number, searchQuery:string=""){
+    return this.http.get(this.agentUrl+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
-  getCommissions(page:number, pageSize:number){
-    return this.http.get(this.url + '/Commission'+`?pageNumber=${page}&pageSize=${pageSize}`);
+  getCommissions(page:number, pageSize:number, searchQuery:string, selectedCommissionType:string){
+    return this.http.get(this.url + '/Commission'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}&selectedCommissionType=${selectedCommissionType}`);
   }
   addEmployee(employee:any){
     return this.http.post(this.employeeUrl, employee);
   }
-  getEmployee(page:number, pageSize:number){
-    return this.http.get(this.employeeUrl+`?pageNumber=${page}&pageSize=${pageSize}`);
+  getEmployee(page:number, pageSize:number, searchQuery:string=''){
+    return this.http.get(this.employeeUrl+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
-  getUnverifiedAgents(page:number, pageSize:number){
-    return this.http.get(this.agentUrl+'/UnVerified'+`?pageNumber=${page}&pageSize=${pageSize}`);
+  getUnverifiedAgents(page:number, pageSize:number, searchQuery:string =''){
+    return this.http.get(this.agentUrl+'/UnVerified'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
   verifyAgent(id: any) {
     return this.http.put(`${this.agentUrl}/Verify?id=${id}`, null);
@@ -76,9 +76,9 @@ export class AdminService {
   deleteEmployee(id: any) {
     return this.http.delete(this.employeeUrl+ "/" +id);
   }
-  getAllRequest(page:number, pageSize:number)
+  getAllRequest(page:number, pageSize:number, searchQuery:string='')
   {
-    return this.http.get(this.url+'/CommissionRequest');
+    return this.http.get(this.url+'/CommissionRequest'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
 
   approve(id: any) {
@@ -89,10 +89,11 @@ export class AdminService {
     return this.http.put(this.url +"/CommissionRequest/Reject/" +id, null);
   }
 
-  getPayments(page: number, pageSize: number)
+  getPayments(page: number, pageSize: number, searchQuery: string ='')
   {
-    return this.http.get(this.url+'/Payments'+`?pageNumber=${page}&pageSize=${pageSize}`);
+    return this.http.get(this.url+'/Payments'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
+
   getGlobalvariable()
   {
     return this.http.get(this.url+'/Global');

@@ -12,22 +12,31 @@ export class ViewQueriesComponent {
    queries:any;
    page = 1;
    pageSize = 5;
-   
+   totalQueries =0;
+   searchQuery ='';
+
+
   ngOnInit() {
 
     this.getQueries();
   }
 
   getQueries(){
-    this.queryService.getQueries(localStorage.getItem('id'), this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.queries = data;
+    this.queryService.getQueries(localStorage.getItem('id'), this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.queries = data.queryDto;
+        this.totalQueries = data.count;
         console.log(this.queries);
       },
       error: (error) => {
         console.log(error);
       }
     })
+  }
+
+  filterDocuments(){
+    this.page = 1;
+    this.getQueries();
   }
   onPageChange(event: any) {
     console.log(event);

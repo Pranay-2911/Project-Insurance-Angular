@@ -1,53 +1,58 @@
 <div class="policy-table-container">
-    <h2>Policy Accounts</h2>
+  <h2>Policy Accounts</h2>
 
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search by Customer Name"
-        [(ngModel)]="searchQuery"
-        (input)="filterDocuments()"
-        class="form-control"
-      />
-    </div>
-
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search by Policy Name"
-        [(ngModel)]="searchQuery1"
-        (input)="filterDocumentsbyPolicy()"
-        class="form-control"
-      />
-    </div>
-
-    <table class="policy-table">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>Policy Name</th>
-          <th>Agent Name</th>
-          <th>Purchased Date</th>
-          <th>Nominee</th>
-          <th>Nominee Relation</th>
-          <th>Policy Amount</th>
-          <th>Policy Duration (Months)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let policy of filteredDocuments">
-          <td>{{ policy.customerName }}</td>
-          <td>{{ policy.policyName }}</td>
-          <td>{{ policy.agentName }}</td>
-          <td>{{ policy.purchasedDate | date: 'medium' }}</td>
-          <td>{{ policy.nominee }}</td>
-          <td>{{ policy.nomineeRelation }}</td>
-          <td>{{ policy.policyAmount | currency: 'INR' }}</td>
-          <td>{{ policy.policyDuration }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <mat-paginator [length]="totalAccounts" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
-    </mat-paginator>
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Customer Name"
+      [(ngModel)]="searchQuery"
+      (input)="filterDocuments()"
+      class="form-control"
+    />
   </div>
-  
+
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Policy Name"
+      [(ngModel)]="searchQuery1"
+      (input)="filterDocumentsbyPolicy()"
+      class="form-control"
+    />
+  </div>
+
+  <table class="policy-table">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Policy Name</th>
+        <th>Agent Name</th>
+        <th>Purchased Date</th>
+        <th>Nominee</th>
+        <th>Nominee Relation</th>
+        <th>Policy Amount</th>
+        <th>Policy Duration (Months)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let policy of filteredDocuments">
+        <td>{{ policy.customerName }}</td>
+        <td>{{ policy.policyName }}</td>
+        <td>{{ policy.agentName }}</td>
+        <td>{{ formatDate(policy.purchasedDate) }}</td>
+        <td>{{ policy.nominee }}</td>
+        <td>{{ getNomineeRelation(policy.nomineeRelation) }}</td>
+        <td>{{ policy.policyAmount | currency: 'INR' }}</td>
+        <td>{{ policy.policyDuration }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-paginator
+    [length]="totalAccounts"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    aria-label="Select page"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

@@ -34,15 +34,18 @@ export class CommissionDetailsComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.commissions.filter((item:any) =>
-      item.agentName.toLowerCase().includes(query)
-    );
+    this.page = 1;
+    this.getAllCommissions();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.commissions.filter((item:any) =>
+    //   item.agentName.toLowerCase().includes(query)
+    // );
   }
   getAllCommissions() {
-    this.agentService.getCommission(this.agentId, this.page, this.pageSize).subscribe(data=>{
-      this.commissions = data;
+    this.agentService.getCommission(this.agentId, this.page, this.pageSize, this.searchQuery).subscribe((data:any)=>{
+      this.commissions = data.viewCommissionDto;
       this.filteredDocuments = this.commissions;
+      this.totalCommissions = data.count;
       console.log(this.commissions);
     })
   }

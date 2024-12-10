@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CustomerService } from 'src/app/services/customer.service';
 import { DocumentService } from 'src/app/services/document.service';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -12,7 +13,7 @@ import { UploadService } from 'src/app/services/upload.service';
 export class AddDocumentsComponent {
   file: any | null = null; 
   documentTypes: any;
-  policyId: any;
+  accountId: any;
 
   newDocument = new FormGroup({
     name: new FormControl(),
@@ -21,14 +22,15 @@ export class AddDocumentsComponent {
 
   })
 
-  constructor(private uploadService: UploadService, private documentService: DocumentService, private route: ActivatedRoute) {}
+  constructor(private uploadService: UploadService, private documentService: DocumentService, private route: ActivatedRoute, private customerService: CustomerService) {}
 
   ngOnInit() {
     
     this.route.queryParams.subscribe((params) => {
-      this.policyId = params['id'],
+      this.accountId = params['id'],
       this.documentTypes = params['documents']
-      console.log(this.policyId);
+      console.log(this.accountId);
+      console.log(this.documentTypes);
     });
 
   }
@@ -92,7 +94,7 @@ export class AddDocumentsComponent {
 
   addNewDocument() {
 
-    this.newDocument.patchValue({ policyAccountId: this.policyId });
+    this.newDocument.patchValue({ policyAccountId: this.accountId });
     console.log(this.newDocument.value);
 
     this.documentService.addDocument(this.newDocument.value).subscribe({
@@ -104,5 +106,16 @@ export class AddDocumentsComponent {
         console.error(error);
       }
     });
+  }
+
+  onSubmit(){
+    this.customerService.reuploadDocument(this.accountId).subscribe({
+      next:(data:any)=>{
+        console.log(data);
+      },
+      error:(error:any)=>{
+        console.error(error);
+      }
+    })
   }
 }

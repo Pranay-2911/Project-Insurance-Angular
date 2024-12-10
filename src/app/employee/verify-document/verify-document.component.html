@@ -12,37 +12,59 @@
   </div>
 
   <div *ngFor="let item of filteredDocuments" class="customer-container">
-      <!-- Customer and Policy Details -->
-      <div class="customer-header">
-          <h2>{{ item.customerName }}</h2>
-          <p><strong>Policy:</strong> {{ item.policyName }}</p>
-      </div>
+    <div class="customer-header">
+      <h2>{{ item.customerName }}</h2>
+      <p><strong>Policy:</strong> {{ item.policyName }}</p>
+    </div>
 
-      <!-- Document List -->
-      <div class="documents-list">
-          <div *ngFor="let doc of item.documents" class="document-card">
-              <img [src]="doc.location" alt="Document Image" class="document-image" />
-              <div class="document-info">
-                  <p><strong>Document Name:</strong> {{ doc.name }}</p>
-              </div>
-          </div>
+    <div class="documents-list">
+      <div *ngFor="let doc of item.documents" class="document-card">
+        <img
+          [src]="doc.location"
+          alt="Document Image"
+          class="document-image"
+          (click)="openImageModal(doc.location)"
+        />
+        <div class="document-info">
+          <p><strong>Document Name:</strong> {{ doc.name }}</p>
+        </div>
       </div>
+    </div>
 
-      <!-- Approve and Reject Buttons -->
-      <div class="customer-actions">
-          <button
-              class="btn btn-success"
-              (click)="approveAllDocuments(item.policyAccountId)">
-              Approve
-          </button>
-          <button
-              class="btn btn-danger"
-              (click)="rejectAllDocuments(item.policyAccountId)">
-              Reject
-          </button>
-      </div>
+    <div *ngIf="item.rejecting" class="reject-reason-box">
+      <textarea
+        [(ngModel)]="item.rejectionReason"
+        placeholder="Enter rejection reason"
+      ></textarea>
+      <button (click)="submitRejection(item.policyAccountId, item)">Submit</button>
+    </div>
+
+    <div class="customer-actions">
+      <button
+        class="btn btn-danger"
+        *ngIf="!item.rejecting"
+        (click)="openRejectBox(item)"
+      >
+        Reject
+      </button>
+      <button
+        class="btn btn-success"
+        (click)="approveAllDocuments(item.policyAccountId)"
+      >
+        Approve
+      </button>
+    </div>
   </div>
 
-  <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
-</mat-paginator>
+  <mat-paginator
+    [length]="totalDocuments"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+
+  <!-- Image Modal -->
+  <div *ngIf="isImageModalOpen" class="image-modal" (click)="closeImageModal()">
+    <img [src]="selectedImage" alt="Enlarged Document Image" />
+  </div>
 </div>

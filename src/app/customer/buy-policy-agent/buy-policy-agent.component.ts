@@ -28,8 +28,7 @@ export class BuyPolicyAgentComponent {
       durationInMonths: [null, Validators.required],
       nominee: ['', Validators.required],
       nomineeRelation: ['', Validators.required],
-      customerId: [null, Validators.required],
-      agentId: [this.agentId, Validators.required]
+      agentId: ['', Validators.required]
     });
   }
 
@@ -39,6 +38,7 @@ export class BuyPolicyAgentComponent {
       this.agentId = params['agentId']
       console.log(this.schemeId);
       console.log(this.agentId);
+      this.customerId = localStorage.getItem('id');
 
     });
 
@@ -62,11 +62,10 @@ export class BuyPolicyAgentComponent {
   onSubmit(){
     this.newPolicyForm.patchValue({
       agentId: this.agentId,
-      customerId : localStorage.getItem('id'),
       policyId : this.schemeId,
     })
     console.log(this.newPolicyForm.value);
-    this.customerService.buyPolicy(this.newPolicyForm.value).subscribe({
+    this.customerService.buyPolicyByAgent(this.customerId, this.newPolicyForm.value).subscribe({
       next:(data:any)=>{
         console.log(data);
         this.router.navigate(['customer-dashboard/add-documents'], {queryParams:{ id: data.accountId, documents: this.scheme.documents}});

@@ -1,5 +1,15 @@
 <div class="container">
     <h1>Queries</h1>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by Query Title"
+        [(ngModel)]="searchQuery"
+        (input)="filterDocuments()"
+        class="form-control"
+      />
+    </div>
+
     <table class="queries-table">
       <thead>
         <tr>
@@ -19,7 +29,7 @@
       </tbody>
     </table>
 
-    <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+    <mat-paginator [length]="totalQueries" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
     </mat-paginator>
   </div>
   

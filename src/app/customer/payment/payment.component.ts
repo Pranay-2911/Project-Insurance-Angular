@@ -53,6 +53,7 @@ export class PaymentComponent implements OnInit {
         // this.router.navigate(['customer-dashboard/pay-premium']);
       }
     }).render(this.paymentRef.nativeElement);
+
     this.route.queryParams.subscribe(params => {
       this.amount = params['amount'];
       this.premiumId = params['premiumId'];
@@ -72,7 +73,7 @@ export class PaymentComponent implements OnInit {
       next: (response: any) => {
         console.log(response);
         alert("Payment successful!!");
-        // this.router.navigate(['customer-dashboard/pay-premium']);
+        this.router.navigate(['customer-dashboard/premium']);
       },
       error: (error: any) => {
         console.log(error);

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
-  selector: 'app-view-customer',
-  templateUrl: './view-customer.component.html',
-  styleUrls: ['./view-customer.component.css'],
+  selector: 'app-view-customer-agent',
+  templateUrl: './view-customer-agent.component.html',
+  styleUrls: ['./view-customer-agent.component.css']
 })
-export class ViewCustomerComponent implements OnInit {
+export class ViewCustomerAgentComponent implements OnInit {
   customers: any[] = [];
   filteredDocuments: any[] = [];
   searchQuery: string = '';
@@ -50,3 +50,4 @@ export class ViewCustomerComponent implements OnInit {
     this.getAllCustomers();
   }
 }
+

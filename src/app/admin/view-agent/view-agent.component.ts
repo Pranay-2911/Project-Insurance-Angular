@@ -20,11 +20,11 @@ export class ViewAgentComponent {
   }
 
   getAllAgents(){
-    this.adminService.getAgent(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.agents = data;
+    this.adminService.getAgent(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.agents = data.agents;
         this.filteredDocuments = this.agents;
-        this.totalAgents = this.filteredDocuments.length;
+        this.totalAgents = data.count;
         console.log(this.agents);
       },
       error: (error) => {
@@ -34,11 +34,14 @@ export class ViewAgentComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.agents.filter((item:any) =>
-      item.firstName.toLowerCase().includes(query)
-    );
+    this.page=1;
+    this.getAllAgents();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.agents.filter((item:any) =>
+    //   item.firstName.toLowerCase().includes(query)
+    // );
   }
+  
   deleteAgent(id: any){
     this.adminService.deleteAgent(id).subscribe(()=>{});
     alert('Agent deleted successfully!');

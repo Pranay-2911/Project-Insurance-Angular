@@ -15,6 +15,12 @@ export class PlanComponent implements OnInit {
   selectedPlanSchemes: any[] = [];
   selectedScheme: any | null = null;
 
+  calculator = {
+    totalAmount: 0,
+    duration: 0,
+    monthlyPremium: null as number | null,
+  };
+
   constructor(private router: Router, private planService: PlanService) {}
 
   ngOnInit(): void {
@@ -46,5 +52,15 @@ export class PlanComponent implements OnInit {
   buyScheme(schemeId: string): void {
     console.log('Buying scheme with ID:', schemeId);
     this.router.navigate(['customer-dashboard/buy-policy'], { queryParams: { schemeId } });
+  }
+
+  calculatePremium(): void {
+    if (this.calculator.totalAmount > 0 && this.calculator.duration > 0) {
+      this.calculator.monthlyPremium = this.calculator.totalAmount / this.calculator.duration;
+      console.log('Monthly Premium:', this.calculator.monthlyPremium);
+    } else {
+      console.error('Invalid input for calculator');
+      this.calculator.monthlyPremium = null;
+    }
   }
 }

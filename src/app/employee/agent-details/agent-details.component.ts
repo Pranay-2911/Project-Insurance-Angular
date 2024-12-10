@@ -25,9 +25,10 @@ export class AgentDetailsComponent {
   }
 
   getAllAgents(){
-    this.agentService.getAgents(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.agents = data;
+    this.agentService.getAgents(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.agents = data.agents;
+        this.totalAgents = data.count;
         this.filteredAgents = this.agents;
         console.log(this.agents);
       },
@@ -38,10 +39,12 @@ export class AgentDetailsComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredAgents = this.agents.filter((item:any) =>
-      item.firstName.toLowerCase().includes(query)
-    );
+    this.page=1;
+    this.getAllAgents();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredAgents = this.agents.filter((item:any) =>
+    //   item.firstName.toLowerCase().includes(query)
+    // );
   }
 
   viewAgentDetails(id:any){

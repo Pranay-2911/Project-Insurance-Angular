@@ -59,6 +59,9 @@ import { ReferCustomerComponent } from './agent/refer-customer/refer-customer.co
 import { AddStateCityComponent } from './admin/add-state-city/add-state-city.component';
 import { ReferPolicyComponent } from './customer/refer-policy/refer-policy.component';
 import { BuyPolicyAgentComponent } from './customer/buy-policy-agent/buy-policy-agent.component';
+import { ViewCustomerAgentComponent } from './agent/view-customer-agent/view-customer-agent.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 const routes: Routes = [
   {
@@ -243,6 +246,10 @@ const routes: Routes = [
     {
       path: 'refer-customers',
       component: ReferCustomerComponent
+    },
+    {
+      path: 'view-customer',
+      component: ViewCustomerAgentComponent
     }
   ]
   },
@@ -309,6 +316,14 @@ const routes: Routes = [
         component: BuyPolicyAgentComponent
       }
   ]
+  },
+  {
+    path: 'forget-password',
+    component: ForgetPasswordComponent
+  },
+  {
+    path: 'update-password',
+    component: UpdatePasswordComponent
   }
 ];
 

@@ -9,9 +9,9 @@ export class EmployeeService {
   url="https://localhost:7217/api/Employee/"
   constructor(private http:HttpClient) { }
 
- getDocument(page: number, pageSize: number)
+ getDocument(page: number, pageSize: number, query:any)
  {
-   return this.http.get(this.url+'GetAllDocument'+`?pageNumber=${page}&pageSize=${pageSize}`);
+   return this.http.get(this.url+'GetAllDocument'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${query}`);
  }
 
  verifyDocument(id: any)
@@ -22,9 +22,9 @@ export class EmployeeService {
  {
    return this.http.put(this.url+'Reject/'+id, null);
  }
- getAllQuery(page: number, pageSize: number)
+ getAllQuery(page: number, pageSize: number, searchQuery: string='')
  {
-   return this.http.get(this.url+'GetAllQuery');
+   return this.http.get(this.url+'GetAllQuery'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
  }
  queryResponse(id: any, data: any)
  {

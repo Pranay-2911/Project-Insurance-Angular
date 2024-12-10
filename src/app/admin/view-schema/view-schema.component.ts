@@ -23,11 +23,11 @@ export class ViewSchemaComponent {
   }
 
   getSchemes() {
-    this.adminService.getScheme(this.page, this.pageSize).subscribe({
-      next: (data) => {
-        this.schemes = data;
+    this.adminService.getScheme(this.page, this.pageSize, this.searchQuery).subscribe({
+      next: (data:any) => {
+        this.schemes = data.policyDto;
         this.filteredDocuments = this.schemes;
-        this.totalItems = this.schemes.length;
+        this.totalItems = data.count;
       },
       error: (error) => {
         console.error(error);
@@ -36,10 +36,12 @@ export class ViewSchemaComponent {
   }
 
   filterDocuments() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredDocuments = this.schemes.filter((item: any) =>
-      item.title.toLowerCase().includes(query)
-    );
+    this.page=1;
+    this.getSchemes();
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredDocuments = this.schemes.filter((item: any) =>
+    //   item.title.toLowerCase().includes(query)
+    // );
   }
 
   onPageChange(event: any) {

@@ -28,7 +28,7 @@
       <tbody>
           <!-- Nest an <ng-container> to apply *ngIf -->
           <ng-container *ngFor="let policy of filteredDocuments">
-              <tr *ngIf="policy.isVerified !== 2">
+              <tr >
                   <td>{{ policy.customerName }}</td>
                   <td>{{ policy.policyName }}</td>
                   <td>{{ policy.agentName }}</td>
@@ -51,6 +51,6 @@
       </tbody>
   </table>
 
-  <mat-paginator [length]="25" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+  <mat-paginator [length]="totalPremium" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
 </mat-paginator>
 </div>

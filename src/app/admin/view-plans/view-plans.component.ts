@@ -32,12 +32,7 @@ export class ViewPlansComponent {
   {
       this.router.navigate(['admin-dashboard/update-schema'], { queryParams: {id: id} });
   }
-  deleteSchema(id : any)
-  {
-    this.planService.deleteSchema(id).subscribe(()=>{});
-    alert('Scheme deleted successfully!');
-    location.reload();
-  }
+  
   
 
 }
