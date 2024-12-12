@@ -1,47 +1,83 @@
 <form [formGroup]="newEmployeeForm" (ngSubmit)="addEmployee()">
-    <input type="text" placeholder="Enter FirstName" formControlName = "firstName">
+  
+  <!-- First Name -->
+  <div class="input-container">
+    <input type="text" placeholder="Enter FirstName" formControlName="firstName">
     <span>*</span>
-    <div *ngIf="newEmployeeForm.get('firstName')?.invalid && newEmployeeForm.get('firstName')?.touched">
-        First name is required.
-      </div>
-    <br>
-    <input type="text" placeholder="Enter Lastname" formControlName = "lastName">
+  </div>
+  <div *ngIf="newEmployeeForm.get('firstName')?.invalid && newEmployeeForm.get('firstName')?.touched">
+    First name is required.
+  </div>
+  
+  <!-- Last Name -->
+  <div class="input-container">
+    <input type="text" placeholder="Enter Lastname" formControlName="lastName">
     <span>*</span>
-    <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched">
-        Last name is required.
-      </div>
-    <br>
-    <input type ="number" placeholder="Enter Mobile Number" formControlName = "mobileNumber">
-    <span>*</span>
-    <div *ngIf="newEmployeeForm.get('mobileNumber')?.invalid && newEmployeeForm.get('mobileNumber')?.touched">
-        Mobile Number is required.
-      </div>
-    <br>
-    <input type ="text" placeholder="Enter email" formControlName = "email">
-    <span>*</span>
-    <div *ngIf="newEmployeeForm.get('email')?.invalid && newEmployeeForm.get('email')?.touched">
-        Email is required.
-      </div> 
-    <br>
-    <input type ="number" placeholder="Enter Salary" formControlName = "salary">
-    <span>*</span>
-    <div *ngIf="newEmployeeForm.get('salary')?.invalid && newEmployeeForm.get('salary')?.touched">
-      Salary is required.
-    </div> 
-    <br>
-    <input type ="text" placeholder="Enter UserName" formControlName = "username">
-    <span>*</span>
-    <div *ngIf="newEmployeeForm.get('username')?.invalid && newEmployeeForm.get('username')?.touched">
-      UserName is required.
-    </div> 
-    <br>
-    <input type ="password" placeholder="Enter password" formControlName = "password">
-    <span>*</span>
-    <div *ngIf="newEmployeeForm.get('password')?.invalid && newEmployeeForm.get('password')?.touched">
-      Password is required.
-    </div> 
-    <br>
-    <button>Submit</button>
+  </div>
+  <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched">
+    Last name is required.
+  </div>
 
+  <!-- Mobile Number -->
+  <div class="input-container">
+    <input type="number" placeholder="Enter Mobile Number" formControlName="mobileNumber">
+    <span>*</span>
+  </div>
+  <div *ngIf="newEmployeeForm.get('mobileNumber')?.invalid && newEmployeeForm.get('mobileNumber')?.touched">
+    Mobile Number is required.
+  </div>
+  <div *ngIf="newEmployeeForm.get('mobileNumber')?.errors?.['pattern']">
+    Mobile number must be a 10-digit number.
+  </div>
+
+  <!-- Email -->
+  <div class="input-container">
+    <input type="text" placeholder="Enter email" formControlName="email">
+    <span>*</span>
+  </div>
+  <div *ngIf="newEmployeeForm.get('email')?.invalid && newEmployeeForm.get('email')?.touched">
+    Email is required.
+  </div> 
+  <div *ngIf="newEmployeeForm.get('email')?.errors?.['email']">
+    Please enter a valid email address.
+  </div>
+
+  <!-- Salary -->
+  <div class="input-container">
+    <input type="number" placeholder="Enter Salary" formControlName="salary">
+    <span>*</span>
+  </div>
+  <div *ngIf="newEmployeeForm.get('salary')?.invalid && newEmployeeForm.get('salary')?.touched">
+    Salary is required.
+  </div> 
+  <div *ngIf="newEmployeeForm.get('salary')?.errors?.['min']">
+    Salary must be greater than or equal to 1.
+  </div>
+
+  <!-- Username -->
+  <div class="input-container">
+    <input type="text" placeholder="Enter UserName" formControlName="username">
+    <span>*</span>
+  </div>
+  <div *ngIf="newEmployeeForm.get('username')?.invalid && newEmployeeForm.get('username')?.touched">
+    UserName is required.
+  </div> 
+  <div *ngIf="newEmployeeForm.get('username')?.errors?.['minlength']">
+    Username must be at least 5 characters long.
+  </div>
+
+  <!-- Password -->
+  <div class="input-container">
+    <input type="password" placeholder="Enter password" formControlName="password">
+    <span>*</span>
+  </div>
+  <div *ngIf="newEmployeeForm.get('password')?.invalid && newEmployeeForm.get('password')?.touched">
+    Password is required.
+  </div> 
+  <div *ngIf="newEmployeeForm.get('password')?.errors?.['minlength']">
+    Password must be at least 8 characters long.
+  </div>
+
+  <button>Submit</button>
 
 </form>

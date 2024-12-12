@@ -25,10 +25,12 @@
           <td>{{ i + 1 }}</td>
           <td>{{ request.agentName }}</td>
           <td>{{ request.amount | currency: 'INR' }}</td>
-          <td>{{ request.requestDate | date: 'medium' }}</td>
+          <td>{{ request.requestDate | date }}</td>
           <td>
+            <div id="buttons">
             <button class="btn btn-success" (click)="approveRequest(request.id)">Approve</button>
             <button class="btn btn-danger" (click)="rejectRequest(request.id)">Reject</button>
+            </div>
           </td>
         </tr>
       </tbody>

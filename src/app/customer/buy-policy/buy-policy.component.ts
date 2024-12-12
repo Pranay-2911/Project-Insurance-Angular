@@ -37,12 +37,8 @@ export class BuyPolicyComponent {
 
     });
 
-    this.planService.getScheme(this.schemeId).subscribe({
-      next:(data:any)=>{
-        this.scheme = data;
-      },
-      error:(err) => console.error('There was an error!', err)
-    })
+    this.getScheme();
+    
     
     this.enumService.getNominee().subscribe({
       next:(data:any)=>{
@@ -52,6 +48,33 @@ export class BuyPolicyComponent {
     })
 
     this.customerId = localStorage.getItem('id');
+  }
+
+  getScheme(){
+    this.planService.getScheme(this.schemeId).subscribe({
+      next:(data:any)=>{
+        this.scheme = data;
+
+        this.newPolicyForm.get('totalAmount')?.setValidators([
+          Validators.required,
+          Validators.min(data.minAmount),
+          Validators.max(data.maxAmount)
+        ]);
+    
+        this.newPolicyForm.get('durationInMonths')?.setValidators([
+          Validators.required,
+          Validators.min(data.minDuration),
+          Validators.max(data.maxDuration)
+        ]);
+    
+        // Update validity after setting validators
+        this.newPolicyForm.get('totalAmount')?.updateValueAndValidity();
+        this.newPolicyForm.get('durationInMonths')?.updateValueAndValidity();
+      
+      },
+      error:(err) => console.error('There was an error!', err)
+    })
+    
   }
 
   onSubmit(){

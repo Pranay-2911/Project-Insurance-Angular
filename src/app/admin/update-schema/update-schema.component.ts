@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { UploadService } from 'src/app/services/upload.service';
+import { maxAmountValidator, maxAgeValidator, maxPolicyTermValidator } from 'src/app/validators/custom-validators';
 
 @Component({
   selector: 'app-update-schema',
@@ -28,17 +29,17 @@ export class UpdateSchemaComponent implements OnInit {
     this.updateSchemaForm = this.fb.group({
       id: [''],
       title: ['', Validators.required],
-      description: ['', Validators.required],
-      minAmount: ['', Validators.required],
-      maxAmount: ['', Validators.required],
-      minAge: ['', Validators.required],
-      maxAge: ['', Validators.required],
-      minPolicyTerm: ['', Validators.required],
-      maxPolicyTerm: ['', Validators.required],
-      policyRatio: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      minAmount: ['', [Validators.required, Validators.min(1)]],
+      maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],
+      minAge: ['', [Validators.required, Validators.min(18)]],
+      maxAge: ['', [Validators.required, Validators.min(18), maxAgeValidator()]],
+      minPolicyTerm: ['', [Validators.required, Validators.min(1)]],
+      maxPolicyTerm: ['', [Validators.required, Validators.min(1), maxPolicyTermValidator()]],
+      policyRatio: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
       policyStatus: [true],
-      registrationCommisionAmount: ['', Validators.required],
-      installmentCommisionRatio: ['', Validators.required],
+      registrationCommisionAmount: ['', [Validators.required, Validators.min(1)]],
+      installmentCommisionRatio: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
       documents: this.fb.array([]),
       imageLink: ['', Validators.required],
       planId: ['']

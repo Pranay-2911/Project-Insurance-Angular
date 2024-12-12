@@ -1,6 +1,128 @@
-.agent-container{
-    margin-top: 100px;
-}
-h1{
-    margin-top: 50px;
-}
+/* Container Styling */
+.agent-container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1400px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  /* Header Styling */
+  .agent-container h1 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Search Bar Styling */
+  .search-bar {
+    margin: 20px 0;
+    text-align: right;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    table-layout: fixed; /* Equal column width */
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    word-wrap: break-word; /* Prevent text overflow */
+  }
+  
+  /* Header Styling */
+  th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Row Styling */
+  td {
+    color: #333333;
+  }
+  
+  /* Alternating Row Colors */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Hover Effect */
+  tr:hover {
+    background-color: #f1f9ff;
+  }
+  
+  /* Button Styling */
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  /* Paginator Styling */
+  mat-paginator {
+    display: flex;
+    justify-content: end;
+    margin: 20px 0;
+  }
+  
+  mat-paginator .mat-mdc-paginator-range-label {
+    font-size: 0.95rem;
+  }
+  
+  mat-paginator .mat-mdc-paginator-navigation {
+    color: #007bff;
+  }
+  
+  mat-paginator .mat-mdc-paginator-page-size {
+    font-size: 0.95rem;
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 768px) {
+    .agent-container {
+      width: 95%;
+    }
+  
+    table {
+      font-size: 0.85rem;
+    }
+  
+    .search-bar input {
+      width: 100%;
+    }
+  }
+  

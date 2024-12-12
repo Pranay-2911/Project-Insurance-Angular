@@ -15,6 +15,7 @@
       <div *ngIf="updateSchemaForm.get('description')?.invalid && updateSchemaForm.get('description')?.touched" class="error-message">
         Description is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('description')?.errors?.['minlength']">Description must be at least 10 characters long.</div>
     </div>
   
     <div class="form-group">
@@ -24,6 +25,8 @@
       <div *ngIf="updateSchemaForm.get('minAmount')?.invalid && updateSchemaForm.get('minAmount')?.touched" class="error-message">
         Minimum Amount is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('minAmount')?.errors?.['min']">Amount must be greater than 0.</div>
+
     </div>
   
     <div class="form-group">
@@ -33,6 +36,8 @@
       <div *ngIf="updateSchemaForm.get('maxAmount')?.invalid && updateSchemaForm.get('maxAmount')?.touched" class="error-message">
         Maximum Amount is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('maxAmount')?.errors?.['min']">Amount must be greater than 0.</div>
+      <div *ngIf="updateSchemaForm.get('maxAmount')?.errors?.['maxAmountInvalid']">Max amount must be greater than Min amount.</div>  
     </div>
   
     <div class="form-group">
@@ -42,6 +47,8 @@
       <div *ngIf="updateSchemaForm.get('minAge')?.invalid && updateSchemaForm.get('minAge')?.touched" class="error-message">
         Minimum Age is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('minAge')?.errors?.['min']">Minimum age must be 18 or above.</div>
+
     </div>
   
     <div class="form-group">
@@ -51,6 +58,8 @@
       <div *ngIf="updateSchemaForm.get('maxAge')?.invalid && updateSchemaForm.get('maxAge')?.touched" class="error-message">
         Maximum Age is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('maxAge')?.errors?.['min']">Minimum age must be 18 or above.</div>
+      <div *ngIf="updateSchemaForm.get('maxAge')?.errors?.['maxAgeInvalid']">Max age must be greater than Min age.</div>
     </div>
   
     <div class="form-group">
@@ -60,6 +69,8 @@
       <div *ngIf="updateSchemaForm.get('minPolicyTerm')?.invalid && updateSchemaForm.get('minPolicyTerm')?.touched" class="error-message">
         Minimum Policy Term is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('minPolicyTerm')?.errors?.['min']">Policy term must be at least 1 year.</div>
+
     </div>
   
     <div class="form-group">
@@ -69,6 +80,8 @@
       <div *ngIf="updateSchemaForm.get('maxPolicyTerm')?.invalid && updateSchemaForm.get('maxPolicyTerm')?.touched" class="error-message">
         Maximum Policy Term is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('maxPolicyTerm')?.errors?.['min']">Policy term must be at least 1 year.</div>
+      <div *ngIf="updateSchemaForm.get('maxPolicyTerm')?.errors?.['maxPolicyTermInvalid']">Max policy term must be greater than Min policy term.</div>
     </div>
   
     <div class="form-group">
@@ -78,6 +91,8 @@
       <div *ngIf="updateSchemaForm.get('policyRatio')?.invalid && updateSchemaForm.get('policyRatio')?.touched" class="error-message">
         Policy Ratio is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('policyRatio')?.errors?.['min']">Policy ratio must be between 0 and 100.</div>
+      <div *ngIf="updateSchemaForm.get('policyRatio')?.errors?.['max']">Policy ratio must be between 0 and 100.</div>
     </div>
   
     <div class="form-group">
@@ -92,6 +107,7 @@
       <div *ngIf="updateSchemaForm.get('registrationCommisionAmount')?.invalid && updateSchemaForm.get('registrationCommisionAmount')?.touched" class="error-message">
         Registration Commission Amount is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('registrationCommisionAmount')?.errors?.['min']">Amount must be greater than 0.</div>
     </div>
   
     <div class="form-group">
@@ -101,6 +117,8 @@
       <div *ngIf="updateSchemaForm.get('installmentCommisionRatio')?.invalid && updateSchemaForm.get('installmentCommisionRatio')?.touched" class="error-message">
         Installment Commission Ratio is required.
       </div>
+      <div *ngIf="updateSchemaForm.get('installmentCommisionRatio')?.errors?.['min']">Installment commission ratio must be between 1 and 100.</div>
+      <div *ngIf="updateSchemaForm.get('installmentCommisionRatio')?.errors?.['max']">Installment commission ratio must be between 1 and 100.</div>
     </div>
   
     <div class="form-group">

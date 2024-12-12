@@ -1,83 +1,64 @@
-/* Container styling */
-
-/* Table styling */
-table {
-    width: 100%;
-    max-width: 800px; /* Limit the table width */
-    border-collapse: collapse;
-    margin: 50px auto;
-    background-color: #f9f9f9;
+/* Container Styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh; /* Full height of the viewport */
+    text-align: center; /* Center align text in children */
+    padding: 20px; /* Padding to prevent overlap on smaller screens */
 }
 
+/* Heading Styling */
+.heading {
+    font-size: 2rem;
+    margin-bottom: 20px; /* Spacing below the heading */
+}
+
+/* Table Wrapper */
+table {
+    border-collapse: collapse;
+    width: 50%; /* Adjust width as needed */
+    margin: 20px 0; /* Spacing above and below the table */
+}
+
+/* Table Header and Row Styling */
 th, td {
     border: 1px solid #ddd;
-    padding: 12px 15px; /* Adjusted padding for a clean look */
-    text-align: left;
-}
-
-thead {
-    background-color: #007bff;
-    color: #fff;
+    padding: 10px;
+    text-align: center;
 }
 
 th {
-    text-transform: uppercase;
-    font-size: 14px;
+    background-color: #f4f4f4;
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
 }
 
-tr:hover {
-    background-color: #ddd;
-}
-
-/* Button styling for the table */
+/* Button Styling */
 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 4px;
     cursor: pointer;
-    text-transform: capitalize;
+    font-size: 1rem;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-button:active {
-    background-color: #003d80;
-}
-
-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Add New State button styling */
-button:last-of-type {
-    display: block;
-    margin: 20px auto;
+/* Add State Button Styling */
+.add-state-btn {
+    margin-top: 20px;
     background-color: #28a745;
-    padding: 10px 16px;
-    font-size: 16px;
-    border-radius: 5px;
-    text-transform: uppercase;
 }
 
-button:last-of-type:hover {
+.add-state-btn:hover {
     background-color: #218838;
-}
-
-button:last-of-type:active {
-    background-color: #1e7e34;
-}
-
-button:last-of-type:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }

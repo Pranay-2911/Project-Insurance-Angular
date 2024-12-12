@@ -1,0 +1,101 @@
+.schema-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .dropdown {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .schema-details {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .card {
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .policy-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-content {
+    padding: 15px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: #007BFF;
+  }
+  
+  p {
+    color: #555;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+  }
+  
+  .buy-policy {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .buy-policy:hover {
+    background-color: #0056b3;
+  }
+  /* Ensure all images are the same size */
+.card-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensures the image fills the dimensions without distortion */
+    margin-bottom: 10px;
+  }
+  
+  /* Add some spacing for dropdown */
+  .schema-dropdown {
+    margin-bottom: 20px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  

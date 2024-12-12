@@ -25,6 +25,7 @@ export class ViewSchemaComponent {
   getSchemes() {
     this.adminService.getScheme(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
+        console.log(data);
         this.schemes = data.policyDto;
         this.filteredDocuments = this.schemes;
         this.totalItems = data.count;

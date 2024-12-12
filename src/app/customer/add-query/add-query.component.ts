@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { QueryService } from 'src/app/services/query.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { QueryService } from 'src/app/services/query.service';
 export class AddQueryComponent {
 
   newQueryForm = new FormGroup({
-    title: new FormControl(),
-    message: new FormControl(),
+    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    message: new FormControl('', [Validators.required, Validators.minLength(5)]),
     customerId: new FormControl(),
   });
 

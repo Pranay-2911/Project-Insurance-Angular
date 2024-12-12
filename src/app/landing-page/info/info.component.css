@@ -138,6 +138,11 @@ h3{
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
+    border: none; /* Removes the border */
+    background-color: transparent; /* Optional: Makes the background transparent if needed */
+    cursor: pointer; /* Optional: Ensures it still looks clickable */
+    outline: none; /* Optional: Removes the outline when focused (not recommended for accessibility) */
+  
 }
 
 .explore:hover {

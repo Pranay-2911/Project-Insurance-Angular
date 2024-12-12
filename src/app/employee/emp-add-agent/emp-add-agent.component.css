@@ -1,3 +1,79 @@
-form{
-    margin: 50px auto;
-}
+/* Form Container Styling */
+form {
+    margin: 100px auto; /* Increased top margin for more spacing */
+    padding: 20px;
+    max-width: 600px; /* Expanded the width of the form */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Form Heading Styling */
+  /* form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+  } */
+  
+  /* Input Field Styling */
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="email"],
+  form input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  /* Input Field Focus Styling */
+  form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Button Styling */
+  form button {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Button Hover Effect */
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* General Styling for Inputs and Button */
+  form input,
+  form button {
+    display: block;
+    box-sizing: border-box;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    form {
+      max-width: 90%;
+    }
+  
+    form input,
+    form button {
+      font-size: 1rem;
+    }
+  }
+  

@@ -3,17 +3,20 @@
         <option value="" disabled>Select a state</option> <!-- Placeholder -->
         <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
       </select><span>*</span>
-      <div *ngIf="newCity.get('stateName')?.invalid && newCity.get('stateName')?.touched">
+      <div *ngIf="newCity.get('stateName')?.invalid && newCity.get('stateName')?.touched" class="error">
         State is required.
       </div>  <br>
 
     <input type="text" placeholder="Enter City Name" formControlName = "cityName"><span>*</span>
-    <div *ngIf="newCity.get('cityName')?.invalid && newCity.get('cityName')?.touched">
+    <div *ngIf="newCity.get('cityName')?.invalid && newCity.get('cityName')?.touched" class="error">
         City name is required.
+      </div>
+      <div *ngIf="newCity.get('cityName')?.hasError('cityNameNotUnique') && newCity.get('cityName')?.touched" class="error">
+        This city name already exists.
       </div>
     <br>
     <br>
 
-    <button>Submit</button>
+    <button [disabled]="newCity.invalid">Submit</button>
 
 </form>

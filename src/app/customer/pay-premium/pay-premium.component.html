@@ -21,7 +21,7 @@
   <tbody>
     <tr *ngFor="let premium of premiums; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ premium.dueDate | date: 'MMM d, y' }}</td>
+      <td>{{ premium.dueDate | date }}</td>
       <td>Rs. {{ premium.amount.toFixed(2) }}</td>
       <td [ngClass]="{'paid': premium.status === 'Paid', 'unpaid': premium.status === 'Unpaid'}">
         {{ premium.status }}

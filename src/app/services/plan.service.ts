@@ -21,4 +21,10 @@ export class PlanService {
   deleteSchema(id:any){  
     return this.http.delete(this.planUrl + '/' + id);
   }
+
+  getSchemaByName(data:any){
+  {
+    return this.http.post(this.planUrl + '/GetSchemaByName', data);
+  }
+}
 }

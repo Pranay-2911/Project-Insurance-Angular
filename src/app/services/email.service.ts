@@ -13,4 +13,10 @@ export class EmailService {
     const emailData = { to, subject, body };
     return this.http.post(this.apiUrl, emailData);
   }
+
+  sendEmailAgent(to: string[], subject: string, body: string)
+  {
+    const emailData = { to, subject, body };
+    return this.http.post(this.apiUrl+'/Agents', emailData);
+  }
 }

@@ -1,3 +1,72 @@
-form{
-    margin-top: 50px;
+/* Styling for the form */
+form {
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for each input container */
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Input fields styling */
+form input {
+  height:50px;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top:10px;
+  margin-right: 10px;  /* Space between the input field and the required symbol */
+}
+
+form input:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight input on focus */
+}
+
+/* Styling for the required '*' symbol */
+form span {
+  color: red;
+  font-size: 16px;
+}
+
+/* Styling for validation error messages */
+form div.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+form div.error.ng-invalid.ng-touched {
+  display: block;
+}
+
+/* Styling for the submit button */
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Optional: for better accessibility */
+input:invalid {
+  border-color: #ff0000;
 }

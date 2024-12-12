@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgentService } from 'src/app/services/agent.service';
 
@@ -19,7 +19,7 @@ export class WithdrawCommissionComponent {
   constructor(private route: ActivatedRoute, private agentService:AgentService, private router: Router){}
 
   commissonForm = new FormGroup({
-    amount: new FormControl(),
+    amount: new FormControl(null, [Validators.required, Validators.min(1)]),
     agentId: new FormControl()
   })
   ngOnInit()

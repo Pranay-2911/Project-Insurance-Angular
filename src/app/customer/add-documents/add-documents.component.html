@@ -8,7 +8,8 @@
       <br>
   
       <input type="file" (change)="onSelect($event)" accept="image/*" />
-    
+      <span>*</span>
+      
       <!-- Display Selected File -->
       <div *ngIf="file">
         <p>Selected File: {{ file.name }}</p>

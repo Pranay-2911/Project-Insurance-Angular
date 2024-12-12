@@ -1,35 +1,97 @@
+/* General container styling */
 .payments-container {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
+  max-width: 1600px;
+  margin: 5% auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Heading styling */
+.payments-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px; /* Slightly larger font */
+  color: #333;
+}
+
+/* Search bar styling */
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 500px; /* Wider input for better usability */
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #3f9cffc3;
+}
+
+
+/* Table styling */
+.payments-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+.payments-table th,
+.payments-table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.payments-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.payments-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.payments-table tr:hover {
+  background-color: #007bff; /* Highlight on hover */
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Paginator styling */
+mat-paginator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .payments-container {
+    padding: 10px;
   }
-  
+
+  .search-bar input {
+    width: 90%;
+  }
+
   .payments-table {
-    width: 80%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    text-align: left;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
   }
-  
-  .payments-table th,
-  .payments-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-  }
-  
-  .payments-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .payments-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .payments-table tr:hover {
-    background-color: #e9ecef;
-  }
-  
+}

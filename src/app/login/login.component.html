@@ -1,37 +1,41 @@
-<div class="container">
-<form [formGroup]="loginForm" (ngSubmit)="logIn()">
-    <h1>Login</h1>
-    <div class=" field mb-3">
-      <label class="form-label">UserName</label>
-      <input type="email" class="form-control" formControlName="username">
-    </div>
-    <div class="field1 mb-3">
-      <label class="form-label">Password</label>
-      <input type="password" class="form-control" formControlName="password">
-    </div>
+<div class="login-container">
+  <div class="login-section"> 
+    <h1>Welcome Back!</h1>
+    <p class="login-description">Log in to manage your insurance plans easily.</p>
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <div class="form-group mb-4">
+        <label for="username" class="form-label">Username</label>
+        <input type="email" id="username" class="form-control" formControlName="username" placeholder="Enter your email" required />
+      </div>
 
-    <div>
-      <!-- Display the generated CAPTCHA -->
-      <label for="captcha">CAPTCHA:</label>
-      <span class="captcha-display">{{ generatedCaptcha }}</span>
-      <button type="button" (click)="generateCaptcha()">Refresh</button>
-    </div>
-  
-    <div>
-      <label for="reCaptcha">Enter CAPTCHA:</label>
-      <input id="captchaInput" formControlName="reCaptcha" type="text" />
-    </div>
-  
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+      <div class="form-group mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password" required />
+      </div>
 
-    <div id="button">
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="captcha-container mb-4">
+        <label for="captcha">CAPTCHA:</label>
+        <span class="captcha-display">{{ generatedCaptcha }}</span>
+        <button type="button" class="refresh-captcha" (click)="generateCaptcha()">Refresh</button>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="reCaptcha">Enter CAPTCHA</label>
+        <input id="captchaInput" class="form-control" formControlName="reCaptcha" type="text" placeholder="Type the CAPTCHA" required />
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div class="login-buttons">
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </div>
+    </form>
+
+    <div class="additional-links">
+      <p><a href="register-customer">Don't have an account? Register as a Customer</a></p>
+      <p><a href="forget-password">Forgot Password?</a></p>
     </div>
-
-    <h3>Register as a Customer</h3><a href="register-customer">Register</a>
-    <h3>Forget Password</h3><a href="forget-password">Forget Password</a>
-
-  </form>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AgentService } from 'src/app/services/agent.service';
 
 @Component({
@@ -10,9 +10,13 @@ import { AgentService } from 'src/app/services/agent.service';
 export class AgentChangePasswordComponent {
 
   newForm = new FormGroup({
-    userName: new FormControl(),
-    password: new FormControl(),
-    newPassword: new FormControl(),
+    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    newPassword: new FormControl('', [
+      Validators.required, 
+      Validators.minLength(6),  // New password should be at least 8 characters
+      
+    ])
   });
 
   constructor(private agentService: AgentService) { }

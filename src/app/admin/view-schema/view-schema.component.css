@@ -1,74 +1,162 @@
 /* Center and style the search bar */
 .search-bar {
-    margin: 50px auto; /* Center the search bar vertically and horizontally */
-    max-width: 600px; /* Limit the width for better readability */
-    text-align: center;
+  margin: 20px auto; /* Adjusted margin for balanced spacing */
+  max-width: 600px; /* Keep width limited for readability */
+  text-align: center;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: inset 0px 2px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style table */
+table {
+  width: 100%;
+  margin: 30px 0;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 14px;
+}
+
+th {
+  background-color:  #007bff;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+td ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+td ul li {
+  margin: 5px 0;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Paginator styling */
+.mat-paginator {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.mat-paginator .mat-paginator-range-label {
+  font-size: 14px;
+}
+
+.mat-paginator button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.mat-paginator button:hover {
+  color: #007bff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .search-bar {
+    padding: 10px;
   }
-  
+
   .search-bar input {
-    width: 100%; /* Make the input take the full width of its container */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Style table and buttons as before */
-  table {
-    width: 100%;
-    margin: 50px 0;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 10px;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
     font-size: 14px;
-    cursor: pointer;
+    padding: 10px;
   }
-  
-  .btn-danger {
-    background-color: #dc3545;
-    color: white;
+
+  table {
+    font-size: 12px;
   }
-  
-  .btn-danger:hover {
-    background-color: #c82333;
+
+  th, td {
+    padding: 8px 10px;
   }
-  
-  .btn-success {
-    background-color: #28a745;
-    color: white;
+
+  .btn {
+    font-size: 12px;
+    padding: 4px 8px;
   }
-  
-  .btn-success:hover {
-    background-color: #218838;
-  }
-  
-  .mat-paginator {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
+}
+
+/* Overall container styling */
+.scheme-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+.heading {
+  text-align: center;
+  margin-top: 50px; /* Added top margin */
+  margin-bottom: 20px;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+

@@ -1,5 +1,5 @@
 <div class="table-container">
-  
+  <h1>Commission Details</h1>
   <div class="search-bar">
     <input
       type="text"
@@ -9,30 +9,34 @@
       class="form-control"
     />
   </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Agent Name</th>
-          <th>Schema Name</th>
-          <th>Customer Name</th>
-          <th>Commission Amount</th>
-          <th>Commission Date</th>
-          <th>Commission Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let commission of filteredDocuments">
-          <td>{{ commission.agentName }}</td>
-          <td>{{ commission.schemaName }}</td>
-          <td>{{ commission.customerName }}</td>
-          <td>{{ commission.commissionAmount }}</td>
-          <td>{{ commission.commssionDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-          <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <mat-paginator [length]="totalCommissions" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
-  </mat-paginator>
-  
+  <table>
+    <thead>
+      <tr>
+        <th>Agent Name</th>
+        <th>Schema Name</th>
+        <th>Customer Name</th>
+        <th>Commission Amount</th>
+        <th>Commission Date</th>
+        <th>Commission Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let commission of filteredDocuments">
+        <td>{{ commission.agentName }}</td>
+        <td>{{ commission.schemaName }}</td>
+        <td>{{ commission.customerName }}</td>
+        <td>{{ commission.commissionAmount }}</td>
+        <td>{{ commission.commssionDate | date }}</td>
+        <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<mat-paginator
+  [length]="totalCommissions"
+  pageSize="pageSize"
+  [pageSizeOptions]="[5, 10, 15, 20]"
+  aria-label="Select page"
+  (page)="onPageChange($event)"
+>
+</mat-paginator>

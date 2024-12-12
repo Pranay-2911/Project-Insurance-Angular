@@ -4,6 +4,7 @@
     <div *ngIf="newQueryForm.get('title')?.invalid && newQueryForm.get('title')?.touched">
         Title is required.
       </div>
+      <div *ngIf="newQueryForm.get('title')?.errors?.['minlength']">Title must be at least 5 characters long.</div>
     <br>
 
     <input type="text" placeholder="Enter Your Query" formControlName = "message">
@@ -11,6 +12,8 @@
     <div *ngIf="newQueryForm.get('message')?.invalid && newQueryForm.get('message')?.touched">
         Message is required.
       </div>
+      <div *ngIf="newQueryForm.get('message')?.errors?.['minlength']">Message must be at least 5 characters long.</div>
+
     <br>
     
     <button>Submit</button>

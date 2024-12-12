@@ -10,18 +10,20 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AddEmployeeComponent {
 
-  newEmployeeForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    mobileNumber: new FormControl(null, Validators.required),
-    email: new FormControl('', Validators.required),
-    salary: new FormControl(null, Validators.required),
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+  newEmployeeForm :FormGroup;
 
-  });
-
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService) {
+    this.newEmployeeForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      mobileNumber: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      salary: new FormControl(null, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]),
+      username: new FormControl('',[ Validators.required, Validators.minLength(5)]),
+      password: new FormControl('', Validators.required)
+  
+    });
+  }
 
   addEmployee()
   {

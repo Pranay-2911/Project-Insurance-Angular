@@ -98,28 +98,26 @@
                 <img src="https://img.icons8.com/?size=100&id=21702&format=png&color=000000">
                 <h2>Car</h2>
             </div>
-            
             <ul>
                 <li>Doorstep cashless repair & claims process</li>
                 <li>Kms-based plans for low mileage drivers</li>
                 <li>AI-backed instant claims process</li>
             </ul>
-            <a href="#" class="explore">Explore &rarr;</a>
+            <button class="explore" (click)="loadSchema('Car Insurance')">Explore &rarr; </button>
         </div>
 
-        <!-- Bike Product -->
+        <!-- Life Product -->
         <div class="product-card">
             <div style="display: flex; align-items: center; gap: 10px; justify-content: space-between;">
-                <img src="https://img.icons8.com/?size=100&id=JplSo7PHzp3e&format=png&color=000000">
-                <h2>Bike</h2>
+                <img src="assets/landing-page/shield.png">
+                <h2>Life</h2>
             </div>
-            
             <ul>
-                <li>Cashless garage network</li>
-                <li>Option of long-term policies</li>
-                <li>Service guarantee on repairs</li>
+                <li>Comprehensive coverage for all stages of life</li>
+                <li>Tax benefits under applicable laws</li>
+                <li>Customisable plans to suit your financial goals</li>
             </ul>
-            <a href="#" class="explore">Explore &rarr;</a>
+            <button class="explore" (click)="loadSchema('Life Insurance')">Explore &rarr; </button>
         </div>
 
         <!-- Health Product -->
@@ -133,7 +131,7 @@
                 <li>Cashless treatment at any hospital</li>
                 <li>Coverage for mild sickness to hospitalisation</li>
             </ul>
-            <a href="#" class="explore">Explore &rarr;</a>
+            <button class="explore" (click)="loadSchema('Health Insurance')">Explore &rarr; </button>
         </div>
 
         <!-- Travel Product -->
@@ -147,7 +145,8 @@
                 <li>Coverage for missed flights, baggage & passport loss</li>
                 <li>Instant online policy</li>
             </ul>
-            <a href="#" class="explore">Explore &rarr;</a>
+            <button class="explore" (click)="loadSchema('Travel Insurance')">Explore &rarr; </button>
         </div>
     </div>
 </div>
+

@@ -1,6 +1,93 @@
-form{
-    margin-top: 50px;
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
 }
-span{
-    color: red !important;
+
+/* Form styling */
+form {
+  width: 400px;
+  margin: 50px auto; /* Center the form horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Input fields and select dropdown */
+form input, form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Focus state for input and select */
+form input:focus, form select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Required indicator */
+span {
+  color: red;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/* Submit button */
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover and active state for the button */
+form button:hover {
+  background-color: #0056b3;
+}
+
+form button:active {
+  background-color: #003f8a;
+}
+
+/* Disabled button styling */
+form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #666;
+}
+
+/* Dropdown-specific styling */
+form select {
+  appearance: none;
+  background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray"><path d="M5.5 7h9l-4.5 6-4.5-6z"/></svg>') no-repeat right 10px center;
+  background-size: 16px;
+}
+
+/* Ensure error and spacing are consistent */
+form select:invalid {
+  color: gray;
+}
+
+  
+  

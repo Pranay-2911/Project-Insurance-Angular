@@ -15,6 +15,8 @@ export class ViewCommissionComponent {
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   selectedCommissionType: string = ''; // Holds the selected value of the radio button
+  startDate: string = ''
+  endDate: string = ''
 
   constructor(private router: Router, private adminService: AdminService) {}
   ngOnInit(){
@@ -22,7 +24,7 @@ export class ViewCommissionComponent {
   }
   
   getAllCommission(){
-    this.adminService.getCommissions(this.page, this.pageSize, this.searchQuery, this.selectedCommissionType).subscribe({
+    this.adminService.getCommissions(this.page, this.pageSize, this.searchQuery, this.selectedCommissionType, this.startDate, this.endDate).subscribe({
       next: (data:any) => {
         this.commissions = data.viewCommissionDto;
         this.filteredDocuments = this.commissions;

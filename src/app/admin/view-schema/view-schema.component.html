@@ -1,4 +1,7 @@
-<div class="search-bar">
+<div class="scheme-container">
+  <h2 class="heading">Insurance Schemes</h2>
+
+  <div class="search-bar">
     <input
       type="text"
       placeholder="Search by Scheme Name"
@@ -8,7 +11,7 @@
     />
   </div>
 
-<table>
+  <table>
     <tr>
       <th>Name</th>
       <th>Description</th>
@@ -51,13 +54,13 @@
       </td>
     </tr>
   </table>
-  <mat-paginator
-  [length]="totalItems"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[5, 10, 15, 20]"
-  aria-label="Select page"
-  (page)="onPageChange($event)"
->
-</mat-paginator>
 
-  
+  <mat-paginator
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    aria-label="Select page"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/services/customer.service';
+import { EmailService } from 'src/app/services/email.service';
 import { PlanService } from 'src/app/services/plan.service';
 
 @Component({
@@ -12,6 +14,10 @@ export class PlanComponent implements OnInit {
   selectedPlanId: string | null = null;
   selectedSchemeId: string | null = null;
 
+  emails: string[] = [ 'pranayraut129@gmail.com', 'pranayraut2129@gmail.com'];
+  customerName: any;
+  customerMob: any;
+
   selectedPlanSchemes: any[] = [];
   selectedScheme: any | null = null;
 
@@ -21,7 +27,7 @@ export class PlanComponent implements OnInit {
     monthlyPremium: null as number | null,
   };
 
-  constructor(private router: Router, private planService: PlanService) {}
+  constructor(private router: Router, private planService: PlanService, private emailService: EmailService, private customerService: CustomerService) {}
 
   ngOnInit(): void {
     this.planService.getAllPlans().subscribe({
@@ -57,7 +63,7 @@ export class PlanComponent implements OnInit {
   calculatePremium(): void {
     if (this.calculator.totalAmount > 0 && this.calculator.duration > 0) {
       this.calculator.monthlyPremium = this.calculator.totalAmount / this.calculator.duration;
-      console.log('Monthly Premium:', this.calculator.monthlyPremium);
+
     } else {
       console.error('Invalid input for calculator');
       this.calculator.monthlyPremium = null;

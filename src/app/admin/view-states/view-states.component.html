@@ -1,14 +1,28 @@
-<table>
-    <tr>
+<div class="container">
+    <h2 class="heading">State and City Management</h2>
+  
+    <table>
+      <tr>
         <th>State</th>
         <th>Add Cities</th>
-    </tr>
-    <tr *ngFor="let state of states">
+      </tr>
+      <tr *ngFor="let state of states">
         <td>{{state.name}}</td>
         <td>
-            <button (click)="addCities(state.name)">Add</button>
+          <button (click)="addCities(state.name)">Add</button>
         </td>
-    </tr>
-</table>
-
-<button (click)="addState()">Add New State</button>
+      </tr>
+    </table>
+  
+    <div *ngFor="let state of states">
+      <div *ngIf="state.showCities">
+        <h3>Cities in {{state.name}}</h3>
+        <ul>
+          <li *ngFor="let city of state.cities">{{city.name}}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <button (click)="addState()">Add New State</button>
+  </div>
+  

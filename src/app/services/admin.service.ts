@@ -29,6 +29,7 @@ export class AdminService {
   getPlan(){
     return this.http.get(this.planUrl)
   }
+  
   getScheme(page:number, pageSize:number, searchQuery:string=''){
     return this.http.get(this.planUrl+'/Schema'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`)
   }
@@ -55,8 +56,8 @@ export class AdminService {
   getAgent(page:number, pageSize:number, searchQuery:string=""){
     return this.http.get(this.agentUrl+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
   }
-  getCommissions(page:number, pageSize:number, searchQuery:string, selectedCommissionType:string){
-    return this.http.get(this.url + '/Commission'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}&selectedCommissionType=${selectedCommissionType}`);
+  getCommissions(page:number, pageSize:number, searchQuery:string, selectedCommissionType:string, startDate:string, endDate:string){
+    return this.http.get(this.url + '/Commission'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}&selectedCommissionType=${selectedCommissionType}&startDate=${startDate}&endDate=${endDate}`);
   }
   addEmployee(employee:any){
     return this.http.post(this.employeeUrl, employee);

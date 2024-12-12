@@ -35,4 +35,7 @@ export class CustomerService {
   reuploadDocument(id:any){
     return this.http.put(`${this.url}/Reupload/${id}`, null);
   }
+  getInfo(id:any){
+    return this.http.get(this.url +'/GetInfo/' + id);
+  }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,FormControl,FormsModule, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 import { UploadService } from 'src/app/services/upload.service';
+import { maxAmountValidator, maxAgeValidator, maxPolicyTermValidator } from 'src/app/validators/custom-validators';
 
 @Component({
   selector: 'app-add-schema',
@@ -16,24 +17,22 @@ export class AddSchemaComponent {
   documentsList = ['Adhar Card', 'Pan Card', 'Driving License', 'Health Report'];
 
 
-  
 
- 
   constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router, private uploadService:UploadService, private fb: FormBuilder) { 
     this.newSchemaForm = this.fb.group({
       planId:['', Validators.required],
       title: ['', Validators.required],
-      description: ['', Validators.required],
-      minAmount: ['', Validators.required],
-      maxAmount: ['', Validators.required],
-      minAge: ['', Validators.required],
-      maxAge: ['', Validators.required],
-      minPolicyTerm: ['', Validators.required],
-      maxPolicyTerm: ['', Validators.required],
-      policyRatio: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      minAmount: ['', [Validators.required, Validators.min(1)]],
+      maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],
+      minAge: ['', [Validators.required, Validators.min(18)]],
+      maxAge: ['', [Validators.required, Validators.min(18), maxAgeValidator()]],
+      minPolicyTerm: ['', [Validators.required, Validators.min(1)]],
+      maxPolicyTerm: ['', [Validators.required,  Validators.min(1), maxPolicyTermValidator()]],
+      policyRatio: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
       policyStatus: [false],
-      registrationCommisionAmount: ['', Validators.required],
-      installmentCommisionRatio: ['', Validators.required],
+      registrationCommisionAmount: ['', [Validators.required, Validators.min(1)]],
+      installmentCommisionRatio: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
       documents: this.fb.array([]), // FormArray for checkboxes
       imageLink: ['', Validators.required],
     });
@@ -129,6 +128,6 @@ export class AddSchemaComponent {
       });
     }
 
-    
+   
 
 }

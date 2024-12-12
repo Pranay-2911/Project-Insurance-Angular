@@ -1,6 +1,8 @@
 <div class="commission-container">
-    <h2 class="text-center">Agent Commissions</h2>
+  <h2 class="text-center">Agent Commissions</h2>
 
+  <!-- Search Bar Section -->
+  <div class="search-bar-container">
     <div class="search-bar">
       <input
         type="text"
@@ -9,7 +11,6 @@
         (input)="filterDocuments()"
         class="form-control"
       />
-
     </div>
 
     <div class="search-bar">
@@ -21,35 +22,42 @@
         class="form-control"
       />
     </div>
-    <div *ngIf="commissions?.length > 0; else noData">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Agent Name</th>
-            <th>Scheme Name</th>
-            <th>Customer Name</th>
-            <th>Commission Amount</th>
-            <th>Commission Date</th>
-            <th>Commission Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let commission of filteredDocuments">
-            <td>{{ commission.agentName }}</td>
-            <td>{{ commission.schemaName }}</td>
-            <td>{{ commission.customerName }}</td>
-            <td>{{ commission.commissionAmount | currency:'INR' }}</td>
-            <td>{{ commission.commssionDate | date:'medium' }}</td>
-            <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <ng-template #noData>
-      <p class="text-center">No commission data available.</p>
-    </ng-template>
   </div>
 
-  <mat-paginator [length]="totalCommissions" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
+  <div *ngIf="commissions?.length > 0; else noData">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Agent Name</th>
+          <th>Scheme Name</th>
+          <th>Customer Name</th>
+          <th>Commission Amount</th>
+          <th>Commission Date</th>
+          <th>Commission Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commission of filteredDocuments">
+          <td>{{ commission.agentName }}</td>
+          <td>{{ commission.schemaName }}</td>
+          <td>{{ commission.customerName }}</td>
+          <td>{{ commission.commissionAmount | currency:'INR' }}</td>
+          <td>{{ commission.commssionDate | date:'medium' }}</td>
+          <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noData>
+    <p class="text-center">No commission data available.</p>
+  </ng-template>
+
+  <!-- Pagination -->
+  <mat-paginator
+    [length]="totalCommissions"
+    pageSize="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    aria-label="Select page"
+    (page)="onPageChange($event)">
   </mat-paginator>
-  
+</div>

@@ -1,12 +1,13 @@
-<form [formGroup]="newPlanForm" (ngSubmit)="addNewPlan()">
-    <input type="text" placeholder="Enter Plan Name" formControlName = "name">
+<div class="form-container">
+  <h2 class="form-heading">Create New Plan</h2>
+  <form [formGroup]="newPlanForm" (ngSubmit)="addNewPlan()">
+    <input type="text" placeholder="Enter Plan Name" formControlName="name">
     <span>*</span>
     <div *ngIf="newPlanForm.get('name')?.invalid && newPlanForm.get('name')?.touched">
-        Plan name is required.
-      </div>
-    <br>
-    <br>
+      Plan name is required.
+    </div>
+    <br><br>
 
-    <button>Submit</button>
-
-</form>
+    <button type="submit">Submit</button>
+  </form>
+</div>

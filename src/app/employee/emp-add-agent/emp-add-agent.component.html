@@ -1,27 +1,21 @@
 <form [formGroup]="newAgentForm" (ngSubmit)="addAgent()">
-    <input type="text" placeholder="Enter FirstName" formControlName = "firstName">
-    <br>
-    <br>
-    <input type="text" placeholder="Enter LastName" formControlName = "lastName">
-    <br>
-    <br>
-    <input type="text" placeholder="Enter Qualification" formControlName = "qualification">
-    <br>
-    <br>
-    <input type ="text" placeholder="Enter Email" formControlName = "email">
-    <br>
-    <br>
-    <input type ="number" placeholder="Enter Mobile Number" formControlName = "mobileNumber">
-    <br>
-    <br>
-    <input type ="text" placeholder="Enter UserName" formControlName = "username">
-    <br>
-    <br>
-    <input type ="text" placeholder="Enter Password" formControlName = "password">
-    <br>
-    <br>
-
+    <h2>Add New Agent</h2>
+    
+    <input type="text" placeholder="Enter First Name" formControlName="firstName" />
+    <br /><br />
+    <input type="text" placeholder="Enter Last Name" formControlName="lastName" />
+    <br /><br />
+    <input type="text" placeholder="Enter Qualification" formControlName="qualification" />
+    <br /><br />
+    <input type="text" placeholder="Enter Email" formControlName="email" />
+    <br /><br />
+    <input type="number" placeholder="Enter Mobile Number" formControlName="mobileNumber" />
+    <br /><br />
+    <input type="text" placeholder="Enter User Name" formControlName="username" />
+    <br /><br />
+    <input type="password" placeholder="Enter Password" formControlName="password" />
+    <br /><br />
+  
     <button>Submit</button>
-
-
-</form>
+  </form>
+  

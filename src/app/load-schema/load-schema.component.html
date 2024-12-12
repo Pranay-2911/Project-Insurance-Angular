@@ -1,0 +1,31 @@
+<div class="schema-container">
+    <h1>Select a Policy</h1>
+    
+    <div class="dropdown">
+      <label for="schemaSelect">Choose a policy: </label>
+      <select class="schema-dropdown" (change)="onSchemaSelect($event)">
+        <option value="" selected disabled>Select a Schema</option> <!-- Default option -->
+        <option *ngFor="let schema of schemas" [value]="schema.id">{{ schema.title }}</option>
+      </select>
+    </div>
+  
+    <div class="schema-details" *ngIf="selectedSchema">
+      <div class="card">
+        <img [src]="selectedSchema.imageLink" alt="Policy Image" class="policy-image">
+        <div class="card-content">
+          <h2>{{ selectedSchema.title }}</h2>
+          <p>{{ selectedSchema.description }}</p>
+  
+          <ul>
+            <li><strong>Coverage Amount:</strong> ₹{{ selectedSchema.minAmount }} - ₹{{ selectedSchema.maxAmount }}</li>
+            <li><strong>Eligible Age:</strong> {{ selectedSchema.minAge }} - {{ selectedSchema.maxAge }} years</li>
+            <li><strong>Policy Term:</strong> {{ selectedSchema.minPolicyTerm }} - {{ selectedSchema.maxPolicyTerm }} months</li>
+            <li><strong>Documents Required:</strong> {{ selectedSchema.documents }}</li>
+          </ul>
+        </div>
+  
+        <button class="buy-policy" (click)="redirectToBuyPolicy(selectedSchema.id)">Buy Policy</button>
+      </div>
+    </div>
+  </div>
+  

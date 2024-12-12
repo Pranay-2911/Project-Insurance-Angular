@@ -16,7 +16,9 @@
         placeholder="Enter amount" 
         required 
         min="1" 
-        [max]="balance" />
+        [max]="balance" /><span>*</span>
+        <div *ngIf="commissonForm.get('amount')?.invalid && commissonForm.get('amount')?.touched">Amount is required.</div> 
+        
     </div>
 
     <div class="form-buttons">
@@ -42,7 +44,7 @@
       <tr *ngFor="let request of requests; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ request.amount | currency: 'INR' }}</td>
-        <td>{{ request.requestDate | date: 'short' }}</td>
+        <td>{{ request.requestDate | date}}</td>
         <td>
           <span *ngIf="request.status === 1" class="approved">Approved</span>
           <span *ngIf="request.status === 2" class="not-approved">Rejected</span>

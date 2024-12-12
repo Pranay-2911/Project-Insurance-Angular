@@ -62,6 +62,7 @@ import { BuyPolicyAgentComponent } from './customer/buy-policy-agent/buy-policy-
 import { ViewCustomerAgentComponent } from './agent/view-customer-agent/view-customer-agent.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { LoadSchemaComponent } from './load-schema/load-schema.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
       path: '',
       component: InfoComponent
     },
+    {
+      path: 'load-scheme',
+      component: LoadSchemaComponent
+    }
   
 ]
   },
