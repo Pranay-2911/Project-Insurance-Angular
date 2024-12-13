@@ -63,6 +63,13 @@ import { ViewCustomerAgentComponent } from './agent/view-customer-agent/view-cus
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { LoadSchemaComponent } from './load-schema/load-schema.component';
+import { ViewClaimsComponent } from './admin/view-claims/view-claims.component';
+import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
+import { UpdateAgentComponent } from './agent/update-agent/update-agent.component';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
+import { ViewCustomerDetailsComponent } from './admin/view-customer-details/view-customer-details.component';
+import { AgentProfileComponent } from './agent/agent-profile/agent-profile.component';
+import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 
 const routes: Routes = [
   {
@@ -180,6 +187,14 @@ const routes: Routes = [
       {
         path: 'delete-schema',
         component: DeleteSchemaComponent
+      },
+      {
+        path: 'view-claims',
+        component: ViewClaimsComponent
+      },
+      {
+        path: 'view-customer-details',
+        component: ViewCustomerDetailsComponent
       }
      
 
@@ -219,6 +234,14 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: EmpChangePasswordComponent
+      },
+      {
+        path: 'employee-profile',
+        component: EmployeeProfileComponent
+      },
+      {
+        path: 'update-employee',
+        component: UpdateEmployeeComponent
       }
     ]
   },
@@ -255,6 +278,14 @@ const routes: Routes = [
     {
       path: 'view-customer',
       component: ViewCustomerAgentComponent
+    },
+    {
+      path: 'agent-profile',
+      component: AgentProfileComponent
+    },
+    {
+      path: 'update-agent',
+      component: UpdateAgentComponent
     }
   ]
   },
@@ -319,6 +350,10 @@ const routes: Routes = [
       {
         path: 'buy-policy-agent',
         component: BuyPolicyAgentComponent
+      },
+      {
+        path: 'update-customer',
+        component: UpdateCustomerComponent
       }
   ]
   },

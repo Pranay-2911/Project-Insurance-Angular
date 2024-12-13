@@ -69,7 +69,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getScheme(this.page, this.pageSize).subscribe({
+  this.adminService.getScheme(this.page, this.pageSize, '').subscribe({
     next: (data:any) => {
       this.schemes = data.count;
       console.log(this.schemes);
@@ -99,7 +99,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getPayments(this.page, this.pageSize, '').subscribe({
+  this.adminService.getPayments(this.page, this.pageSize, '', '', '').subscribe({
     next: (data:any) => {
       this.payments = data.count;
       console.log(this.payments);
@@ -142,5 +142,10 @@ viewRequest()
 viewPayments()
 {
   this.router.navigate(['admin-dashboard/view-payments']);
+}
+
+viewClaim()
+{
+  this.router.navigate(['admin-dashboard/view-claims']);
 }
 }

@@ -15,13 +15,16 @@ export class ViewPaymentsComponent {
   totalPayments = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
+  startDate: string = ''
+  endDate: string = '';
+
   constructor(private router: Router, private adminService: AdminService) {}
   ngOnInit(){
     this.getAllPayments();
   }
 
   getAllPayments(){
-    this.adminService.getPayments(this.page, this.pageSize, this.searchQuery).subscribe({
+    this.adminService.getPayments(this.page, this.pageSize, this.searchQuery, this.startDate, this.endDate).subscribe({
       next: (data:any) => {
         this.payments = data.payments;
         this.filteredDocuments=this.payments;

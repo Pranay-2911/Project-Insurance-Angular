@@ -65,7 +65,6 @@ import { NgxStripeModule} from 'ngx-stripe';
 import { VerifyDocumentComponent } from './employee/verify-document/verify-document.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { QueryResponseComponent } from './employee/query-response/query-response.component';
-import { GloabalVariableComponent } from './admin/gloabal-variable/gloabal-variable.component';
 import { ViewPaymentsComponent } from './admin/view-payments/view-payments.component';
 import { SettingComponent } from './admin/setting/setting.component';
 import { EmpChangePasswordComponent } from './employee/emp-change-password/emp-change-password.component';
@@ -81,6 +80,13 @@ import { ViewCustomerAgentComponent } from './agent/view-customer-agent/view-cus
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { LoadSchemaComponent } from './load-schema/load-schema.component';
+import { ViewClaimsComponent } from './admin/view-claims/view-claims.component';
+import { ViewCustomerDetailsComponent } from './admin/view-customer-details/view-customer-details.component';
+import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
+import { UpdateAgentComponent } from './agent/update-agent/update-agent.component';
+import { AgentProfileComponent } from './agent/agent-profile/agent-profile.component';
+import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 
 
 @NgModule({
@@ -139,7 +145,6 @@ import { LoadSchemaComponent } from './load-schema/load-schema.component';
     WithdrawApproveComponent,
     VerifyDocumentComponent,
     QueryResponseComponent,
-    GloabalVariableComponent,
     ViewPaymentsComponent,
     SettingComponent,
     EmpChangePasswordComponent,
@@ -155,6 +160,13 @@ import { LoadSchemaComponent } from './load-schema/load-schema.component';
     ForgetPasswordComponent,
     UpdatePasswordComponent,
     LoadSchemaComponent,
+    ViewClaimsComponent,
+    ViewCustomerDetailsComponent,
+    UpdateCustomerComponent,
+    UpdateEmployeeComponent,
+    UpdateAgentComponent,
+    AgentProfileComponent,
+    EmployeeProfileComponent,
   
     
  

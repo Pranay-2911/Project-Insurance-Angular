@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -10,9 +10,12 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmpChangePasswordComponent {
 
   newForm = new FormGroup({
-    userName: new FormControl(),
-    password: new FormControl(),
-    newPassword: new FormControl(),
+    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    newPassword: new FormControl('', [
+      Validators.required, 
+      Validators.minLength(6)
+    ]),
   });
 
   constructor(private employeeService: EmployeeService) { }

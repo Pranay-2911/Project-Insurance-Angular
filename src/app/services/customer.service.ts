@@ -38,4 +38,7 @@ export class CustomerService {
   getInfo(id:any){
     return this.http.get(this.url +'/GetInfo/' + id);
   }
+  updateCustomer(data:any){
+    return this.http.put(`${this.url}`, data);
+  }
 }

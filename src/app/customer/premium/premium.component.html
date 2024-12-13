@@ -23,6 +23,7 @@
               <th>Policy Amount</th>
               <th>Policy Duration (Months)</th>
               <th>Pay Premium</th>
+              <th>Claim status</th>
           </tr>
       </thead>
       <tbody>
@@ -46,6 +47,11 @@
                           Pay Premium
                       </button>
                   </td>
+                  <td>
+                    <h3 *ngIf="policy.isMatured === 0">NA</h3>
+                    <h3 *ngIf="policy.isMatured === 1">Under Process</h3>
+                    <h3 *ngIf="policy.isMatured === 2">Approved</h3>
+                </td>
               </tr>
           </ng-container>
       </tbody>

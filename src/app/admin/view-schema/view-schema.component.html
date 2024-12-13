@@ -11,8 +11,11 @@
     />
   </div>
 
+  
+
   <table>
     <tr>
+      <th>Sr no</th>
       <th>Name</th>
       <th>Description</th>
       <th>Minimum Amount</th>
@@ -27,7 +30,8 @@
       <th>Status</th>
       <th>Action</th>
     </tr>
-    <tr *ngFor="let scheme of filteredDocuments">
+    <tr *ngFor="let scheme of filteredDocuments; let i = index">
+      <td>{{i + 1}}</td>
       <td>{{ scheme.title }}</td>
       <td>{{ scheme.description }}</td>
       <td>{{ scheme.minAmount }}</td>

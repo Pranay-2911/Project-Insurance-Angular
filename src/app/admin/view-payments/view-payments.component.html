@@ -9,6 +9,25 @@
       class="form-control"
     />
   </div>
+
+  <div class="date-filter">
+    <label>Start Date:</label>
+    <input
+      type="date"
+      [(ngModel)]="startDate"
+      (change)="filterDocuments()"
+      class="form-control"
+    />
+    
+    <label>End Date:</label>
+    <input
+      type="date"
+      [(ngModel)]="endDate"
+      (change)="filterDocuments()"
+      class="form-control"
+    />
+  </div>
+  
   <table class="payments-table">
     <thead>
       <tr>

@@ -5,6 +5,7 @@
     <h3>Your Current Balance: <span>{{ balance | currency: 'INR' }}</span></h3>
   </div>
 
+  
   <form [formGroup]="commissonForm" (ngSubmit)="commissionRequest()" class="withdraw-form">
     <div class="form-group">
       <label for="amount">Withdraw Amount:</label>
@@ -18,11 +19,16 @@
         min="1" 
         [max]="balance" /><span>*</span>
         <div *ngIf="commissonForm.get('amount')?.invalid && commissonForm.get('amount')?.touched">Amount is required.</div> 
-        
+        <div *ngIf="commissonForm.get('amount')?.errors?.['min']">
+          Minimum amount should be 1
+        </div>
+        <div *ngIf="commissonForm.get('amount')?.errors?.['max']">
+          Maximum amount should be {{ balance }}
+        </div>
     </div>
 
     <div class="form-buttons">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" [disabled]="commissonForm.invalid" class="btn btn-primary">
         Request Withdrawal
       </button>
     </div>
@@ -30,6 +36,49 @@
 </div>
 
 <div class="request-container">
+  <div class="filter-options">
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value=""
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      All
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value="0"
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      Pending
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value="1"
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      Approved
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="commissionType"
+        value="2"
+        [(ngModel)]="selectedCommissionType"
+        (change)="filterDocuments()"
+      />
+      Rejected
+    </label>
+  </div>
+
   <h3 class="text-center">Your Withdrawal Requests</h3>
   <table class="request-table">
     <thead>
@@ -41,7 +90,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let request of requests; let i = index">
+      <tr *ngFor="let request of filteredDocuments; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ request.amount | currency: 'INR' }}</td>
         <td>{{ request.requestDate | date}}</td>

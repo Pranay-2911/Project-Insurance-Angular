@@ -39,12 +39,6 @@ export class ViewPolicyAccountComponent {
     const relations = ['Father', 'Mother', 'Brother', 'Sister'];
     return relations[relation] || 'Unknown';
   }
-
-  formatDate(date: string): string {
-    const parsedDate = new Date(date);
-    return parsedDate.toLocaleDateString(); // Adjust locale as needed
-  }
-
   filterDocumentsbyPolicy() {
     this.page = 1;
     this.getPolicyAccounts();

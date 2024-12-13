@@ -10,6 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddStateCityComponent {
   state:any=''
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
   constructor(private adminService: AdminService, private route: ActivatedRoute) { }
 
   ngOnInit(){
@@ -29,9 +32,28 @@ export class AddStateCityComponent {
     
 
     console.log(this.newCity.value);
-      this.adminService.addCity(this.newCity.value).subscribe((data) =>{
-        alert('City Added successfully');
-        this.newCity.reset();
+      this.adminService.addCity(this.newCity.value).subscribe({
+        next: (data:any) => {
+          this.showNotification('City added successfully!', 'success');
+          this.newCity.reset();
+        },
+        error: (error) => {
+          this.showNotification(error.exceptionMessage, 'error');
+        }
       });
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
   }
 }

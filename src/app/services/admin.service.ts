@@ -90,9 +90,9 @@ export class AdminService {
     return this.http.put(this.url +"/CommissionRequest/Reject/" +id, null);
   }
 
-  getPayments(page: number, pageSize: number, searchQuery: string ='')
+  getPayments(page: number, pageSize: number, searchQuery: string ='', startDate: string, endDate: string)
   {
-    return this.http.get(this.url+'/Payments'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
+    return this.http.get(this.url+'/Payments'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}&startDate=${startDate}&endDate=${endDate}`);
   }
 
   getGlobalvariable()
@@ -102,6 +102,14 @@ export class AdminService {
   updateGlobalvariable(data: any)
   {
     return this.http.put(this.url+'/Global',data);
+  }
+  getAllClaims(page: number, pageSize: number, searchQuery: string ='')
+  {
+    return this.http.get(this.url+'/Claims'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
+  }
+  claimApprove(id: any)
+  {
+    return this.http.post(this.url+'/Approve/Claim/' +id, null);
   }
   
 }

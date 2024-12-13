@@ -1,4 +1,5 @@
 <form [formGroup]="newQueryForm" (ngSubmit)="addQuery()">
+  <h2>Raise a Query</h2>
     <input type="text" placeholder="Enter Query Title" formControlName = "title">
     <span>*</span>
     <div *ngIf="newQueryForm.get('title')?.invalid && newQueryForm.get('title')?.touched">

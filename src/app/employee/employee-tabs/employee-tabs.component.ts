@@ -43,7 +43,7 @@ ngOnInit(){
 }
 
 viewProfile(){
-
+  this.router.navigate(['employee-dashboard/employee-profile'])
 }
 
 verify(){

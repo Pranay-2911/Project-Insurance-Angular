@@ -16,4 +16,8 @@ logOut(){
   localStorage.removeItem('id');
   this.router.navigate(['']);
 }
+profile()
+{
+  this.router.navigate(['agent-dashboard/agent-profile']);
+}
 }

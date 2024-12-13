@@ -18,6 +18,9 @@ export class ReferCustomerComponent {
   policyId : any;
   link : any;
   agentId = localStorage.getItem('id');
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
 
   constructor(private router: Router, private customerService: CustomerService, private route: ActivatedRoute, private emailService: EmailService) {}
 
@@ -52,11 +55,17 @@ export class ReferCustomerComponent {
      this.link = `http://localhost:4200/customer-dashboard/details/${this.agentId}/${this.policyId}`;
      this.emailService.sendEmail(
       'pranayraut129@gmail.com',
-      'Policy Refrence',
-      'Hello Customer, Plz take yor time to view this policy and puchase ' + this.link
+      'Policy Reference',
+      'Hello Customer, Plz take yor time to view this policy and purchase ' + this.link
     ).subscribe({
-      next: () => console.log('Email sent successfully!'),
-      error: (err) => console.error('Error sending email:', err),
+      next: () => {
+        console.log('Email sent successfully!');
+        this.showNotification('Policy referred successfully!', 'success');
+      },
+      error: (err) => {
+        console.error('Error sending email:', err);
+        this.showNotification('Policy does not referred!', 'error');
+      },
     });
   }
 
@@ -73,5 +82,19 @@ export class ReferCustomerComponent {
     this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.getAllCustomers();
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
   }
 }

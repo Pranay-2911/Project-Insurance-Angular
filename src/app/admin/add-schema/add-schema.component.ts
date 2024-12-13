@@ -13,6 +13,10 @@ import { maxAmountValidator, maxAgeValidator, maxPolicyTermValidator } from 'src
 export class AddSchemaComponent {
   file:any;
   id: any = '';
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+
   newSchemaForm: FormGroup;
   documentsList = ['Adhar Card', 'Pan Card', 'Driving License', 'Health Report'];
 
@@ -25,8 +29,8 @@ export class AddSchemaComponent {
       description: ['', [Validators.required, Validators.minLength(10)]],
       minAmount: ['', [Validators.required, Validators.min(1)]],
       maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],
-      minAge: ['', [Validators.required, Validators.min(18)]],
-      maxAge: ['', [Validators.required, Validators.min(18), maxAgeValidator()]],
+      minAge: ['', [Validators.required, Validators.min(18), Validators.max(50)]],
+      maxAge: ['', [Validators.required, Validators.max(70), maxAgeValidator()]],
       minPolicyTerm: ['', [Validators.required, Validators.min(1)]],
       maxPolicyTerm: ['', [Validators.required,  Validators.min(1), maxPolicyTermValidator()]],
       policyRatio: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -64,11 +68,17 @@ export class AddSchemaComponent {
 
     addnewSchema()
     {
-      this.adminService.addScheme(this.newSchemaForm.value).subscribe((data) =>{
-        console.log(data);
-        alert("Scheme added successfully")
-        this.newSchemaForm.reset();
-        this.router.navigate(['/admin-dashboard/viewplans']);
+      this.adminService.addScheme(this.newSchemaForm.value).subscribe({
+        next: (data:any)=>{
+          console.log(data);
+          this.showNotification("Schema added successfully", 'success');
+          this.newSchemaForm.reset();
+          this.router.navigate(['/admin-dashboard/add-schema']);
+        },
+        error: (err:any) => {
+          console.log(err);
+          this.showNotification("Schema with same name already exist", 'error');
+        }
       });
     }
 
@@ -128,6 +138,18 @@ export class AddSchemaComponent {
       });
     }
 
-   
+    showNotification(message: string, type: 'success' | 'error') {
+      this.toastMessage = message;
+      this.toastType = type;
+      this.showToast = true;
+  
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000); // Hide toast after 3 seconds
+    }
+  
+    hideToast() {
+      this.showToast = false;
+    }
 
 }

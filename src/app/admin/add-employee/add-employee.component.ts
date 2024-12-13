@@ -11,6 +11,9 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AddEmployeeComponent {
 
   newEmployeeForm :FormGroup;
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
 
   constructor(private adminService: AdminService) {
     this.newEmployeeForm = new FormGroup({
@@ -20,17 +23,36 @@ export class AddEmployeeComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       salary: new FormControl(null, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]),
       username: new FormControl('',[ Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', [Validators.required, Validators.minLength(5)])
   
     });
   }
 
   addEmployee()
   {
-    this.adminService.addEmployee(this.newEmployeeForm.value).subscribe((data) =>{
-      console.log(data);
-      this.newEmployeeForm.reset();
+    this.adminService.addEmployee(this.newEmployeeForm.value).subscribe({
+      next:(data:any)=>{
+        this.showNotification("Employee added successfully", 'success');
+        this.newEmployeeForm.reset();
+      },
+      error:(error:any)=>{
+        this.showNotification("Failed to add employee, Username, Email or Mobile Number already exist", 'error');
+        console.error(error);
+      }
     });
   }
 
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
+  }
 }

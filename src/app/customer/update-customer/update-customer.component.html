@@ -1,0 +1,137 @@
+<div class="container mt-5">
+    <h2 class="text-center">Update Profile</h2>
+    <form [formGroup]="newCustomerForm" (ngSubmit)="onUpdate()">
+  
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          class="form-control"
+          formControlName="firstName"
+          placeholder="Enter your first name"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('firstName')?.invalid && newCustomerForm.get('firstName')?.touched" >
+        First Name is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('firstName')?.errors?.['minlength']" >
+        First Name must be 2 characters long.
+      </div>
+      
+  
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+          placeholder="Enter your last name"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('lastName')?.invalid && newCustomerForm.get('lastName')?.touched" >
+        Last Name is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('lastName')?.errors?.['minlength']" >
+        Last Name must be 2 characters long.
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('email')?.invalid && newCustomerForm.get('email')?.touched" >
+        Email is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('email')?.errors?.['email']" >
+        Email is not in correct format.
+      </div>
+  
+      <!-- Mobile Number -->
+      <div class="form-group">
+        <label for="mobileNumber">Mobile Number</label>
+        <input
+          id="mobileNumber"
+          type="number"
+          class="form-control"
+          formControlName="mobileNumber"
+          placeholder="Enter your mobile number"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('mobileNumber')?.invalid && newCustomerForm.get('mobileNumber')?.touched" >
+        Mobile Number is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('mobileNumber')?.errors?.['minlength'] && newCustomerForm.get('mobileNumber')?.errors?.['maxlength']" >
+        Mobile Number must be 10 digits long.
+      </div>
+  
+      <!-- State Dropdown -->
+      <div class="form-group">
+        <label for="state">State</label>
+        <select
+            id="state"
+            class="form-control"
+            formControlName="state"
+            (change)="onStateChange($event)"
+>
+            <option value="">Select State</option>
+            <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
+        </select>
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('state')?.invalid && newCustomerForm.get('state')?.touched" >
+         State Name is required.
+      </div>
+     
+  
+      <!-- City Dropdown -->
+      <div class="form-group">
+        <label for="city">City</label>
+        <select id="city" class="form-control" formControlName="city">
+          <option value="">Select City</option>
+          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+        </select>
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('city')?.invalid && newCustomerForm.get('city')?.touched" >
+        City Name is required.
+     </div>
+  
+      <!-- Date of Birth -->
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input
+          id="dateOfBirth"
+          type="date"
+          class="form-control"
+          formControlName="dateOfBirth"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('dateOfBirth')?.invalid && newCustomerForm.get('dateOfBirth')?.touched" >
+        Date of Birth is required.
+     </div>
+
+  
+      <!-- Submit Button -->
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="newCustomerForm.invalid">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>

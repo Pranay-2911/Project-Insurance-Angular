@@ -39,7 +39,7 @@
         <td>{{ policy.customerName }}</td>
         <td>{{ policy.policyName }}</td>
         <td>{{ policy.agentName }}</td>
-        <td>{{ formatDate(policy.purchasedDate) }}</td>
+        <td>{{ policy.purchasedDate | date }}</td>
         <td>{{ policy.nominee }}</td>
         <td>{{ getNomineeRelation(policy.nomineeRelation) }}</td>
         <td>{{ policy.policyAmount | currency: 'INR' }}</td>

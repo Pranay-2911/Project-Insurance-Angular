@@ -42,8 +42,8 @@ export class RegisterCustomerComponent {
   }
 
   onStateChange(event: Event): void {
-    const stateId = (event.target as HTMLSelectElement).value;
-    const selectedState = this.states.find((state: any) => state.id === stateId);
+    const stateName = (event.target as HTMLSelectElement).value;
+    const selectedState = this.states.find((state: any) => state.name === stateName);
     this.cities = selectedState ? selectedState.cities : [];
     this.newCustomerForm.controls['city'].setValue(''); // Clear city when state changes
   }

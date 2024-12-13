@@ -1,13 +1,27 @@
-<h1>Your Details</h1>
-
-<div>
-    <h3>First name: {{customer.firstName}}</h3>
-    <h3>Last name: {{customer.lastName}}</h3>
-    <h3>Email: {{customer.email}}</h3>
-    <h3>MobileNumber: {{customer.mobileNumber}}</h3>
-    <h3>State: {{customer.state}}</h3>
-    <h3>City: {{customer.city}}</h3>
-    <h3>Date Of Birth: {{customer.dateOfBirth}}</h3>
-</div>
-
-<button (click)="onUpdate()">Update</button>
+<div class="container mt-5">
+    <div class="card mx-auto shadow-lg" style="max-width: 600px; border-radius: 10px;">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Customer Profile</h2>
+        <div class="d-flex justify-content-center">
+          <div class="profile-img">
+            <i class="bi bi-person-circle" style="font-size: 4rem; color: #0056b3;"></i>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="info">
+            <p><strong>First Name:</strong> {{customer.firstName || 'N/A'}}</p>
+            <p><strong>Last Name:</strong> {{customer.lastName || 'N/A'}}</p>
+            <p><strong>Email:</strong> {{customer.email || 'N/A'}}</p>
+            <p><strong>Mobile Number:</strong> {{customer.mobileNumber || 'N/A'}}</p>
+            <p><strong>Date of Birth:</strong> {{customer.dateOfBirth || 'N/A'}}</p>
+            <p><strong>State:</strong> {{customer.state || 'N/A'}}</p>
+            <p><strong>City:</strong> {{customer.city || 'N/A'}}</p>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" (click)="onUpdate()">Update Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

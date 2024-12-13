@@ -34,4 +34,14 @@ export class EmployeeService {
   return this.http.put(`${this.url}ChangePassword`, data);
 }
 
+getEmployee(id: any)
+{
+  return this.http.get(this.url+id);
+}
+
+updateEmployee(data : any)
+{
+  return this.http.put(this.url, data);
+}
+
 }

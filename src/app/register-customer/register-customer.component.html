@@ -60,7 +60,7 @@
             (change)="onStateChange($event)"
 >
             <option value="">Select State</option>
-            <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+            <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
         </select>
       </div>
   
@@ -69,7 +69,7 @@
         <label for="city">City</label>
         <select id="city" class="form-control" formControlName="city">
           <option value="">Select City</option>
-          <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
         </select>
       </div>
   

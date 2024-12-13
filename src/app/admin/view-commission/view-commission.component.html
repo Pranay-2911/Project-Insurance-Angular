@@ -79,7 +79,7 @@
           <td>{{ commission.schemaName }}</td>
           <td>{{ commission.customerName }}</td>
           <td>{{ commission.commissionAmount }}</td>
-          <td>{{ commission.commssionDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ commission.commssionDate | date }}</td>
           <td>{{ commission.commissionType === 0 ? 'Register' : 'Premium' }}</td>
         </tr>
       </tbody>

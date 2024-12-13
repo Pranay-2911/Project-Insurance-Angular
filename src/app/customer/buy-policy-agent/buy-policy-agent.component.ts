@@ -24,8 +24,8 @@ export class BuyPolicyAgentComponent {
   constructor(private customerService: CustomerService, private uploadService: UploadService, private route: ActivatedRoute, private router: Router, private enumService: EnumService, private planService: PlanService, private fb: FormBuilder) { 
     this.newPolicyForm = this.fb.group({
       policyId: [null, Validators.required],
-      totalAmount: [null, Validators.required],
-      durationInMonths: [null, Validators.required],
+      totalAmount: [null, [Validators.required, Validators.min(1)]],
+      durationInMonths: [null, [Validators.required, Validators.min(1)]],
       nominee: ['', Validators.required],
       nomineeRelation: ['', Validators.required],
       agentId: ['', Validators.required]

@@ -1,0 +1,96 @@
+<div class="container mt-5">
+    <h2 class="text-center">Update Profile</h2>
+    <form [formGroup]="newEmployeeForm" (ngSubmit)="onUpdate()">
+  
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          class="form-control"
+          formControlName="firstName"
+          placeholder="Enter your first name"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newEmployeeForm.get('firstName')?.invalid && newEmployeeForm.get('firstName')?.touched" >
+        First Name is required.
+      </div>
+      <div *ngIf="newEmployeeForm.get('firstName')?.errors?.['minlength']" >
+        First Name must be 2 characters long.
+      </div>
+      
+  
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+          placeholder="Enter your last name"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched" >
+        Last Name is required.
+      </div>
+      <div *ngIf="newEmployeeForm.get('lastName')?.errors?.['minlength']" >
+        Last Name must be 2 characters long.
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newEmployeeForm.get('email')?.invalid && newEmployeeForm.get('email')?.touched" >
+        Email is required.
+      </div>
+      <div *ngIf="newEmployeeForm.get('email')?.errors?.['email']" >
+        Email is not in correct format.
+      </div>
+  
+      <!-- Mobile Number -->
+      <div class="form-group">
+        <label for="mobileNumber">Mobile Number</label>
+        <input
+          id="mobileNumber"
+          type="number"
+          class="form-control"
+          formControlName="mobileNumber"
+          placeholder="Enter your mobile number"
+        />
+        <span>*</span>
+      </div>
+      <div *ngIf="newEmployeeForm.get('mobileNumber')?.invalid && newEmployeeForm.get('mobileNumber')?.touched" >
+        Mobile Number is required.
+      </div>
+      <div *ngIf="newEmployeeForm.get('mobileNumber')?.errors?.['minlength'] && newEmployeeForm.get('mobileNumber')?.errors?.['maxlength']" >
+        Mobile Number must be 10 digits long.
+      </div>
+  
+     
+  
+    
+  
+      
+
+  
+      <!-- Submit Button -->
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="newEmployeeForm.invalid">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>

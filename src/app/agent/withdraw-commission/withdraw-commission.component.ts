@@ -16,6 +16,10 @@ export class WithdrawCommissionComponent {
   requests: any;
   balance: any;
   agentId = localStorage.getItem('id');
+  filteredDocuments: any[] = []; // For displaying the filtered data
+  searchQuery: string = ''; 
+  selectedCommissionType: string = '';
+
   constructor(private route: ActivatedRoute, private agentService:AgentService, private router: Router){}
 
   commissonForm = new FormGroup({
@@ -28,6 +32,13 @@ export class WithdrawCommissionComponent {
       next: (data) => {
         this.balance = data;
         console.log(this.balance);
+
+        this.commissonForm.get('amount')?.setValidators([
+          Validators.required,
+          Validators.min(1),
+          Validators.max(this.balance)
+        ]);
+        this.commissonForm.get('amount')?.updateValueAndValidity();
       },
       error: (error) => {
         console.log(error);
@@ -38,16 +49,25 @@ export class WithdrawCommissionComponent {
   }
     
   getAllRequests(){
-    this.agentService.getRequests(this.agentId,this.page, this.pageSize).subscribe({
+    this.agentService.getRequests(this.agentId,this.page, this.pageSize, this.selectedCommissionType).subscribe({
       next: (data:any) => {
         this.requests = data.requests;
+        this.filteredDocuments = this.requests;
         this.totalCommissions = data.count;
         console.log(this.requests);
+
+       
+        this.commissonForm.get('amount')?.updateValueAndValidity();
       },
       error: (error) => {
         console.log(error);
       }
     });
+  }
+
+  filterDocuments() {
+    this.page = 1;
+    this.getAllRequests();
   }
 
   commissionRequest()
@@ -68,5 +88,7 @@ export class WithdrawCommissionComponent {
     // this.page = page;
     this.getAllRequests();
   }
+
+  
 
 }

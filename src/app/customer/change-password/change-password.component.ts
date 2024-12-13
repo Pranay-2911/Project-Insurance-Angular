@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/services/customer.service';
 import { QueryService } from 'src/app/services/query.service';
 @Component({
@@ -10,9 +10,13 @@ import { QueryService } from 'src/app/services/query.service';
 export class ChangePasswordComponent {
 
   newForm = new FormGroup({
-    userName: new FormControl(),
-    password: new FormControl(),
-    newPassword: new FormControl(),
+    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    newPassword: new FormControl('', [
+      Validators.required, 
+      Validators.minLength(6),  // New password should be at least 8 characters
+      
+    ]),
   });
 
   constructor(private customerService: CustomerService) { }

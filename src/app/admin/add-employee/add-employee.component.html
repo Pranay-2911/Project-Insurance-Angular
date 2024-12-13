@@ -1,4 +1,6 @@
 <form [formGroup]="newEmployeeForm" (ngSubmit)="addEmployee()">
+
+  <h2>Add New Employee</h2>
   
   <!-- First Name -->
   <div class="input-container">
@@ -75,9 +77,27 @@
     Password is required.
   </div> 
   <div *ngIf="newEmployeeForm.get('password')?.errors?.['minlength']">
-    Password must be at least 8 characters long.
+    Password must be at least 5 characters long.
   </div>
 
   <button>Submit</button>
 
 </form>
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div
+      class="toast"
+      role="alert"
+      [class.show]="showToast"
+      aria-live="assertive"
+      aria-atomic="true"
+      [ngClass]="{ 'bg-success text-white': toastType === 'success', 'bg-danger text-white': toastType === 'error' }"
+    >
+      
+      <div class="toast-body">
+        {{ toastMessage }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,14 +26,18 @@ export class AgentService {
   commissionRequest(data :any) {
     return this.http.post(`${this.url}/CommissionRequest`, data);
   }
-  getRequests(id:any, page:number, pageSize:number) {
-    return this.http.get(`${this.url}/CommissionRequest/${id}?pageNumber=${page}&pageSize=${pageSize}`);
+  getRequests(id:any, page:number, pageSize:number, selectedCommissionType:string) {
+    return this.http.get(`${this.url}/CommissionRequest/${id}?pageNumber=${page}&pageSize=${pageSize}&selectedCommissionType=${selectedCommissionType}`);
   }
   changePassword(data:any) {
     return this.http.put(`${this.url}/ChangePassword`, data);
   }
   activeAgent(id:any) {
     return this.http.put(`${this.url}/Active/${id}`, null);
+  }
+
+  updateAgent(data :any) {
+    return this.http.put(`${this.url}`, data);
   }
 
 }

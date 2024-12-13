@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlanService } from '../services/plan.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -17,7 +17,7 @@ export class LoadSchemaComponent {
   selectedSchema: any;
 
   planName: any;
-  constructor(private route: ActivatedRoute, private planService: PlanService) {}
+  constructor(private route: ActivatedRoute, private planService: PlanService, private router: Router) {}
 
   ngOnInit() {
     
@@ -55,7 +55,9 @@ export class LoadSchemaComponent {
 
   redirectToBuyPolicy(schemaId: string) {
     // Logic to redirect to the Buy Policy page with the selected schema ID
-    console.log(`Redirecting to buy policy for schema ID: ${schemaId}`);
+
+    this.router.navigate(['login']);
+    
   }
 
 }
