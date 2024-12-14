@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../services/customer.service';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
@@ -15,15 +15,15 @@ export class RegisterCustomerComponent {
   cities: any = [];
 
   newCustomerForm = new FormGroup({
-    firstName: new FormControl(),
-    lastName: new FormControl(),
-    email: new FormControl(),
-    mobileNumber: new FormControl(),
-    state: new FormControl(),
-    city: new FormControl(),
-    dateOfBirth: new FormControl(),
-    username: new FormControl(),
-    password: new FormControl()
+    firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    mobileNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    state: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    dateOfBirth: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)])
 
   });
 

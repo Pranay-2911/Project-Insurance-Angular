@@ -5,6 +5,9 @@
     <div *ngIf="newSchemaForm.get('title')?.invalid && newSchemaForm.get('title')?.touched">
       Title is required.
     </div> 
+    <div *ngIf="newSchemaForm.get('title')?.errors?.['minlength']">
+      Title must be 5 characters long.
+    </div> 
     <br>
     <br>
     <input type="text" placeholder="Enter description" formControlName = "description">
@@ -125,7 +128,7 @@
     <!-- Upload Button -->
     <!-- <button (click)="upload()">Upload File</button> -->
 
-    <button (click)="upload()">Submit</button>
+    <button (click)="upload()" [disabled]="newSchemaForm.invalid">Submit</button>
 
 
 </form>

@@ -19,8 +19,8 @@ export class AddStateComponent {
   constructor(private route: ActivatedRoute, private adminService:AdminService, private router: Router){}
 
   newState = new FormGroup({
-    stateName: new FormControl('', [Validators.required, this.stateNameValidator, ]),
-    cityName: new FormControl('', [Validators.required, this.cityNameValidator, ]),
+    stateName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$') ]),
+    cityName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$') ]),
   })
     
   ngOnInit() {
@@ -57,31 +57,12 @@ export class AddStateComponent {
         },
         error: (error) => {
           console.error('Error:', error);
-          this.showNotification(error.exceptionMessage, 'error');
+          this.showNotification("State or city name already exist", 'error');
         }
       });
   };
 
-  stateNameValidator() {
-    return (control: FormControl) => {
-      const stateName = control.value;
-      if (stateName && !/^[A-Za-z\s]+$/.test(stateName)) {
-        return { invalidStateName: true };
-      }
-      return null;
-    };
-  }
-
-  // Custom validator to check if the city name contains only alphabets
-  cityNameValidator() {
-    return (control: FormControl) => {
-      const cityName = control.value;
-      if (cityName && !/^[A-Za-z\s]+$/.test(cityName)) {
-        return { invalidCityName: true };
-      }
-      return null;
-    };
-  }
+  
 
   showNotification(message: string, type: 'success' | 'error') {
     this.toastMessage = message;

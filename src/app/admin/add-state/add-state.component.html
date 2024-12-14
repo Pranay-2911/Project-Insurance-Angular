@@ -7,7 +7,7 @@
         <div *ngIf="newState.get('stateName')?.invalid && newState.get('stateName')?.touched" class="error">
             State name is required.
         </div>
-        <div *ngIf="newState.get('stateName')?.errors?.['stateExists']">State name already exists.</div>
+        <div *ngIf="newState.get('stateName')?.errors?.['pattern']">State name consist of only characters.</div>
 
         <br>
 
@@ -15,11 +15,11 @@
         <div *ngIf="newState.get('cityName')?.invalid && newState.get('cityName')?.touched" class="error">
             City name is required.
         </div>
-        <div *ngIf="newState.get('cityName')?.errors?.['cityExists']">City name already exists in the selected state.</div>
+        <div *ngIf="newState.get('cityName')?.errors?.['pattern']">City name consist of only characters.</div>
 
         <br>
 
-        <button type="submit">Submit</button>
+        <button type="submit" [disabled]="newState.invalid">Submit</button>
     </form>
 </div>
 

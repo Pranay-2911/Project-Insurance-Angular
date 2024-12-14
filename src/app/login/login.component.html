@@ -5,12 +5,30 @@
     <form [formGroup]="loginForm" (ngSubmit)="logIn()">
       <div class="form-group mb-4">
         <label for="username" class="form-label">Username</label>
-        <input type="email" id="username" class="form-control" formControlName="username" placeholder="Enter your username" required />
+        <div id="row">
+          <input type="email" id="username" class="form-control" formControlName="username" placeholder="Enter your username" required />
+          <span>*</span>
+        </div>
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          Username is required.
+        </div>
+        <div *ngIf="loginForm.get('username')?.errors?.['minlength']">
+          Username must be 5 characters long.
+        </div>
       </div>
 
       <div class="form-group mb-4">
         <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password" required />
+        <div id="row">
+          <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password" required />
+          <span>*</span>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Password is required.
+        </div>
+        <div *ngIf="loginForm.get('password')?.errors?.['minlength']">
+          Password must be 5 characters long.
+        </div>
       </div>
 
       <div class="captcha-container mb-4">
@@ -21,7 +39,13 @@
 
       <div class="form-group mb-4">
         <label for="reCaptcha">Enter CAPTCHA</label>
-        <input id="captchaInput" class="form-control" formControlName="reCaptcha" type="text" placeholder="Type the CAPTCHA" required />
+        <div id="row">
+          <input id="captchaInput" class="form-control" formControlName="reCaptcha" type="text" placeholder="Type the CAPTCHA" required />
+          <span>*</span>
+        </div>
+        <div *ngIf="loginForm.get('reCaptcha')?.invalid && loginForm.get('reCaptcha')?.touched">
+          Captcha is required.
+        </div>
       </div>
 
       <div *ngIf="errorMessage" class="error-message">

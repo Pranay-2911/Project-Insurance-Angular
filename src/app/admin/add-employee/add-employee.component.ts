@@ -17,8 +17,8 @@ export class AddEmployeeComponent {
 
   constructor(private adminService: AdminService) {
     this.newEmployeeForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
       mobileNumber: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{10}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
       salary: new FormControl(null, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]),

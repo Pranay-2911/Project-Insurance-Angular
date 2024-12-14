@@ -29,8 +29,8 @@ export class AddCityComponent {
   }
 
   newCity = new FormGroup({
-    stateName: new FormControl('',Validators.required),  
-    cityName: new FormControl('', [Validators.required])
+    stateName: new FormControl('',[Validators.required]),  
+    cityName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$'),])
   });
   
   // cityNameValidator(control: FormControl): { [key: string]: boolean } | null {

@@ -25,7 +25,7 @@ export class AddSchemaComponent {
   constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router, private uploadService:UploadService, private fb: FormBuilder) { 
     this.newSchemaForm = this.fb.group({
       planId:['', Validators.required],
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       minAmount: ['', [Validators.required, Validators.min(1)]],
       maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],

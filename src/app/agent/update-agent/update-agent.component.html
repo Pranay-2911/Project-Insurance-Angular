@@ -1,114 +1,111 @@
 <div class="container mt-5">
-    <h2 class="text-center">Update Profile</h2>
-    <form [formGroup]="newAgentForm" (ngSubmit)="onUpdate()">
-  
-      <!-- First Name -->
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input
-          id="firstName"
-          type="text"
-          class="form-control"
-          formControlName="firstName"
-          placeholder="Enter your first name"
-        />
+  <h2 class="text-center">Update Profile</h2>
+  <form [formGroup]="newAgentForm" (ngSubmit)="onUpdate()">
+
+    <!-- First Name -->
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <div id="row">
+        <input id="firstName" type="text" class="form-control" formControlName="firstName"
+          placeholder="Enter your first name" />
         <span>*</span>
       </div>
-      <div *ngIf="newAgentForm.get('firstName')?.invalid && newAgentForm.get('firstName')?.touched" >
+      <div *ngIf="newAgentForm.get('firstName')?.invalid && newAgentForm.get('firstName')?.touched">
         First Name is required.
       </div>
-      <div *ngIf="newAgentForm.get('firstName')?.errors?.['minlength']" >
+      <div *ngIf="newAgentForm.get('firstName')?.errors?.['minlength']">
         First Name must be 2 characters long.
       </div>
-      
-  
-      <!-- Last Name -->
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input
-          id="lastName"
-          type="text"
-          class="form-control"
-          formControlName="lastName"
-          placeholder="Enter your last name"
-        />
+    </div>
+
+
+
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <div id="row">
+        <input id="lastName" type="text" class="form-control" formControlName="lastName"
+          placeholder="Enter your last name" />
         <span>*</span>
       </div>
-      <div *ngIf="newAgentForm.get('lastName')?.invalid && newAgentForm.get('lastName')?.touched" >
+      <div *ngIf="newAgentForm.get('lastName')?.invalid && newAgentForm.get('lastName')?.touched">
         Last Name is required.
       </div>
-      <div *ngIf="newAgentForm.get('lastName')?.errors?.['minlength']" >
+      <div *ngIf="newAgentForm.get('lastName')?.errors?.['minlength']">
         Last Name must be 2 characters long.
       </div>
-  
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Enter your email"
-        />
+    </div>
+
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <div id="row">
+        <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter your email" />
         <span>*</span>
       </div>
-      <div *ngIf="newAgentForm.get('email')?.invalid && newAgentForm.get('email')?.touched" >
+      <div *ngIf="newAgentForm.get('email')?.invalid && newAgentForm.get('email')?.touched">
         Email is required.
       </div>
-      <div *ngIf="newAgentForm.get('email')?.errors?.['email']" >
+      <div *ngIf="newAgentForm.get('email')?.errors?.['email']">
         Email is not in correct format.
       </div>
-  
-      <!-- Mobile Number -->
-      <div class="form-group">
-        <label for="mobileNumber">Mobile Number</label>
-        <input
-          id="mobileNumber"
-          type="number"
-          class="form-control"
-          formControlName="mobileNumber"
-          placeholder="Enter your mobile number"
-        />
+    </div>
+
+
+    <!-- Mobile Number -->
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number</label>
+      <div id="row">
+        <input id="mobileNumber" type="number" class="form-control" formControlName="mobileNumber"
+          placeholder="Enter your mobile number" />
         <span>*</span>
       </div>
-      <div *ngIf="newAgentForm.get('mobileNumber')?.invalid && newAgentForm.get('mobileNumber')?.touched" >
+      <div *ngIf="newAgentForm.get('mobileNumber')?.invalid && newAgentForm.get('mobileNumber')?.touched">
         Mobile Number is required.
       </div>
-      <div *ngIf="newAgentForm.get('mobileNumber')?.errors?.['minlength'] && newAgentForm.get('mobileNumber')?.errors?.['maxlength']" >
+      <div
+        *ngIf="newAgentForm.get('mobileNumber')?.errors?.['minlength'] && newAgentForm.get('mobileNumber')?.errors?.['maxlength']">
         Mobile Number must be 10 digits long.
       </div>
-  
-      <!-- State Dropdown -->
-      <div class="form-group">
-        <label for="qualification">Last Name</label>
-        <input
-          id="qualification"
-          type="text"
-          class="form-control"
-          formControlName="qualification"
-          placeholder="Enter your Qualification"
-        />
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="qualification">Qualification</label>
+      <div id="row">
+        <input id="qualification" type="text" class="form-control" formControlName="qualification"
+          placeholder="Enter your Qualification" />
         <span>*</span>
       </div>
-      <div *ngIf="newAgentForm.get('qualification')?.invalid && newAgentForm.get('qualification')?.touched" >
-        Last Name is required.
+      <div *ngIf="newAgentForm.get('qualification')?.invalid && newAgentForm.get('qualification')?.touched">
+        Qualification is required.
       </div>
-      <div *ngIf="newAgentForm.get('qualification')?.errors?.['minlength']" >
-        Last Name must be 2 characters long.
+      <div *ngIf="newAgentForm.get('qualification')?.errors?.['minlength']">
+        Qualification must be 2 characters long.
       </div>
-     
-  
-    
-  
-      
+    </div>
 
-  
-      <!-- Submit Button -->
-      <div class="text-center mt-3">
-        <button type="submit" class="btn btn-primary" [disabled]="newAgentForm.invalid">
-          Update
-        </button>
+    <!-- Submit Button -->
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="newAgentForm.invalid">
+        Update
+      </button>
+    </div>
+
+  </form>
+</div>
+
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast" role="alert" [class.show]="showToast" aria-live="assertive" aria-atomic="true"
+      [ngClass]="{ 'bg-success text-white': toastType === 'success', 'bg-danger text-white': toastType === 'error' }">
+
+      <div class="toast-body">
+        {{ toastMessage }}
       </div>
-    </form>
+    </div>
   </div>
+</div>

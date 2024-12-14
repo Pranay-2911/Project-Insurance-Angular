@@ -33,6 +33,7 @@
                 placeholder="Enter your reply"
                 class="reply-input"
               />
+              <div *ngIf="newReplyForm.get('reply')?.errors?.['minlength']">Reply must be 2 characters long.</div>
               <button
               class="btn btn-primary"
               >

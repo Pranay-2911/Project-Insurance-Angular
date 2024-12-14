@@ -94,7 +94,7 @@
         <span>*</span>
       </div>
       <div *ngIf="newCustomerForm.get('state')?.invalid && newCustomerForm.get('state')?.touched" >
-         State Name is required.
+         State is required.
       </div>
      
   
@@ -108,7 +108,7 @@
         <span>*</span>
       </div>
       <div *ngIf="newCustomerForm.get('city')?.invalid && newCustomerForm.get('city')?.touched" >
-        City Name is required.
+        City is required.
      </div>
   
       <!-- Date of Birth -->
@@ -134,4 +134,17 @@
         </button>
       </div>
     </form>
+  </div>
+
+
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div class="toast" role="alert" [class.show]="showToast" aria-live="assertive" aria-atomic="true"
+        [ngClass]="{ 'bg-success text-white': toastType === 'success', 'bg-danger text-white': toastType === 'error' }">
+  
+        <div class="toast-body">
+          {{ toastMessage }}
+        </div>
+      </div>
+    </div>
   </div>

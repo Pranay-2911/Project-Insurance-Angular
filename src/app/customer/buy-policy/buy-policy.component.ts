@@ -81,7 +81,7 @@ export class BuyPolicyComponent {
           Validators.max(this.scheme.maxPolicyTerm)
         ]
       ],
-      nominee: ['', Validators.required],
+      nominee: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
       nomineeRelation: ['', Validators.required],
       customerId: [null, Validators.required],
       divider: [null, Validators.required], // Added divider field with validation

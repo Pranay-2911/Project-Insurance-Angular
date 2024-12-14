@@ -37,7 +37,7 @@ export class EmpAddAgentComponent {
       },
       error: (error) => {
         // alert(error.error.message);
-        this.showNotification("Something Went Wrong! or UserName already exist!", 'error');
+        this.showNotification("Something Went Wrong! or Username already exist!", 'error');
       }
     });
   }

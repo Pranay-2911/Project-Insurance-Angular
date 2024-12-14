@@ -15,6 +15,11 @@ export class UpdateSchemaComponent implements OnInit {
   updateSchemaForm: FormGroup;
   file: any;
   schemaId: string = '';
+
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+
   documentsList = ['Adhar Card', 'Pan Card', 'Driving License', 'Health Report'];
   selectedDocuments: string[] = [];
 
@@ -28,12 +33,12 @@ export class UpdateSchemaComponent implements OnInit {
   ) {
     this.updateSchemaForm = this.fb.group({
       id: [''],
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       minAmount: ['', [Validators.required, Validators.min(1)]],
       maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],
-      minAge: ['', [Validators.required, Validators.min(18)]],
-      maxAge: ['', [Validators.required, Validators.min(18), maxAgeValidator()]],
+      minAge: ['', [Validators.required, Validators.min(18), Validators.max(60)]],
+      maxAge: ['', [Validators.required, Validators.min(18), maxAgeValidator(), Validators.max(70)]],
       minPolicyTerm: ['', [Validators.required, Validators.min(1)]],
       maxPolicyTerm: ['', [Validators.required, Validators.min(1), maxPolicyTermValidator()]],
       policyRatio: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -155,14 +160,30 @@ export class UpdateSchemaComponent implements OnInit {
     console.log(formData);
     this.planService.updateSchema(formData).subscribe({
       next:()=>{
-        alert("Schema Updated Successfully")
+        // alert("Schema Updated Successfully")
+        this.showNotification("Scheme Updated Successfully", 'success')
         this.router.navigate(['admin-dashboard/tabs']);// Reset the form after adding the query
       },
       error: (error: any) => {
         console.error('Error adding query:', error);
-        alert("An error occurred while adding your query. Please try again later.")
+        // alert("An error occurred while adding your query. Please try again later.")
+        this.showNotification("Something Went Wrong! Scheme name already exists", 'error');
       }  // Handle any errors that occur during the subscription process
     });
     
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class QueryResponseComponent {
 
   newReplyForm = new FormGroup({
-    reply: new FormControl(),
+    reply: new FormControl('', [Validators.required, Validators.minLength(2)]),
   });
 
   queries: any;

@@ -100,7 +100,7 @@
       <select id="installmentType" [(ngModel)]="calculator.installmentType" name="installmentType" required formControlName="installmentType"><span>*</span>
         <option value="" disabled selected>Select Installment Type</option>
         <option *ngFor="let type of installmentTypes" [value]="type.value">{{ type.label }}</option>
-      </select>
+      </select><span>*</span>
       <div *ngIf="premiumForm.get('installmentType')?.invalid && premiumForm.get('installmentType')?.touched">
         Installment Type is required.
       </div>

@@ -25,12 +25,11 @@ export class AddStateCityComponent {
   }
   newCity = new FormGroup({
     stateName: new FormControl(this.state, Validators.required),  
-    cityName: new FormControl('', Validators.required)
+    cityName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')])
   });
 
-  addNewCity(){
-    
-
+  addNewCity()
+  {
     console.log(this.newCity.value);
       this.adminService.addCity(this.newCity.value).subscribe({
         next: (data:any) => {

@@ -5,54 +5,90 @@
       <!-- First Name -->
       <div class="form-group">
         <label for="firstName">First Name</label>
+        <div id="row">
         <input
           id="firstName"
           type="text"
           class="form-control"
           formControlName="firstName"
           placeholder="Enter your first name"
-        />
+        /><span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('firstName')?.invalid && newCustomerForm.get('firstName')?.touched">
+        First name is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('firstName')?.errors?.['minlength']">
+        First name must be 2 characters long.
+      </div>
       </div>
   
       <!-- Last Name -->
       <div class="form-group">
         <label for="lastName">Last Name</label>
+        <div id="row">
         <input
           id="lastName"
           type="text"
           class="form-control"
           formControlName="lastName"
           placeholder="Enter your last name"
-        />
+        /><span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('lastName')?.invalid && newCustomerForm.get('lastName')?.touched">
+        Last name is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('lastName')?.errors?.['minlength']">
+        Last name must be 2 characters long.
+      </div>
       </div>
   
       <!-- Email -->
       <div class="form-group">
         <label for="email">Email</label>
+        <div id="row">
         <input
           id="email"
           type="email"
           class="form-control"
           formControlName="email"
           placeholder="Enter your email"
-        />
+        /><span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('email')?.invalid && newCustomerForm.get('email')?.touched">
+        Email is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('email')?.errors?.['email']">
+        Email not in correct format.
+      </div>
       </div>
   
       <!-- Mobile Number -->
       <div class="form-group">
         <label for="mobileNumber">Mobile Number</label>
+        <div id="row">
         <input
           id="mobileNumber"
           type="number"
           class="form-control"
           formControlName="mobileNumber"
           placeholder="Enter your mobile number"
-        />
+        /><span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('mobileNumber')?.invalid && newCustomerForm.get('mobileNumber')?.touched">
+        Mobile Number is required.
+      </div>
+      <div *ngIf="newCustomerForm.get('mobileNumber')?.errors?.['minlength']">
+        Mobile Number must be 10 digits long.
+      </div>
+      <div *ngIf="newCustomerForm.get('mobileNumber')?.errors?.['maxlength']">
+        Mobile Number must be 10 digits long.
+      </div>
       </div>
   
       <!-- State Dropdown -->
       <div class="form-group">
         <label for="state">State</label>
+        <div id="row">
         <select
             id="state"
             class="form-control"
@@ -61,51 +97,81 @@
 >
             <option value="">Select State</option>
             <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
-        </select>
+        </select><span>*</span>
+      </div>
+      <div *ngIf="newCustomerForm.get('state')?.invalid && newCustomerForm.get('state')?.touched">
+        State is required.
+      </div>
       </div>
   
       <!-- City Dropdown -->
       <div class="form-group">
         <label for="city">City</label>
-        <select id="city" class="form-control" formControlName="city">
-          <option value="">Select City</option>
-          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
-        </select>
+        <div id="row">
+          <select id="city" class="form-control" formControlName="city">
+            <option value="">Select City</option>
+            <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+          </select><span>*</span>
+        </div>
+        <div *ngIf="newCustomerForm.get('city')?.invalid && newCustomerForm.get('city')?.touched">
+          City is required.
+        </div>
       </div>
   
       <!-- Date of Birth -->
       <div class="form-group">
         <label for="dateOfBirth">Date of Birth</label>
-        <input
+        <div id="row">
+          <input
           id="dateOfBirth"
           type="date"
           class="form-control"
           formControlName="dateOfBirth"
-        />
+        /><span>*</span>
+        </div>
+        <div *ngIf="newCustomerForm.get('dateOfBirth')?.invalid && newCustomerForm.get('dateOfBirth')?.touched">
+          Date of Birth is required.
+        </div>
       </div>
   
       <!-- Username -->
       <div class="form-group">
         <label for="username">Username</label>
-        <input
+        <div id="row">
+          <input
           id="username"
           type="text"
           class="form-control"
           formControlName="username"
           placeholder="Enter your username"
-        />
+        /><span>*</span>
+        </div>
+        <div *ngIf="newCustomerForm.get('username')?.invalid && newCustomerForm.get('username')?.touched">
+          Username is required.
+        </div>
+        <div *ngIf="newCustomerForm.get('username')?.errors?.['minlength']">
+          username must be 5 characters long.
+        </div>
       </div>
   
       <!-- Password -->
       <div class="form-group">
         <label for="password">Password</label>
-        <input
+        <div id="row">
+          <input
           id="password"
           type="password"
           class="form-control"
           formControlName="password"
           placeholder="Enter your password"
-        />
+        /><span>*</span>
+        </div>
+        <div *ngIf="newCustomerForm.get('password')?.invalid && newCustomerForm.get('password')?.touched">
+          Password is required.
+        </div>
+        <div *ngIf="newCustomerForm.get('password')?.errors?.['minlength']">
+          Password must be 5 characters long.
+        </div>
       </div>
   
       <!-- Submit Button -->

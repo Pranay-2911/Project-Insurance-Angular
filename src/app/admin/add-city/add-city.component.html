@@ -11,6 +11,8 @@
     <div *ngIf="newCity.get('cityName')?.invalid && newCity.get('cityName')?.touched" class="error">
         City name is required.
       </div>
+      <div *ngIf="newCity.get('cityName')?.errors?.['pattern']">City name must contain only letters.</div>
+
     <br>
     <br>
 

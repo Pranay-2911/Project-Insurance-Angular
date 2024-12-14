@@ -14,6 +14,10 @@ export class UpdateCustomerComponent {
   states: any = [];
   cities: any = [];
 
+  showToast = false;
+   toastMessage = '';
+   toastType: 'success' | 'error' = 'success';
+
   newCustomerForm = new FormGroup({
     customerId: new FormControl(null),
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -74,10 +78,30 @@ export class UpdateCustomerComponent {
     this.customerService.updateCustomer(this.newCustomerForm.value).subscribe({
       next: (data) => {
         console.log(data);
-        window.alert('Customer profile updated successfully!');
+        // window.alert('Customer profile updated successfully!');
+        this.showNotification('Customer profile updated successfully!', 'success');
+
+        // Redirect to the customer dashboard page
         this.router.navigate(['/customer-dashboard']);
       },
-      error: (error) => console.log(error)
+      error: (error) => {
+        console.log(error)
+        this.showNotification("Something went wrong! Email or Mobile number is already exist!", 'error')
+      }
     });
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
   }
 }

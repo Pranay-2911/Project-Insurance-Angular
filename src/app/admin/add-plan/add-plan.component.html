@@ -6,9 +6,12 @@
     <div *ngIf="newPlanForm.get('name')?.invalid && newPlanForm.get('name')?.touched">
       Plan name is required.
     </div>
+    <div *ngIf="newPlanForm.get('name')?.errors?.['minlength']">
+      Plan name must be 5 characters long.
+    </div>
     <br><br>
 
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="newPlanForm.invalid">Submit</button>
   </form>
 </div>
 

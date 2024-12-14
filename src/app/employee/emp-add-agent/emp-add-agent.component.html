@@ -29,7 +29,7 @@
       <div *ngIf="newAgentForm.get('password')?.errors?.['minlength']">Password must be 6 characters long.</div>
     <br /><br />
   
-    <button>Submit</button>
+    <button [disabled]="newAgentForm.invalid">Submit</button>
   </form>
   
   <div aria-live="polite" aria-atomic="true" class="position-relative">

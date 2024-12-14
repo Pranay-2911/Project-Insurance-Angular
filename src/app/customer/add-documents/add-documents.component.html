@@ -1,6 +1,7 @@
 
 
 <div *ngFor="let document of documentTypes">
+  <h2>Submit Documents</h2>
   <form [formGroup]="newDocument" (ngSubmit)="addNewDocument()">
     <h2 formControlName="name">
         {{document}}

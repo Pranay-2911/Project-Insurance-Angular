@@ -19,14 +19,20 @@ export class BuyPolicyAgentComponent {
   scheme:any;
   newPolicyForm : FormGroup; 
   agentId : any;
-
+  installmentTypes = [
+    { label: 'Monthly', value: 12 },
+    { label: 'Quarterly', value: 3 },
+    { label: 'Yearly', value: 1 },
+  ];
  
   constructor(private customerService: CustomerService, private uploadService: UploadService, private route: ActivatedRoute, private router: Router, private enumService: EnumService, private planService: PlanService, private fb: FormBuilder) { 
     this.newPolicyForm = this.fb.group({
       policyId: [null, Validators.required],
-      totalAmount: [null, [Validators.required, Validators.min(1)]],
-      durationInMonths: [null, [Validators.required, Validators.min(1)]],
-      nominee: ['', Validators.required],
+      totalAmount: [null, [Validators.required, Validators.min(this.scheme.minAmount),
+        Validators.max(this.scheme.maxAmount)]],
+      durationInMonths: [null, [Validators.required, Validators.min(this.scheme.minPolicyTerm),
+        Validators.max(this.scheme.maxPolicyTerm)]],
+      nominee: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
       nomineeRelation: ['', Validators.required],
       agentId: ['', Validators.required]
     });
@@ -57,6 +63,14 @@ export class BuyPolicyAgentComponent {
     })
 
     this.customerId = localStorage.getItem('id');
+  }
+
+  onInstallmentTypeChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement; // Explicitly cast as HTMLSelectElement
+    const value = selectElement.value; // Now TypeScript knows `value` exists
+    this.newPolicyForm.patchValue({
+      divider: +value // Convert the value to a number and patch it to the form
+    });
   }
 
   onSubmit(){
