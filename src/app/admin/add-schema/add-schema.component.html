@@ -1,17 +1,23 @@
-<form [formGroup]="newSchemaForm" (ngSubmit)="addnewSchema()">
+<form [formGroup]="newSchemaForm" >
   <h2>Add New Scheme</h2>
+  <div id="row">
     <input type="text" placeholder="Enter title" formControlName = "title">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('title')?.invalid && newSchemaForm.get('title')?.touched">
       Title is required.
     </div> 
     <div *ngIf="newSchemaForm.get('title')?.errors?.['minlength']">
       Title must be 5 characters long.
     </div> 
+
     <br>
     <br>
+
+    <div id="row">
     <input type="text" placeholder="Enter description" formControlName = "description">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('description')?.invalid && newSchemaForm.get('description')?.touched">
       Description is required.
     </div> 
@@ -19,8 +25,10 @@
     <br>
     <br>
 
+    <div id="row">
     <input type="number" placeholder="Enter minimum amount" formControlName = "minAmount">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('minAmount')?.invalid && newSchemaForm.get('minAmount')?.touched">
       Minimum Amount is required.
     </div> 
@@ -28,8 +36,10 @@
     <br>
     <br>
     
+    <div id="row">
     <input type ="number" placeholder="Enter maximum amount" formControlName = "maxAmount">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('maxAmount')?.invalid && newSchemaForm.get('maxAmount')?.touched">
       Maximum Amount is required.
     </div> 
@@ -37,8 +47,11 @@
     <div *ngIf="newSchemaForm.get('maxAmount')?.errors?.['maxAmountInvalid']">Max amount must be greater than Min amount.</div>
     <br>
     <br>
+
+    <div id="row">
     <input type ="number" placeholder="Enter min age" formControlName = "minAge">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('minAge')?.invalid && newSchemaForm.get('minAge')?.touched">
       Minimum Age is required.
     </div> 
@@ -47,8 +60,10 @@
 
     <br>
     <br>
+    <div id="row">
     <input type ="number" placeholder="Enter max age" formControlName = "maxAge">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('maxAge')?.invalid && newSchemaForm.get('maxAge')?.touched">
       Maximum Age is required.
     </div> 
@@ -57,8 +72,11 @@
 
     <br>
     <br>
+
+    <div id="row">
     <input type = "number" placeholder="Enter minimum Policy Term" formControlName = "minPolicyTerm">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('minPolicyTerm')?.invalid && newSchemaForm.get('minPolicyTerm')?.touched">
       Minimum Policy Term is required.
     </div> 
@@ -66,8 +84,11 @@
 
     <br>
     <br>
+
+    <div id="row">
     <input type ="number" placeholder="Enter maximum Policy Term" formControlName = "maxPolicyTerm">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('maxPolicyTerm')?.invalid && newSchemaForm.get('maxPolicyTerm')?.touched">
       Maximum Policy Term is required.
     </div> 
@@ -75,8 +96,11 @@
       <div *ngIf="newSchemaForm.get('maxPolicyTerm')?.errors?.['maxPolicyTermInvalid']">Max policy term must be greater than Min policy term.</div>
     <br>
     <br>
-    <input type ="number" placeholder="Enter Policy Ratio" formControlName = "policyRatio">
+
+    <div id="row">
+    <input type ="number" placeholder="Enter Profit Ratio" formControlName = "policyRatio">
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('policyRatio')?.invalid && newSchemaForm.get('policyRatio')?.touched">
       Policy Ratio is required.
     </div> 
@@ -84,21 +108,33 @@
       <div *ngIf="newSchemaForm.get('policyRatio')?.errors?.['max']">Policy ratio must be between 0 and 100.</div>
     <br>
     <br>
+
+    <div id="row">
     <input type ="checkbox" formControlName = "policyStatus"> Status
     <span>*</span>
-    
+    </div>
+    <div *ngIf="newSchemaForm.get('policyStatus')?.invalid && newSchemaForm.get('policyStatus')?.touched">
+      Policy Status is required.
+    </div> 
+
     <br>
     <br>
+
+    <div id="row">
     <input type ="number" placeholder="Enter Register Commissions Amount" formControlName = "registrationCommisionAmount">(INR)
     <span>*</span>
+    </div>
     <div *ngIf="newSchemaForm.get('registrationCommisionAmount')?.invalid && newSchemaForm.get('registrationCommisionAmount')?.touched">
       Registration Commission Amount is required.
     </div> 
     <div *ngIf="newSchemaForm.get('registrationCommisionAmount')?.errors?.['min']">Amount must be greater than 0.</div>
+
     <br>
     <br>
+    <div id="row">
     <input type ="number" placeholder="Enter Installment Commissions Ratio" formControlName = "installmentCommisionRatio">(%)
     <span>*</span>
+  </div>
     <div *ngIf="newSchemaForm.get('installmentCommisionRatio')?.invalid && newSchemaForm.get('installmentCommisionRatio')?.touched">
       Installment Commission Amount is required.
     </div> 
@@ -128,7 +164,7 @@
     <!-- Upload Button -->
     <!-- <button (click)="upload()">Upload File</button> -->
 
-    <button (click)="upload()" [disabled]="newSchemaForm.invalid">Submit</button>
+    <button (click)="upload()">Submit</button>
 
 
 </form>

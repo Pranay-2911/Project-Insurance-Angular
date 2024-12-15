@@ -17,6 +17,7 @@ plans: number =0;
 schemes: number =0;
 commissions: number =0;
 withdrawCommission = 0;
+claimRequest =0;
 payments = 0;
 userName: string ="";
 page = 1;
@@ -103,6 +104,16 @@ ngOnInit(){
     next: (data:any) => {
       this.payments = data.count;
       console.log(this.payments);
+    },
+    error: (error:any) => {
+      console.log(error);
+    }
+  })
+
+  this.adminService.getAllClaims(this.page, this.pageSize, '').subscribe({
+    next: (data:any) => {
+      this.claimRequest = data.count;
+      console.log(this.claimRequest);
     },
     error: (error:any) => {
       console.log(error);

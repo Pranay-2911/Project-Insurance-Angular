@@ -93,3 +93,7 @@ form select:invalid {
 .toast-container {
   z-index: 1055; /* Ensure it appears above other elements */
 }
+
+#row{
+  display: flex;
+}

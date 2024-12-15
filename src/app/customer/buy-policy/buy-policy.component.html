@@ -1,6 +1,8 @@
 <form *ngIf="newPolicyForm" [formGroup]="newPolicyForm" (ngSubmit)="onSubmit()">
   <h2>Buy Policy</h2>
-  <input type="number" placeholder="Enter total amount" formControlName="totalAmount"><span>*</span>
+  <div id="row">
+    <input type="number" placeholder="Enter total amount" formControlName="totalAmount"><span>*</span>
+  </div>
   <div *ngIf="newPolicyForm.get('totalAmount')?.invalid && newPolicyForm.get('totalAmount')?.touched">Total Amount is
     required.</div>
   <div *ngIf="newPolicyForm.get('totalAmount')?.errors?.['min']">
@@ -9,46 +11,58 @@
   <div *ngIf="newPolicyForm.get('totalAmount')?.errors?.['max']">
     Amount cannot exceed Rs {{ scheme.maxAmount }}.
   </div>
+
   <br>
   <br>
-  <input type="number" placeholder="Enter Duration in Months" formControlName="durationInMonths"><span>*</span>
-  <div *ngIf="newPolicyForm.get('durationInMonths')?.invalid && newPolicyForm.get('durationInMonths')?.touched">Minimum
+
+  <div id="row">
+    <input type="number" placeholder="Enter Duration in Years" formControlName="durationInYears"><span>*</span>
+  </div>
+  <div *ngIf="newPolicyForm.get('durationInYears')?.invalid && newPolicyForm.get('durationInYears')?.touched">Minimum
     duration is required.</div>
-  <div *ngIf="newPolicyForm.get('durationInMonths')?.errors?.['min']">
+  <div *ngIf="newPolicyForm.get('durationInYears')?.errors?.['min']">
     Duration must be at least {{ scheme.minPolicyTerm }} months.
   </div>
-  <div *ngIf="newPolicyForm.get('durationInMonths')?.errors?.['max']">
+  <div *ngIf="newPolicyForm.get('durationInYears')?.errors?.['max']">
     Duration cannot exceed {{ scheme.maxPolicyTerm }} months.
   </div>
   <br>
   <br>
-  <input type="text" placeholder="Enter nominee" formControlName="nominee"><span>*</span>
+
+  <div id="row">
+    <input type="text" placeholder="Enter nominee" formControlName="nominee"><span>*</span>
+  </div>
   <div *ngIf="newPolicyForm.get('nominee')?.invalid && newPolicyForm.get('nominee')?.touched">Nominee is required.</div>
   <div *ngIf="newPolicyForm.get('nominee')?.errors?.['pattern']">Nominee must contain characters.</div>
 
   <br>
   <br>
-  <select formControlName="nomineeRelation">
-    <option value="" disabled>Select a Nominee Relation</option>
-    <option *ngFor="let nominee of nominees" [value]="nominee">{{ nominee }}</option>
-  </select><span>*</span>
+
+  <div id="row">
+    <select formControlName="nomineeRelation">
+      <option value="" disabled>Select a Nominee Relation</option>
+      <option *ngFor="let nominee of nominees" [value]="nominee">{{ nominee }}</option>
+    </select><span>*</span>
+  </div>
   <div *ngIf="newPolicyForm.get('nomineeRelation')?.invalid && newPolicyForm.get('nomineeRelation')?.touched">Nominee
     Relation is required.</div>
   <br>
   <br>
   <!-- New Dropdown for Installment Type -->
   <!-- Dropdown for Installment Type -->
-  <select formControlName="divider" (change)="onInstallmentTypeChange($event)">
-    <option value="" disabled>Select Installment Type</option>
-    <option *ngFor="let installment of installmentTypes" [value]="installment.value">
-      {{ installment.label }}
-    </option>
-  </select><span>*</span>
+  <div id="row">
+    <select formControlName="divider" (change)="onInstallmentTypeChange($event)">
+      <option value="" disabled>Select Installment Type</option>
+      <option *ngFor="let installment of installmentTypes" [value]="installment.value">
+        {{ installment.label }}
+      </option>
+    </select><span>*</span>
+  </div>
   <div *ngIf="newPolicyForm.get('divider')?.invalid && newPolicyForm.get('divider')?.touched">
     Installment Type is required.
   </div>
 
   <br>
   <br>
-  <button [disabled]="newPolicyForm.invalid">Submit</button>
+  <button>Submit</button>
 </form>

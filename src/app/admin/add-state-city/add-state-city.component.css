@@ -77,3 +77,12 @@ form button:hover {
 form button:active {
     background-color: #003f8a;
 }
+#row{
+    display: flex;
+}
+span{
+    color: red;
+}
+.toast-body{
+    color:white;
+}

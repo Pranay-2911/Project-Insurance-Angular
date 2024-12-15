@@ -79,4 +79,9 @@ form {
       width: 90%;
     }
   }
-  
+  #row{
+    display: flex;
+  }
+  span{
+    color: red;
+  }

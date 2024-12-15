@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-state-city',
@@ -13,7 +13,7 @@ export class AddStateCityComponent {
   showToast = false;
   toastMessage = '';
   toastType: 'success' | 'error' = 'success';
-  constructor(private adminService: AdminService, private route: ActivatedRoute) { }
+  constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
     this.route.queryParams.subscribe(params => {
@@ -34,10 +34,10 @@ export class AddStateCityComponent {
       this.adminService.addCity(this.newCity.value).subscribe({
         next: (data:any) => {
           this.showNotification('City added successfully!', 'success');
-          this.newCity.reset();
+          this.router.navigate(['admin-dashboard/tabs']);
         },
         error: (error) => {
-          this.showNotification(error.exceptionMessage, 'error');
+          this.showNotification("City already exist", 'error');
         }
       });
   }

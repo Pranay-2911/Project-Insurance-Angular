@@ -14,6 +14,7 @@
   color: #333;
   margin-bottom: 20px;
   font-size: 1.8rem;
+
 }
 
 .search-bar {
@@ -44,6 +45,7 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 .customer-table thead {

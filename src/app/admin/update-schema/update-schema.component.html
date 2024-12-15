@@ -2,8 +2,10 @@
   <h2>Update Scheme Details</h2>
     <div class="form-group">
       <label for="title">Title</label>
+      <div id="row">
       <input type="text" id="title" placeholder="Enter title" formControlName="title" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('title')?.invalid && updateSchemaForm.get('title')?.touched" class="error-message">
         Title is required.
       </div>
@@ -14,8 +16,10 @@
   
     <div class="form-group">
       <label for="description">Description</label>
+      <div id="row">
       <input type="text" id="description" placeholder="Enter description" formControlName="description" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('description')?.invalid && updateSchemaForm.get('description')?.touched" class="error-message">
         Description is required.
       </div>
@@ -24,8 +28,10 @@
   
     <div class="form-group">
       <label for="minAmount">Minimum Amount</label>
+      <div id="row">
       <input type="number" id="minAmount" placeholder="Enter minimum amount" formControlName="minAmount" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('minAmount')?.invalid && updateSchemaForm.get('minAmount')?.touched" class="error-message">
         Minimum Amount is required.
       </div>
@@ -35,8 +41,10 @@
   
     <div class="form-group">
       <label for="maxAmount">Maximum Amount</label>
+      <div id="row">
       <input type="number" id="maxAmount" placeholder="Enter maximum amount" formControlName="maxAmount" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('maxAmount')?.invalid && updateSchemaForm.get('maxAmount')?.touched" class="error-message">
         Maximum Amount is required.
       </div>
@@ -46,8 +54,10 @@
   
     <div class="form-group">
       <label for="minAge">Minimum Age</label>
+      <div id="row">
       <input type="number" id="minAge" placeholder="Enter minimum age" formControlName="minAge" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('minAge')?.invalid && updateSchemaForm.get('minAge')?.touched" class="error-message">
         Minimum Age is required.
       </div>
@@ -58,8 +68,10 @@
   
     <div class="form-group">
       <label for="maxAge">Maximum Age</label>
+      <div id="row">
       <input type="number" id="maxAge" placeholder="Enter maximum age" formControlName="maxAge" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('maxAge')?.invalid && updateSchemaForm.get('maxAge')?.touched" class="error-message">
         Maximum Age is required.
       </div>
@@ -71,8 +83,10 @@
   
     <div class="form-group">
       <label for="minPolicyTerm">Minimum Policy Term</label>
+      <div id="row">
       <input type="number" id="minPolicyTerm" placeholder="Enter minimum policy term" formControlName="minPolicyTerm" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('minPolicyTerm')?.invalid && updateSchemaForm.get('minPolicyTerm')?.touched" class="error-message">
         Minimum Policy Term is required.
       </div>
@@ -82,8 +96,10 @@
   
     <div class="form-group">
       <label for="maxPolicyTerm">Maximum Policy Term</label>
+      <div id="row">
       <input type="number" id="maxPolicyTerm" placeholder="Enter maximum policy term" formControlName="maxPolicyTerm" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('maxPolicyTerm')?.invalid && updateSchemaForm.get('maxPolicyTerm')?.touched" class="error-message">
         Maximum Policy Term is required.
       </div>
@@ -93,8 +109,10 @@
   
     <div class="form-group">
       <label for="policyRatio">Policy Ratio</label>
-      <input type="number" id="policyRatio" placeholder="Enter Policy Ratio" formControlName="policyRatio" />
+      <div id="row">
+      <input type="number" id="policyRatio" placeholder="Enter Profit Ratio" formControlName="policyRatio" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('policyRatio')?.invalid && updateSchemaForm.get('policyRatio')?.touched" class="error-message">
         Policy Ratio is required.
       </div>
@@ -109,8 +127,10 @@
   
     <div class="form-group">
       <label for="registrationCommisionAmount">Registration Commission Amount</label>
+      <div id="row">
       <input type="number" id="registrationCommisionAmount" placeholder="Enter Registration Commission Amount" formControlName="registrationCommisionAmount" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('registrationCommisionAmount')?.invalid && updateSchemaForm.get('registrationCommisionAmount')?.touched" class="error-message">
         Registration Commission Amount is required.
       </div>
@@ -119,8 +139,10 @@
   
     <div class="form-group">
       <label for="installmentCommisionRatio">Installment Commission Ratio</label>
+      <div id="row">
       <input type="number" id="installmentCommisionRatio" placeholder="Enter Installment Commission Ratio" formControlName="installmentCommisionRatio" />
       <span class="required">*</span>
+    </div>
       <div *ngIf="updateSchemaForm.get('installmentCommisionRatio')?.invalid && updateSchemaForm.get('installmentCommisionRatio')?.touched" class="error-message">
         Installment Commission Ratio is required.
       </div>

@@ -76,4 +76,9 @@ form {
       font-size: 1rem;
     }
   }
-  
+  #row{
+    display: flex;
+  }
+  span{
+    color: red;
+  }

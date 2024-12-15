@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from './landing-page/header/header.component';
 import { DashboardComponent } from './landing-page/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -87,7 +87,7 @@ import { UpdateEmployeeComponent } from './employee/update-employee/update-emplo
 import { UpdateAgentComponent } from './agent/update-agent/update-agent.component';
 import { AgentProfileComponent } from './agent/agent-profile/agent-profile.component';
 import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
-
+import { ProjectInterceptor } from './project.interceptor';
 
 @NgModule({
   declarations: [
@@ -185,7 +185,13 @@ import { EmployeeProfileComponent } from './employee/employee-profile/employee-p
     NgxStripeModule.forRoot('pk_test_51QT1NPCFiPRnAkVSVdNAkUATpbeEUVM3LSYEwTJOXwPjbYVRYzgSeI85FEH3KcRd0b7zNcIMJv5qE9WgY31Oc51b00GTedZXAQ'),
     MatPaginatorModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+    useClass: ProjectInterceptor,
+    multi: true  
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

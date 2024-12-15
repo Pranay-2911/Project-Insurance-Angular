@@ -103,6 +103,7 @@ const routes: Routes = [
     children:[
       {
       path:'tabs',
+      
       component: TabsComponent,
       },
       {

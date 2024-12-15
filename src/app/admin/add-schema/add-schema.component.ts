@@ -73,7 +73,7 @@ export class AddSchemaComponent {
           console.log(data);
           this.showNotification("Schema added successfully", 'success');
           this.newSchemaForm.reset();
-          this.router.navigate(['/admin-dashboard/add-schema']);
+          this.router.navigate(['/admin-dashboard/add-schemas']);
         },
         error: (err:any) => {
           console.log(err);

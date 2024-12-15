@@ -64,3 +64,9 @@
     cursor: not-allowed;
   }
   
+  #row{
+    display:flex;
+  }
+  span{
+    color:red;
+  }

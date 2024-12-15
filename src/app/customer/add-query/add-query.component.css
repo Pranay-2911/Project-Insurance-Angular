@@ -83,4 +83,9 @@ form {
       padding: 8px;
     }
   }
-  
+  #row{
+    display: flex;
+  }
+  span{
+    color: red;
+  }

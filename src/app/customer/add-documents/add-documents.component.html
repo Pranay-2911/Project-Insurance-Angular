@@ -1,37 +1,29 @@
-
+<h2>Submit Documents</h2> <!-- Heading outside the loop -->
 
 <div *ngFor="let document of documentTypes">
-  <h2>Submit Documents</h2>
   <form [formGroup]="newDocument" (ngSubmit)="addNewDocument()">
-    <h2 formControlName="name">
-        {{document}}
-      </h2>
-      <br>
-  
-      <input type="file" (change)="onSelect($event)" accept="image/*" />
-      <span>*</span>
-      
-      <!-- Display Selected File -->
-      <div *ngIf="file">
-        <p>Selected File: {{ file.name }}</p>
-        <button (click)="onRemove()">Remove File</button>
-      </div>
-    
-      <!-- Upload Button -->
-      <button (click)="upload(document)">Upload File</button>  
+    <h3 formControlName="name">
+      {{ document }}
+    </h3>
+    <br />
+
+    <div id="row">
+    <input type="file" (change)="onSelect($event)" accept="image/*" />
+    <span>*</span>
+  </div>
+  <div *ngIf="newDocument.get('name')?.invalid && newDocument.get('name')?.touched">Document is required.</div> 
+
+
+    <!-- Display Selected File -->
+    <div *ngIf="file" class="selected-file">
+      <!-- <p>Selected File: {{ file.name }}</p> -->
+      <button type="button" (click)="onRemove()">Remove File</button>
+    </div>
+
+    <!-- Upload Button -->
+    <button type="button" (click)="upload(document)">Upload File</button>
   </form>
 </div>
 
+<!-- Final Submit Button -->
 <button (click)="onSubmit()">Submit</button>
-
-
-<!-- <div>
-    <input type="file" (change)="onSelect($event)" accept="image/*, application/pdf" />
-  
-    <div *ngIf="file">
-      <p>Selected File: {{ file.name }}</p>
-      <button (click)="onRemove()">Remove File</button>
-    </div>
-  
-    <button (click)="upload()">Upload File</button>
-  </div> -->

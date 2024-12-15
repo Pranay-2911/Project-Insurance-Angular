@@ -57,7 +57,7 @@ export class VerifyDocumentComponent {
     customer.rejecting = true;
   }
 
-  submitRejection(policyAccountId: string, customer: any) {
+  submitRejection(policyAccountId: string, email: string, customer: any) {
     if (customer.rejectionReason.trim() === '') {
       alert('Rejection reason cannot be empty.');
       return;
@@ -66,7 +66,7 @@ export class VerifyDocumentComponent {
     this.employeeService.rejectDocument(policyAccountId).subscribe({
       next: () => {
         alert('All documents for the customer have been rejected successfully!');
-        this.sendRejectionEmail(customer.rejectionReason);
+        this.sendRejectionEmail(customer.rejectionReason, email);
         customer.rejecting = false;
         this.getAllDocuments();
       },
@@ -76,7 +76,7 @@ export class VerifyDocumentComponent {
     });
   }
 
-  sendRejectionEmail(reason: string) {
+  sendRejectionEmail(reason: string, email: string) {
     const emailBody = 
       'Hello,\n\n' +
       'We regret to inform you that all your document verification requests have been rejected due to the following reason:\n' +
@@ -86,7 +86,7 @@ export class VerifyDocumentComponent {
       'MONOCEPT';
 
     // Use sendEmail service to send the rejection email
-    this.emailService.sendEmail('pranayraut129@gmail.com', 'Document Rejection Notification', emailBody).subscribe({
+    this.emailService.sendEmail( email, 'Document Rejection Notification', emailBody).subscribe({
       next: () => console.log('Rejection email sent successfully!'),
       error: (error) => console.error('Error sending rejection email:', error)
     });

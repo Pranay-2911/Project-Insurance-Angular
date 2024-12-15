@@ -1,8 +1,10 @@
 <div class="form-container">
   <h2 class="form-heading">Create New Plan</h2>
   <form [formGroup]="newPlanForm" (ngSubmit)="addNewPlan()">
+    <div id="row">
     <input type="text" placeholder="Enter Plan Name" formControlName="name">
     <span>*</span>
+    </div>
     <div *ngIf="newPlanForm.get('name')?.invalid && newPlanForm.get('name')?.touched">
       Plan name is required.
     </div>

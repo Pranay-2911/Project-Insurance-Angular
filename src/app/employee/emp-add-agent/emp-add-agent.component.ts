@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-emp-add-agent',
@@ -11,6 +12,9 @@ export class EmpAddAgentComponent {
 
   showToast = false;
   toastMessage = '';
+  mail: any ;
+  username: any ;
+  password: any ;
   toastType: 'success' | 'error' = 'success';
 
 
@@ -25,7 +29,7 @@ export class EmpAddAgentComponent {
 
   });
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private emailService: EmailService) {}
 
   addAgent()
   {
@@ -33,11 +37,24 @@ export class EmpAddAgentComponent {
       next: () => {
         // alert('Agent added successfully');
         this.showNotification('Agent added successfully','success');
+        this.mail = this.newAgentForm.value.email;
+        this.username = this.newAgentForm.value.username;
+        this.password = this.newAgentForm.value.password;
+
+        this.emailService.sendEmail(
+          this.mail,
+          'Agent Username and Password',
+          'Hello Agent, Welcome to Monocept! Your account details are as follows:  ' + this.username +'  and password :-  ' + this.password + 'Best regards Monocept Team' 
+        ).subscribe({
+          next: () => console.log('Email sent successfully!'),
+          error: (err) => console.error('Error sending email:', err),
+        });
+
         this.newAgentForm.reset();
       },
       error: (error) => {
         // alert(error.error.message);
-        this.showNotification("Something Went Wrong! or Username already exist!", 'error');
+        this.showNotification("Something Went Wrong! Username, Email or Mobile number already exist!", 'error');
       }
     });
   }

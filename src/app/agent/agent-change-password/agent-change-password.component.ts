@@ -9,7 +9,9 @@ import { AgentService } from 'src/app/services/agent.service';
 })
 export class AgentChangePasswordComponent {
 
+  agentId = localStorage.getItem('id');
   newForm = new FormGroup({
+    id: new FormControl(),
     userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     newPassword: new FormControl('', [
@@ -22,6 +24,10 @@ export class AgentChangePasswordComponent {
   constructor(private agentService: AgentService) { }
   chnagePassword(){
    
+    this.newForm.patchValue({
+      id: this.agentId
+    }); 
+
     this.agentService.changePassword(this.newForm.value).subscribe({
       next:()=>{
         alert("Your password have been change successfully")

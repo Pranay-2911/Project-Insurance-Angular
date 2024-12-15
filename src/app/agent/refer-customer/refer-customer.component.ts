@@ -48,13 +48,14 @@ export class ReferCustomerComponent {
     });
   }
 
-  referCustomer(id: any)
+  referCustomer(id: any, email: any)
   {
      console.log(this.policyId);
      console.log(id);
      this.link = `http://localhost:4200/customer-dashboard/details/${this.agentId}/${this.policyId}`;
+     console.log(email);
      this.emailService.sendEmail(
-      'pranayraut129@gmail.com',
+      email,
       'Policy Reference',
       'Hello Customer, Plz take yor time to view this policy and purchase ' + this.link
     ).subscribe({

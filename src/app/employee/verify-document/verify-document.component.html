@@ -36,7 +36,7 @@
         [(ngModel)]="item.rejectionReason"
         placeholder="Enter rejection reason"
       ></textarea>
-      <button (click)="submitRejection(item.policyAccountId, item)">Submit</button>
+      <button (click)="submitRejection(item.policyAccountId, item.customerEmail, item)">Submit</button>
     </div>
 
     <div class="customer-actions">

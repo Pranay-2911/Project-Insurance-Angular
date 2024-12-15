@@ -33,7 +33,7 @@
           <td>{{ customer.mobileNumber }}</td>
           <td>{{ customer.dateOfBirth }}</td>
           <td>{{ customer.totalPolicies }}</td>
-          <td><button class="submit-btn" (click)="referCustomer(customer.customerId)">Refer</button></td>
+          <td><button class="submit-btn" (click)="referCustomer(customer.customerId, customer.email)">Refer</button></td>
         </tr>
         <tr *ngIf="filteredDocuments.length === 0">
           <td colspan="6" class="text-center">No customers found</td>

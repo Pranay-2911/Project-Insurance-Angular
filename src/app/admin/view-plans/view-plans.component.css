@@ -1,45 +1,157 @@
+.container {
+  margin-top: 6rem;
+  width: 40rem;
+  height: auto;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
 
-/* Style for the plan table */
-.plan-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  /* Style for the plan title and button container */
-  .plan-title-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Style for the plan name */
-  .plan-title {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  /* Style for the add schema button */
-  .add-schema-btn {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .add-schema-btn:hover {
-    background-color: #45a049;
-  }
-  
-  /* Style for the details table */
-  table {
-    margin-top: 50px;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th, table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
+.planHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.planHeader h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e90ff;
+}
+
+.insaurance {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.insaurance-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #1e90ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1c86ee;
+}
+
+.schemeDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.schemeImage {
+  width: 6rem;
+  height: 6rem;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #1e90ff;
+}
+
+.schemeImage img {
+  width: 100%;
+  height: 100%;
+}
+
+.schemeTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: #1e90ff;
+}
+
+.schemeDescription {
+  font-size: 1rem;
+  text-align: justify;
+  color: #333333;
+}
+
+.scheme-items {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.scheme-items:last-child {
+  border-bottom: none;
+}
+
+.scheme-items .left {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e90ff;
+}
+
+.scheme-items .right {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333333;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.noSchemeData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ff4500;
+}
+
+.add-scheme-btn {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #4682b4;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-scheme-btn:hover {
+  background-color: #5a9bd3;
+}
+
+.add-scheme-btn:disabled {
+  background-color: #b0c4de;
+}
+
+.schemeDescription {
+  line-height: 1.5;
+  color: #4b4b4b;
+}

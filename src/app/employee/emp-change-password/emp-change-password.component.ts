@@ -9,7 +9,9 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class EmpChangePasswordComponent {
 
+  employeeId = localStorage.getItem('id');
   newForm = new FormGroup({
+    id: new FormControl(),
     userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     newPassword: new FormControl('', [
@@ -20,8 +22,14 @@ export class EmpChangePasswordComponent {
 
   constructor(private employeeService: EmployeeService) { }
   chnagePassword(){
+
+    this.newForm.patchValue({
+      id: this.employeeId
+    }); 
    
     this.employeeService.changePassword(this.newForm.value).subscribe({
+
+
       next:()=>{
         alert("Your password have been change successfully")
         this.newForm.reset(); // Reset the form after adding the query

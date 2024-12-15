@@ -37,7 +37,7 @@ export class BuyPolicyComponent {
     this.newPolicyForm = this.fb.group({
       policyId: [null],
       totalAmount: [null],
-      durationInMonths: [null],
+      durationInYears: [null],
       nominee: [''],
       nomineeRelation: [''],
       customerId: [null],
@@ -73,7 +73,7 @@ export class BuyPolicyComponent {
           Validators.max(this.scheme.maxAmount)
         ]
       ],
-      durationInMonths: [
+      durationInYears: [
         null,
         [
           Validators.required,

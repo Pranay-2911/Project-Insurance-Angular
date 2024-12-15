@@ -108,3 +108,10 @@ form br {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+#row{
+  display: flex;
+}
+span{
+  color: red;
+}

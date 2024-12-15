@@ -21,7 +21,7 @@
               <th>Nominee</th>
               <th>Nominee Relation</th>
               <th>Policy Amount</th>
-              <th>Policy Duration (Months)</th>
+              <th>Policy Duration (Years)</th>
               <th>Pay Premium</th>
               <th>Claim status</th>
           </tr>
@@ -37,7 +37,7 @@
                   <td>{{ policy.nominee }}</td>
                   <td>{{ nomineeRelationMap[policy.nomineeRelation] || 'Unknown' }}</td>
                   <td>Rs.{{ policy.policyAmount }}</td>
-                  <td>{{ policy.policyDuration }} months</td>
+                  <td>{{ policy.policyDuration }} years</td>
                   <td>
                       <button
                           class="btn"

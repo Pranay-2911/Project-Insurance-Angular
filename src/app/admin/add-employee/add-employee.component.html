@@ -22,12 +22,13 @@
     <div id="row">
       <input type="text" placeholder="Enter Lastname" formControlName="lastName">
       <span>*</span>
-      <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched">
-        Last name is required.
-      </div>
-      <div *ngIf="newEmployeeForm.get('lastName')?.errors?.['minlength']">
-        Last Name must be 2 characters long.
-      </div>
+      
+    </div>
+    <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched">
+      Last name is required.
+    </div>
+    <div *ngIf="newEmployeeForm.get('lastName')?.errors?.['minlength']">
+      Last Name must be 2 characters long.
     </div>
   </div>
 

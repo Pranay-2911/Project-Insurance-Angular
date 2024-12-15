@@ -1,52 +1,114 @@
-<table class="plan-table">
-    <tr>
-        <th>Plan Name</th>
-        <th>Details</th>
-    </tr>
-    <tr *ngFor="let plan of plansData">
-        <td>
-            <!-- Plan Title and Add Schema Button -->
-            <div class="plan-title-container">
-                <span class="plan-title">{{ plan.name }}</span>
-                <button (click)="AddSchema(plan.id)" class="add-schema-btn" >Add Schema</button>
+
+<div class="container">
+  <div class="insaurance">
+    <div class="insaurance-top">
+      <button [disabled]="index == 0" (click)="updateIndex(index-1)">
+        prev
+      </button>
+
+      <div class="planHeader">
+        <h1>{{plansData[index].name}}</h1>
+        <button (click)="AddSchema(plansData[index].id)">Add Scheme</button>
+      </div>
+      <button [disabled]="index == plansData.length - 1" (click)="updateIndex(index+1)">
+        next
+      </button>
+    </div>
+    <div class="insaurance-left" *ngIf="plansData[index].schemes.length>0">
+      <div class="details-section">
+        <div class="schemeDetails">
+          <div class="schemeImage">
+            <img src={{plansData[index].schemes[schemeIndex].imageLink}} alt="react js" width="100%" height="100%" />
+          </div>
+          <h1 class="schemeTitle">
+            {{
+            plansData[index].schemes[schemeIndex]?.title
+            }}
+
+          </h1>
+          <div>
+            <div class="schemeDescription">
+              {{plansData[index].schemes[schemeIndex]?.description}}
             </div>
-        </td>
-        <td>
-            <!-- Table for schemes that appear when 'Toggle Schema' is clicked -->
-            <table >
-                <tr>
-                    <th>SCHEME IMAGE</th>
-                    <th>SCHEME TITLE</th>
-                    <th>DESCRIPTION</th>
-                    <th>MINIMUM AMOUNT</th>
-                    <th>MAXIMUM AMOUNT</th>
-                    <th>MINIMUM AGE</th>
-                    <th>MAXIMUM AGE</th>
-                    <th>MIN POLICY TERM</th>
-                    <th>MAX POLICY TERM</th>
-                    <th>REGISTRATION COMMISSION AMOUNT</th>
-                    <th>INSTALLMENT COMMISSION RATE</th>
-                    <th>UPDATE</th>
-                    
-                </tr>
-                <tr *ngFor="let scheme of plan.schemes">
-                    <td><img [src]="scheme.imageLink" alt="Scheme Image" height="50"></td>
-                    <td>{{ scheme.title }}</td>
-                    <td>{{ scheme.description }}</td>
-                    <td>{{ scheme.minAmount }}</td>
-                    <td>{{ scheme.maxAmount }}</td>
-                    <td>{{ scheme.minAge }}</td>
-                    <td>{{ scheme.maxAge }}</td>
-                    <td>{{ scheme.minPolicyTerm }}</td>
-                    <td>{{ scheme.maxPolicyTerm }}</td>
-                    <td>{{ scheme.registrationCommisionAmount }}</td>
-                    <td>{{ scheme.installmentCommisionRatio }}</td>
-                    <td>
-                        <button class="btn btn-warning" (click)="updateSchemma(scheme.id)">Update</button>
-                    </td>   
-                    
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+
+            <div class="scheme-items">
+              <div class="left">
+                Minimum Amount:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.minAmount }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Maximum Amount:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.maxAmount }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Min Policy Term:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.minPolicyTerm }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Max Policy Term:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.maxPolicyTerm }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Registration Commission Amount:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.registrationCommisionAmount }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Installment commission ratio:
+              </div>
+              <div class="right">
+                {{plansData[index].schemes[schemeIndex]?.installmentCommisionRatio }}
+              </div>
+            </div>
+            <div class="scheme-items">
+              <div class="left">
+                Required Documents:
+              </div>
+              <div class="right" >
+                {{plansData[index].schemes[schemeIndex]?.documents }}
+              </div>
+            </div>
+          </div>
+          <button (click)="updateSchemma(plansData[index].schemes[schemeIndex].id)">Update Scheme</button>
+        </div>
+
+
+
+
+      </div>
+      <div class="pagination">
+        <button [disabled]="schemeIndex == 0"
+          (click)="updateSchemeIndex(schemeIndex-1)">
+          prev
+        </button>
+        {{schemeIndex+1}} of {{plansData[index].schemes.length}}
+        <button [disabled]="schemeIndex == plansData[index].schemes-1"
+          (click)="updateSchemeIndex(schemeIndex +1)">
+          next
+        </button>
+      </div>
+    </div>
+    <div class="noSchemeData" *ngIf="plansData[index].schemes.length==0">
+      <h1 class="">No schemes present in this Plan</h1>
+    </div>
+  </div>
+</div>

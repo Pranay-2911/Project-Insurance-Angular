@@ -25,45 +25,62 @@ export class BuyPolicyAgentComponent {
     { label: 'Yearly', value: 1 },
   ];
  
-  constructor(private customerService: CustomerService, private uploadService: UploadService, private route: ActivatedRoute, private router: Router, private enumService: EnumService, private planService: PlanService, private fb: FormBuilder) { 
+  constructor(
+    private customerService: CustomerService,
+    private uploadService: UploadService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private enumService: EnumService,
+    private planService: PlanService,
+    private fb: FormBuilder
+  ) {
     this.newPolicyForm = this.fb.group({
       policyId: [null, Validators.required],
-      totalAmount: [null, [Validators.required, Validators.min(this.scheme.minAmount),
-        Validators.max(this.scheme.maxAmount)]],
-      durationInMonths: [null, [Validators.required, Validators.min(this.scheme.minPolicyTerm),
-        Validators.max(this.scheme.maxPolicyTerm)]],
+      totalAmount: [null, Validators.required], // Validators will be added later
+      durationInYears: [null, Validators.required], // Validators will be added later
       nominee: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
       nomineeRelation: ['', Validators.required],
-      agentId: ['', Validators.required]
+      agentId: ['', Validators.required],
+      divider:  [null, Validators.required]
     });
   }
+  
 
-  ngOnInit(){
-    this.route.queryParams.subscribe(params=>{
-      this.schemeId = params['schemeId'],
-      this.agentId = params['agentId']
-      console.log(this.schemeId);
-      console.log(this.agentId);
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.schemeId = params['schemeId'];
+      this.agentId = params['agentId'];
       this.customerId = localStorage.getItem('id');
-
     });
-
+  
     this.planService.getScheme(this.schemeId).subscribe({
-      next:(data:any)=>{
+      next: (data: any) => {
         this.scheme = data;
+  
+        // Dynamically add validators after scheme is fetched
+        this.newPolicyForm.get('totalAmount')?.setValidators([
+          Validators.required,
+          Validators.min(this.scheme.minAmount),
+          Validators.max(this.scheme.maxAmount),
+        ]);
+        this.newPolicyForm.get('durationInYears')?.setValidators([
+          Validators.required,
+          Validators.min(this.scheme.minPolicyTerm),
+          Validators.max(this.scheme.maxPolicyTerm),
+        ]);
+        this.newPolicyForm.updateValueAndValidity();
       },
-      error:(err) => console.error('There was an error!', err)
-    })
-    
+      error: (err) => console.error('There was an error!', err),
+    });
+  
     this.enumService.getNominee().subscribe({
-      next:(data:any)=>{
+      next: (data: any) => {
         this.nominees = data;
       },
-      error:(err) => console.error('There was an error!', err)
-    })
-
-    this.customerId = localStorage.getItem('id');
+      error: (err) => console.error('There was an error!', err),
+    });
   }
+  
 
   onInstallmentTypeChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement; // Explicitly cast as HTMLSelectElement

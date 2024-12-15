@@ -10,6 +10,9 @@ import { PlanService } from 'src/app/services/plan.service';
 export class ViewPlansComponent {
   plansData: any;
   selectedPlanId: any ;
+  index:number= 0;
+  schemeIndex:number= 0;
+
   constructor(private router: Router, private adminService: AdminService, private planService: PlanService) {}
   ngOnInit() {
     this.adminService.getPlan().subscribe({
@@ -33,6 +36,20 @@ export class ViewPlansComponent {
       this.router.navigate(['admin-dashboard/update-schema'], { queryParams: {id: id} });
   }
   
-  
+  updateIndex(i:any){
+    if(i<0 ){
+      return
+    }
+    if(i>this.plansData.length){
+      return
+    }
+    this.index = i;
+  }
 
+  updateSchemeIndex(i:any){
+    if(i>this.plansData[this.index].schemes.length-1){
+      return
+    }
+    this.schemeIndex = i;
+  }
 }

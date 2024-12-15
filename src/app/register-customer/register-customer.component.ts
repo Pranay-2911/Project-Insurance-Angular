@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../services/customer.service';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
+import { EmailService } from '../services/email.service';
 
 @Component({
   selector: 'app-register-customer',
@@ -13,6 +14,9 @@ export class RegisterCustomerComponent {
 
   states: any = []; // Array to store states
   cities: any = [];
+  mail: any ;
+  username: any
+  password: any;
 
   newCustomerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -27,7 +31,7 @@ export class RegisterCustomerComponent {
 
   });
 
-  constructor(private customerService: CustomerService, private adminService: AdminService, private router: Router) {}
+  constructor(private customerService: CustomerService, private adminService: AdminService, private router: Router, private emailService: EmailService) {}
 
   ngOnInit(){
     this.adminService.getState().subscribe({
@@ -54,10 +58,25 @@ export class RegisterCustomerComponent {
 
       next: (data) => {
         console.log(data);
+        this.mail = this.newCustomerForm.value.email;
+        this.username = this.newCustomerForm.value.username;
+        this.password = this.newCustomerForm.value.password;
+
+        this.emailService.sendEmail(
+          this.mail,
+          'Username and Password',
+          'Hello Customer, Welcome to Monocept!!  this  is your username :-  ' + this.username +'  and password :-  ' + this.password
+        ).subscribe({
+          next: () => console.log('Email sent successfully!'),
+          error: (err) => console.error('Error sending email:', err),
+        });
+
         this.newCustomerForm.reset();  // Reset form after successful submission
 
         // Show alert after successful registration
         window.alert('Customer registered successfully!');
+
+        
 
         // Redirect to the login page
         this.router.navigate(['/login']);

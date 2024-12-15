@@ -1,30 +1,44 @@
 <form [formGroup]="newAgentForm" (ngSubmit)="addAgent()">
     <h2>Add New Agent</h2>
     
+    <div id="row">
     <input type="text" placeholder="Enter First Name" formControlName="firstName" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('firstName')?.invalid && newAgentForm.get('firstName')?.touched">First Name is required.</div> 
       <div *ngIf="newAgentForm.get('firstName')?.errors?.['minlength']">First Name must be 2 characters long.</div>
     <br /><br />
+    <div id="row">
     <input type="text" placeholder="Enter Last Name" formControlName="lastName" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('lastName')?.invalid && newAgentForm.get('lastName')?.touched">Last Name is required.</div> 
       <div *ngIf="newAgentForm.get('lastName')?.errors?.['minlength']">Last Name must be 2 characters long.</div>
     <br /><br />
+    <div id="row">
     <input type="text" placeholder="Enter Qualification" formControlName="qualification" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('qualification')?.invalid && newAgentForm.get('qualification')?.touched">Qualification is required.</div> 
     <br /><br />
+    <div id="row">
     <input type="text" placeholder="Enter Email" formControlName="email" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('email')?.invalid && newAgentForm.get('email')?.touched">Email is required.</div> 
       <div *ngIf="newAgentForm.get('email')?.errors?.['email']">Email must be in correct format</div>
     <br /><br />
+    <div id="row">
     <input type="number" placeholder="Enter Mobile Number" formControlName="mobileNumber" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('mobileNumber')?.invalid && newAgentForm.get('mobileNumber')?.touched">Mobile Number is required.</div>
     <div *ngIf="newAgentForm.get('userName')?.errors?.['minlength'] && newAgentForm.get('userName')?.errors?.['maxlength']">Mobile Number must be 10 digits long.</div> 
     <br /><br />
+    <div id="row">
     <input type="text" placeholder="Enter User Name" formControlName="username" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('userName')?.invalid && newAgentForm.get('userName')?.touched">UserName is required.</div> 
       <div *ngIf="newAgentForm.get('userName')?.errors?.['minlength']">UserName must be 5 characters long.</div>
     <br /><br />
+    <div id="row">
     <input type="password" placeholder="Enter Password" formControlName="password" /><span>*</span>
+  </div>
     <div *ngIf="newAgentForm.get('password')?.invalid && newAgentForm.get('password')?.touched">Password is required.</div> 
       <div *ngIf="newAgentForm.get('password')?.errors?.['minlength']">Password must be 6 characters long.</div>
     <br /><br />

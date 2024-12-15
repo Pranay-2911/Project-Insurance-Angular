@@ -5,6 +5,7 @@
       <!-- First Name -->
       <div class="form-group">
         <label for="firstName">First Name</label>
+        <div id="row">
         <input
           id="firstName"
           type="text"
@@ -13,6 +14,7 @@
           placeholder="Enter your first name"
         />
         <span>*</span>
+      </div>
       </div>
       <div *ngIf="newEmployeeForm.get('firstName')?.invalid && newEmployeeForm.get('firstName')?.touched" >
         First Name is required.
@@ -25,6 +27,7 @@
       <!-- Last Name -->
       <div class="form-group">
         <label for="lastName">Last Name</label>
+        <div id="row">
         <input
           id="lastName"
           type="text"
@@ -33,6 +36,7 @@
           placeholder="Enter your last name"
         />
         <span>*</span>
+      </div>
       </div>
       <div *ngIf="newEmployeeForm.get('lastName')?.invalid && newEmployeeForm.get('lastName')?.touched" >
         Last Name is required.
@@ -44,6 +48,7 @@
       <!-- Email -->
       <div class="form-group">
         <label for="email">Email</label>
+        <div id="row">
         <input
           id="email"
           type="email"
@@ -52,6 +57,7 @@
           placeholder="Enter your email"
         />
         <span>*</span>
+      </div>
       </div>
       <div *ngIf="newEmployeeForm.get('email')?.invalid && newEmployeeForm.get('email')?.touched" >
         Email is required.
@@ -63,6 +69,7 @@
       <!-- Mobile Number -->
       <div class="form-group">
         <label for="mobileNumber">Mobile Number</label>
+        <div id="row">
         <input
           id="mobileNumber"
           type="number"
@@ -71,6 +78,7 @@
           placeholder="Enter your mobile number"
         />
         <span>*</span>
+      </div>
       </div>
       <div *ngIf="newEmployeeForm.get('mobileNumber')?.invalid && newEmployeeForm.get('mobileNumber')?.touched" >
         Mobile Number is required.

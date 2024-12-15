@@ -3,7 +3,9 @@
         <h1 class="heading">Add New State and City</h1>
     </div>
     <form [formGroup]="newState" (ngSubmit)="addNewState()">
+      <div id="row">
         <input type="text" formControlName="stateName" placeholder="Enter State Name"><span>*</span>
+      </div>
         <div *ngIf="newState.get('stateName')?.invalid && newState.get('stateName')?.touched" class="error">
             State name is required.
         </div>
@@ -11,7 +13,9 @@
 
         <br>
 
-        <input type="text" placeholder="Enter City Name" formControlName="cityName"><span>*</span>
+        <div id="row">
+          <input type="text" placeholder="Enter City Name" formControlName="cityName"><span>*</span>
+        </div>
         <div *ngIf="newState.get('cityName')?.invalid && newState.get('cityName')?.touched" class="error">
             City name is required.
         </div>

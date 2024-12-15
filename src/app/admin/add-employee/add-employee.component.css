@@ -10,7 +10,6 @@ form {
 
 /* Styling for each input container */
 .input-container {
-  display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
@@ -69,4 +68,8 @@ button:hover {
 /* Optional: for better accessibility */
 input:invalid {
   border-color: #ff0000;
+}
+#row{
+  display: flex;
+
 }

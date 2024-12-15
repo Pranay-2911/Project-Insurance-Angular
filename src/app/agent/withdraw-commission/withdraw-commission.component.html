@@ -9,6 +9,7 @@
   <form [formGroup]="commissonForm" (ngSubmit)="commissionRequest()" class="withdraw-form">
     <div class="form-group">
       <label for="amount">Withdraw Amount:</label>
+      <div id="row">
       <input 
         type="number" 
         id="amount" 
@@ -18,6 +19,7 @@
         required 
         min="1" 
         [max]="balance" /><span>*</span>
+      </div>
         <div *ngIf="commissonForm.get('amount')?.invalid && commissonForm.get('amount')?.touched">Amount is required.</div> 
         <div *ngIf="commissonForm.get('amount')?.errors?.['min']">
           Minimum amount should be 1

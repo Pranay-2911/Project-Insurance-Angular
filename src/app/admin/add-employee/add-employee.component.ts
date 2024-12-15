@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,FormsModule, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
+import { EmailService } from 'src/app/services/email.service';
 
 
 @Component({
@@ -14,8 +15,11 @@ export class AddEmployeeComponent {
   showToast = false;
   toastMessage = '';
   toastType: 'success' | 'error' = 'success';
+  username: any;
+  password: any;
+  mail: any;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private emailService: EmailService) {
     this.newEmployeeForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -32,12 +36,27 @@ export class AddEmployeeComponent {
   {
     this.adminService.addEmployee(this.newEmployeeForm.value).subscribe({
       next:(data:any)=>{
+        console.log(this.newEmployeeForm.value);
         this.showNotification("Employee added successfully", 'success');
+        this.username = this.newEmployeeForm.value.username;
+        this.password = this.newEmployeeForm.value.password;
+        this.mail = this.newEmployeeForm.value.email;
         this.newEmployeeForm.reset();
+     
+
+        this.emailService.sendEmail(
+          this.mail,
+          'Employee Username and Password',
+          'Hello Employee, Welcome to Monocept!!  this  is your username :-  ' + this.username +'  and password :-  ' + this.password
+        ).subscribe({
+          next: () => console.log('Email sent successfully!'),
+          error: (err) => console.error('Error sending email:', err),
+        });
       },
       error:(error:any)=>{
         this.showNotification("Failed to add employee, Username, Email or Mobile Number already exist", 'error');
         console.error(error);
+        this.newEmployeeForm.reset();
       }
     });
   }

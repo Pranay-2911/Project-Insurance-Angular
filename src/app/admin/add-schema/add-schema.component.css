@@ -67,3 +67,9 @@ form button:hover {
 form button:active {
     transform: scale(0.98);
 }
+#row{
+    display: flex;
+}
+span{
+    color: red;
+}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { DocumentService } from 'src/app/services/document.service';
 import { UploadService } from 'src/app/services/upload.service';
@@ -22,7 +22,7 @@ export class AddDocumentsComponent {
 
   })
 
-  constructor(private uploadService: UploadService, private documentService: DocumentService, private route: ActivatedRoute, private customerService: CustomerService) {}
+  constructor(private uploadService: UploadService, private documentService: DocumentService, private route: ActivatedRoute, private customerService: CustomerService, private router: Router) {}
 
   ngOnInit() {
     
@@ -112,6 +112,7 @@ export class AddDocumentsComponent {
     this.customerService.reuploadDocument(this.accountId).subscribe({
       next:(data:any)=>{
         console.log(data);
+        this.router.navigate(['customer-dashboard/customer-tabs']);
       },
       error:(error:any)=>{
         console.error(error);
