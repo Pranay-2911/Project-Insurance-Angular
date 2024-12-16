@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { CommissionService } from 'src/app/services/commission.service';
+import { PaymentService } from 'src/app/services/payment.service';
+import { PlanService } from 'src/app/services/plan.service';
+import { PolicyAccountService } from 'src/app/services/policy-account.service';
+import { StateCityService } from 'src/app/services/state-city.service';
 
 @Component({
   selector: 'app-tabs',
@@ -22,12 +27,14 @@ payments = 0;
 userName: string ="";
 page = 1;
 pageSize=100;
-constructor( private adminService: AdminService, private router: Router){}
+constructor( private adminService: AdminService, private router: Router, private planService: PlanService, private stateCityService: StateCityService, private policyAccountService: PolicyAccountService,
+  private commissionService: CommissionService, private paymentsService: PaymentService
+){}
 
 
 
 ngOnInit(){
-  this.adminService.getState().subscribe(
+  this.stateCityService.getState().subscribe(
     {
       next: (data:any) => {
         this.states = data;
@@ -40,7 +47,7 @@ ngOnInit(){
     }
   );
 
-  this.adminService.getCities().subscribe({
+  this.stateCityService.getCities().subscribe({
     next: (data:any) => {
       this.citiesCount = data.length;
       this.cities = data;
@@ -50,7 +57,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getPolicyAccount(this.page, this.pageSize).subscribe({
+  this.policyAccountService.getPolicyAccount(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       console.log(data);
       this.policyAccounts = data.count;
@@ -60,7 +67,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getPlan().subscribe({
+  this.planService.getAllPlans().subscribe({
     next: (data:any) => {
       this.plans = data.length;
       console.log(this.plans);
@@ -70,7 +77,7 @@ ngOnInit(){
     }
   });
 
-  this.adminService.getScheme(this.page, this.pageSize, '').subscribe({
+  this.planService.getSchemes(this.page, this.pageSize, '').subscribe({
     next: (data:any) => {
       this.schemes = data.count;
       console.log(this.schemes);
@@ -90,7 +97,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getAllRequest(this.page, this.pageSize).subscribe({
+  this.commissionService.getAllRequest(this.page, this.pageSize).subscribe({
     next: (data:any) => {
       this.withdrawCommission = data.count;
       console.log(this.withdrawCommission);
@@ -100,7 +107,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getPayments(this.page, this.pageSize, '', '', '').subscribe({
+  this.paymentsService.getPayments(this.page, this.pageSize, '', '', '').subscribe({
     next: (data:any) => {
       this.payments = data.count;
       console.log(this.payments);
@@ -110,7 +117,7 @@ ngOnInit(){
     }
   })
 
-  this.adminService.getAllClaims(this.page, this.pageSize, '').subscribe({
+  this.policyAccountService.getAllClaims(this.page, this.pageSize, '').subscribe({
     next: (data:any) => {
       this.claimRequest = data.count;
       console.log(this.claimRequest);

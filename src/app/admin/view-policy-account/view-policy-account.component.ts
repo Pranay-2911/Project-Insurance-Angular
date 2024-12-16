@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { PolicyAccountService } from 'src/app/services/policy-account.service';
 @Component({
   selector: 'app-view-policy-account',
   templateUrl: './view-policy-account.component.html',
@@ -15,13 +16,13 @@ export class ViewPolicyAccountComponent {
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   searchQuery1: string = ''; 
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private policyAccountService: PolicyAccountService) {}
   ngOnInit(){
     this.getPolicyAccounts();
   }
 
   getPolicyAccounts(){
-    this.adminService.getPolicyAccount(this.page, this.pageSize, this.searchQuery, this.searchQuery1).subscribe({
+    this.policyAccountService.getPolicyAccount(this.page, this.pageSize, this.searchQuery, this.searchQuery1).subscribe({
       next: (data:any) => {
         console.log(data);
         this.policyAccounts = data.accounts;
@@ -29,7 +30,7 @@ export class ViewPolicyAccountComponent {
         this.totalAccounts = data.count;
         console.log(this.policyAccounts);
       },
-      error: (error) => {
+      error: (error:any) => {
         console.log(error);
       }
     });

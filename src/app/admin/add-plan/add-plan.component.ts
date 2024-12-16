@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,FormsModule, Validators } from '@angular/forms';
-import { AdminService } from 'src/app/services/admin.service';
+import { PlanService } from 'src/app/services/plan.service';
 import {planNameValidator} from 'src/app/validators/custom-validators'
 @Component({
   selector: 'app-add-plan',
@@ -17,16 +17,16 @@ export class AddPlanComponent {
     name: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
-  constructor(private adminService: AdminService) {}
+  constructor(private planService: PlanService) {}
 
   ngOnInit() {
-    this.adminService.getPlan().subscribe((plans: any) => {
+    this.planService.getAllPlans().subscribe((plans: any) => {
       this.existingPlans = plans// Assuming plan objects have a 'name' property
     });
   }
   addNewPlan()
   {
-      this.adminService.addPlan(this.newPlanForm.value).subscribe({
+      this.planService.addPlan(this.newPlanForm.value).subscribe({
         next: () => {
           this.showNotification('Plan added successfully!', 'success');
           this.newPlanForm.reset();

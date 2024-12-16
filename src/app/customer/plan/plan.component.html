@@ -73,7 +73,9 @@
     <h2>Premium Calculator</h2>
     <form [formGroup]="premiumForm" (ngSubmit)="calculatePremium()">
       <label for="totalAmount">Total Amount:</label>
+      <div id="row">
       <input type="number" id="totalAmount" [(ngModel)]="calculator.totalAmount" name="totalAmount" required formControlName="totalAmount"/><span>*</span>
+    </div>
       <div *ngIf="premiumForm.get('totalAmount')?.invalid && premiumForm.get('totalAmount')?.touched">
         Total Amount is required.
       </div>
@@ -85,7 +87,9 @@
       </div>
 
       <label for="duration">Total Duration (in Years):</label>
+      <div id="row">
       <input type="number" id="duration" [(ngModel)]="calculator.duration" name="duration" required formControlName="duration"/><span>*</span>
+    </div>
       <div *ngIf="premiumForm.get('duration')?.invalid && premiumForm.get('duration')?.touched">
         Duration is required.
       </div>
@@ -93,14 +97,16 @@
         Minimum Duration should be 1.
       </div>
       <div *ngIf="premiumForm.get('duration')?.errors?.['pattern']">
-        Only numbers are allowed.
+        Decimal numbers are not allowed.
       </div>
 
       <label for="installmentType">Installment Type:</label>
-      <select id="installmentType" [(ngModel)]="calculator.installmentType" name="installmentType" required formControlName="installmentType"><span>*</span>
+      <div id="row">
+      <select id="installmentType" [(ngModel)]="calculator.installmentType" name="installmentType" required formControlName="installmentType">
         <option value="" disabled selected>Select Installment Type</option>
         <option *ngFor="let type of installmentTypes" [value]="type.value">{{ type.label }}</option>
       </select><span>*</span>
+    </div>
       <div *ngIf="premiumForm.get('installmentType')?.invalid && premiumForm.get('installmentType')?.touched">
         Installment Type is required.
       </div>
@@ -109,7 +115,7 @@
     </form>
 
     <div *ngIf="calculator.monthlyPremium !== null" class="premium-result">
-      <h3>{{ totalInstallments }} Premium: Rs. {{ calculator.monthlyPremium.toFixed(2) }}</h3>
+      <h3>Total Premiums: {{ totalInstallments }} Premium<br> Rs. {{ calculator.monthlyPremium.toFixed(2) }} per premium <br> Total Amount Get: {{totalWithInterest}}</h3>
     </div>
   </div>
 

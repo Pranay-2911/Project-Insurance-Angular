@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 @Component({
   selector: 'app-view-employee',
   templateUrl: './view-employee.component.html',
@@ -13,13 +14,13 @@ export class ViewEmployeeComponent {
   totalEmployees = 0;
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private employeeService: EmployeeService) {}
   ngOnInit(){
     this.getAllEmployees();
   }
 
 getAllEmployees(){
-  this.adminService.getEmployee(this.page, this.pageSize, this.searchQuery).subscribe({
+  this.employeeService.getEmployees(this.page, this.pageSize, this.searchQuery).subscribe({
     next: (data:any) => {
       this.employees = data.employeeDtos;
       this.filteredDocuments = this.employees;
@@ -41,8 +42,22 @@ filterDocuments() {
   // );
 }
   deleteEmployee(id: any){
-    this.adminService.deleteEmployee(id).subscribe(()=>{});
+    this.employeeService.deleteEmployee(id).subscribe(()=>{});
     alert('Employee deleted successfully!');
+    location.reload();
+  }
+
+  activeAgent(id: any)
+  {
+    this.employeeService.activeEmployee(id).subscribe({
+      next: () => {
+        alert('Employee activated successfully!');
+        this.ngOnInit(); // Refresh the table
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
     location.reload();
   }
 

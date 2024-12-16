@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { StateCityService } from 'src/app/services/state-city.service';
 
 interface City {
   id: string;
@@ -26,11 +27,12 @@ export class ViewStatesComponent {
   constructor(
     private route: ActivatedRoute,
     private adminService: AdminService,
-    private router: Router
+    private router: Router,
+    private stateCityService: StateCityService
   ) {}
 
   ngOnInit() {
-    this.adminService.getState().subscribe({
+    this.stateCityService.getState().subscribe({
       next: (data) => {
         this.states = data;
         this.states.forEach((state: State) => {

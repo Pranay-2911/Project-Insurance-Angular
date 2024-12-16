@@ -1,5 +1,7 @@
 <form *ngIf="newPolicyForm" [formGroup]="newPolicyForm" (ngSubmit)="onSubmit()">
   <h2>Buy Policy</h2>
+
+  <h3>Enter Total Amount:</h3>
   <div id="row">
     <input type="number" placeholder="Enter total amount" formControlName="totalAmount"><span>*</span>
   </div>
@@ -15,6 +17,7 @@
   <br>
   <br>
 
+  <h3>Enter Duration:</h3>
   <div id="row">
     <input type="number" placeholder="Enter Duration in Years" formControlName="durationInYears"><span>*</span>
   </div>
@@ -29,6 +32,7 @@
   <br>
   <br>
 
+  <h3>Enter Nominee Name:</h3>
   <div id="row">
     <input type="text" placeholder="Enter nominee" formControlName="nominee"><span>*</span>
   </div>
@@ -38,6 +42,7 @@
   <br>
   <br>
 
+  <h3>Enter Nominee Relation:</h3>
   <div id="row">
     <select formControlName="nomineeRelation">
       <option value="" disabled>Select a Nominee Relation</option>
@@ -50,6 +55,7 @@
   <br>
   <!-- New Dropdown for Installment Type -->
   <!-- Dropdown for Installment Type -->
+   <h3>Enter Installment Type:</h3>
   <div id="row">
     <select formControlName="divider" (change)="onInstallmentTypeChange($event)">
       <option value="" disabled>Select Installment Type</option>

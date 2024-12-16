@@ -40,4 +40,18 @@ export class AgentService {
     return this.http.put(`${this.url}`, data);
   }
 
+  getUnverifiedAgents(page:number, pageSize:number, searchQuery:string =''){
+    return this.http.get(this.url+'/UnVerified'+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
+  }
+  verifyAgent(id: any) {
+    return this.http.put(`${this.url}/Verify?id=${id}`, null);
+  }
+  deleteAgent(id: any) {
+    return this.http.delete(this.url+ "/" +id);
+  }
+  
+  addAgent(agent:any){
+    return this.http.post(this.url, agent);
+  }
+  
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { CommissionService } from 'src/app/services/commission.service';
 import { EmailService } from 'src/app/services/email.service';
 
 @Component({
@@ -15,13 +16,13 @@ totalRequests=0;
 filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
   requests : any;
-  constructor(private router: Router, private adminService: AdminService, private emailService:EmailService) {}
+  constructor(private router: Router, private adminService: AdminService, private emailService:EmailService, private commissionService: CommissionService) {}
   ngOnInit(){
     this.getAllRequest();
   }
 
   getAllRequest(){
-    this.adminService.getAllRequest(this.page, this.pageSize, this.searchQuery).subscribe({
+    this.commissionService.getAllRequest(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
         this.requests = data.requests;
         this.filteredDocuments = this.requests;
@@ -43,7 +44,7 @@ filteredDocuments: any[] = []; // For displaying the filtered data
     // );
   }
   approveRequest(requestId: string) {
-    this.adminService.approve(requestId).subscribe({
+    this.commissionService.approve(requestId).subscribe({
       next: () => {
         alert('Request approved successfully!');
         this.emailService.sendEmail(
@@ -64,7 +65,7 @@ filteredDocuments: any[] = []; // For displaying the filtered data
   }
   
   rejectRequest(requestId: string) {
-    this.adminService.reject(requestId).subscribe({
+    this.commissionService.reject(requestId).subscribe({
       next: () => {
         alert('Request rejected successfully!');
         this.emailService.sendEmail(

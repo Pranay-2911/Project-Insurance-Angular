@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { StateCityService } from 'src/app/services/state-city.service';
 
 @Component({
   selector: 'app-add-state',
@@ -16,7 +17,7 @@ export class AddStateComponent {
   showToast = false;
   toastMessage = '';
   toastType: 'success' | 'error' = 'success';
-  constructor(private route: ActivatedRoute, private adminService:AdminService, private router: Router){}
+  constructor(private route: ActivatedRoute, private adminService:AdminService, private router: Router, private stateCityService: StateCityService){}
 
   newState = new FormGroup({
     stateName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$') ]),
@@ -24,7 +25,7 @@ export class AddStateComponent {
   })
     
   ngOnInit() {
-    this.adminService.getState().subscribe({
+    this.stateCityService.getState().subscribe({
       next: (data) => {
         this.states = data;
         console.log(this.states);
@@ -34,7 +35,7 @@ export class AddStateComponent {
       }
     })
 
-    this.adminService.getCities().subscribe({
+    this.stateCityService.getCities().subscribe({
       next: (data) => {
         this.cities = data;
         console.log(this.cities);
@@ -49,7 +50,7 @@ export class AddStateComponent {
   {
     console.log(this.newState.value);
     
-      this.adminService.addState(this.newState.value).subscribe({
+      this.stateCityService.addState(this.newState.value).subscribe({
         next: (data) => {
           console.log(data);
           this.newState.reset();

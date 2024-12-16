@@ -19,7 +19,8 @@
           <th>Mobile Number</th>
           <th>Email</th>
           <th>Salary</th>
-          <th>Delete</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -30,8 +31,22 @@
           <td>{{ employee.mobileNumber }}</td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.salary | currency: 'INR' }}</td>
+          <td> {{employee.isActive}}</td>
           <td>
-            <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+            <button
+            *ngIf="employee.isActive"
+            class="btn btn-danger"
+            (click)="deleteEmployee(employee.id)"
+          >
+            Inactive
+          </button>
+          <button
+            *ngIf="!employee.isActive"
+            class="btn btn-success"
+            (click)="activeAgent(employee.id)"
+          >
+            Activate
+          </button>
           </td>
         </tr>
       </tbody>

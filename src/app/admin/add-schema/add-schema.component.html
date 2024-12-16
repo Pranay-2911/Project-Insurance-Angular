@@ -1,5 +1,7 @@
 <form [formGroup]="newSchemaForm" >
   <h2>Add New Scheme</h2>
+
+  <h3>Enter Title:</h3>
   <div id="row">
     <input type="text" placeholder="Enter title" formControlName = "title">
     <span>*</span>
@@ -14,6 +16,7 @@
     <br>
     <br>
 
+    <h3>Enter Description:</h3>
     <div id="row">
     <input type="text" placeholder="Enter description" formControlName = "description">
     <span>*</span>
@@ -25,6 +28,7 @@
     <br>
     <br>
 
+    <h3>Enter Minimum Amount:</h3>
     <div id="row">
     <input type="number" placeholder="Enter minimum amount" formControlName = "minAmount">
     <span>*</span>
@@ -36,6 +40,7 @@
     <br>
     <br>
     
+    <h3>Enter Maximum Amount:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter maximum amount" formControlName = "maxAmount">
     <span>*</span>
@@ -48,6 +53,7 @@
     <br>
     <br>
 
+    <h3>Enter Minimum Age:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter min age" formControlName = "minAge">
     <span>*</span>
@@ -60,6 +66,8 @@
 
     <br>
     <br>
+
+    <h3>Enter Maximum Age:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter max age" formControlName = "maxAge">
     <span>*</span>
@@ -67,12 +75,14 @@
     <div *ngIf="newSchemaForm.get('maxAge')?.invalid && newSchemaForm.get('maxAge')?.touched">
       Maximum Age is required.
     </div> 
+    <div *ngIf="newSchemaForm.get('maxAge')?.errors?.['min']">Maximum age must be 18 or above.</div>
       <div *ngIf="newSchemaForm.get('maxAge')?.errors?.['maxAgeInvalid']">Max age must be greater than Min age.</div>
       <div *ngIf="newSchemaForm.get('maxAge')?.errors?.['max']">Maximum age must be under 70 years.</div>
 
     <br>
     <br>
 
+    <h3>Enter Minimum Policy Term:</h3>
     <div id="row">
     <input type = "number" placeholder="Enter minimum Policy Term" formControlName = "minPolicyTerm">
     <span>*</span>
@@ -85,6 +95,7 @@
     <br>
     <br>
 
+    <h3>Enter Maximum Policy Term:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter maximum Policy Term" formControlName = "maxPolicyTerm">
     <span>*</span>
@@ -97,6 +108,7 @@
     <br>
     <br>
 
+    <h3>Enter Profit Ratio:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter Profit Ratio" formControlName = "policyRatio">
     <span>*</span>
@@ -110,7 +122,7 @@
     <br>
 
     <div id="row">
-    <input type ="checkbox" formControlName = "policyStatus"> Status
+    <input type ="checkbox" formControlName = "policyStatus"> Active Policy
     <span>*</span>
     </div>
     <div *ngIf="newSchemaForm.get('policyStatus')?.invalid && newSchemaForm.get('policyStatus')?.touched">
@@ -120,6 +132,7 @@
     <br>
     <br>
 
+    <h3>Enter Registration Commission Amount:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter Register Commissions Amount" formControlName = "registrationCommisionAmount">(INR)
     <span>*</span>
@@ -131,6 +144,7 @@
 
     <br>
     <br>
+    <h3>Enter Installment Commission Ratio:</h3>
     <div id="row">
     <input type ="number" placeholder="Enter Installment Commissions Ratio" formControlName = "installmentCommisionRatio">(%)
     <span>*</span>
@@ -142,6 +156,8 @@
       <div *ngIf="newSchemaForm.get('installmentCommisionRatio')?.errors?.['max']">Installment commission ratio must be between 1 and 100.</div>
     <br>
     <br>
+
+    <h3>Required Documents:</h3>
     <div *ngFor="let doc of documentsList">
       <input
         type="checkbox"
@@ -153,6 +169,7 @@
     <br>
     <br>
 
+    <h3>Policy Image:</h3>
     <input type="file" (change)="onSelect($event)" accept="image/*" />
   
     <!-- Display Selected File -->

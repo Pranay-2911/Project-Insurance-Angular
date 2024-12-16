@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { EmailService } from 'src/app/services/email.service';
+import { PolicyAccountService } from 'src/app/services/policy-account.service';
 
 @Component({
   selector: 'app-view-claims',
@@ -17,7 +18,7 @@ export class ViewClaimsComponent {
   filteredDocuments: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
 
-  constructor(private adminService: AdminService, private emailService: EmailService, private router:Router) {}
+  constructor(private adminService: AdminService, private emailService: EmailService, private router:Router, private policyAccountService: PolicyAccountService) {}
 
   ngOnInit() {
     this.getAllClaims();
@@ -25,7 +26,7 @@ export class ViewClaimsComponent {
 
   getAllClaims(){
 
-    this.adminService.getAllClaims(this.page, this.pageSize, this.searchQuery).subscribe((data:any) => {
+    this.policyAccountService.getAllClaims(this.page, this.pageSize, this.searchQuery).subscribe((data:any) => {
       this.claims = data.claims;
       this.filteredDocuments = this.claims;
       this.totalClaims = data.count;
@@ -40,7 +41,7 @@ export class ViewClaimsComponent {
   }
 
   approveClaim(id:any){
-    this.adminService.claimApprove(id).subscribe((data:any) => {
+    this.policyAccountService.claimApprove(id).subscribe((data:any) => {
       console.log(data);
       this.getAllClaims();
       

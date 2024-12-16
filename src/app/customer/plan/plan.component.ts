@@ -14,7 +14,7 @@ export class PlanComponent implements OnInit {
   plansData: any = [];
   selectedPlanId: string | null = null;
   selectedSchemeId: string | null = null;
-
+  totalWithInterest=0;
   emails: string[] = ['pranayraut129@gmail.com', 'pranayraut2129@gmail.com'];
   customerName: any;
   customerMob: any;
@@ -114,8 +114,17 @@ export class PlanComponent implements OnInit {
 
   calculatePremium(): void {
     const { totalAmount, duration, installmentType } = this.calculator;
-
+    
     if (totalAmount > 0 && duration > 0 && installmentType) {
+      const annualRate = this.selectedScheme.policyRatio; // Example: 5% annual interest rate
+      const compoundingFrequency:any = installmentType;
+
+      
+      // Calculate total amount using compound interest formula
+      this.totalWithInterest = totalAmount * Math.pow(
+        1 + annualRate / compoundingFrequency,
+        compoundingFrequency * duration
+      );
       this.totalInstallments = duration * Number(installmentType); // Convert to number
       this.calculator.monthlyPremium = totalAmount / this.totalInstallments;
 

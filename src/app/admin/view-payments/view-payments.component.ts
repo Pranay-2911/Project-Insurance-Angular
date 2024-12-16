@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
   selector: 'app-view-payments',
@@ -18,13 +19,13 @@ export class ViewPaymentsComponent {
   startDate: string = ''
   endDate: string = '';
 
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService,private paymentService: PaymentService) {}
   ngOnInit(){
     this.getAllPayments();
   }
 
   getAllPayments(){
-    this.adminService.getPayments(this.page, this.pageSize, this.searchQuery, this.startDate, this.endDate).subscribe({
+    this.paymentService.getPayments(this.page, this.pageSize, this.searchQuery, this.startDate, this.endDate).subscribe({
       next: (data:any) => {
         this.payments = data.payments;
         this.filteredDocuments=this.payments;

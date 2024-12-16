@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { StateCityService } from 'src/app/services/state-city.service';
 
 
 @Component({
@@ -10,9 +11,9 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class ViewCitiesComponent {
   cities:any;
-  constructor(public adminService: AdminService, private router:Router){}
+  constructor(public adminService: AdminService, private router:Router, private stateCityService: StateCityService){}
   ngOnInit(){
-    this.adminService.getCities().subscribe({
+    this.stateCityService.getCities().subscribe({
       next: (data) => {
         this.cities = data;
       },

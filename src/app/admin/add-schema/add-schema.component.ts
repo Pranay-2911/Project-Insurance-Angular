@@ -4,6 +4,7 @@ import { FormGroup,FormControl,FormsModule, Validators, FormBuilder, FormArray }
 import { AdminService } from 'src/app/services/admin.service';
 import { UploadService } from 'src/app/services/upload.service';
 import { maxAmountValidator, maxAgeValidator, maxPolicyTermValidator } from 'src/app/validators/custom-validators';
+import { PlanService } from 'src/app/services/plan.service';
 
 @Component({
   selector: 'app-add-schema',
@@ -22,7 +23,7 @@ export class AddSchemaComponent {
 
 
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router, private uploadService:UploadService, private fb: FormBuilder) { 
+  constructor(private adminService: AdminService, private route: ActivatedRoute, private router: Router, private uploadService:UploadService, private fb: FormBuilder, private planService: PlanService) { 
     this.newSchemaForm = this.fb.group({
       planId:['', Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -30,7 +31,7 @@ export class AddSchemaComponent {
       minAmount: ['', [Validators.required, Validators.min(1)]],
       maxAmount: ['', [Validators.required, Validators.min(1), maxAmountValidator()]],
       minAge: ['', [Validators.required, Validators.min(18), Validators.max(50)]],
-      maxAge: ['', [Validators.required, Validators.max(70), maxAgeValidator()]],
+      maxAge: ['', [Validators.required,Validators.min(18), Validators.max(70), maxAgeValidator()]],
       minPolicyTerm: ['', [Validators.required, Validators.min(1)]],
       maxPolicyTerm: ['', [Validators.required,  Validators.min(1), maxPolicyTermValidator()]],
       policyRatio: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -68,12 +69,12 @@ export class AddSchemaComponent {
 
     addnewSchema()
     {
-      this.adminService.addScheme(this.newSchemaForm.value).subscribe({
+      this.planService.addScheme(this.newSchemaForm.value).subscribe({
         next: (data:any)=>{
           console.log(data);
           this.showNotification("Schema added successfully", 'success');
           this.newSchemaForm.reset();
-          this.router.navigate(['/admin-dashboard/add-schemas']);
+          this.router.navigate(['/admin-dashboard/tabs']);
         },
         error: (err:any) => {
           console.log(err);
@@ -118,7 +119,8 @@ export class AddSchemaComponent {
       const data = new FormData();
       data.append('file', this.file);
       data.append('upload_preset', 'documents');
-  
+      console.log(data);
+
       this.uploadService.uploadImage(data).subscribe({
         next: (res: any) => {
           console.log(res);

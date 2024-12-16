@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { Router } from '@angular/router';
+import { AgentService } from 'src/app/services/agent.service';
 
 @Component({
   selector: 'app-add-agent',
@@ -16,7 +17,7 @@ export class AddAgentComponent {
   filteredAgents: any[] = []; // For displaying the filtered data
   searchQuery: string = ''; 
 
-  constructor(private router: Router, private adminService: AdminService) {}
+  constructor(private router: Router, private adminService: AdminService, private agentService: AgentService) {}
   ngOnInit(){
     this.getAllAgents();
 
@@ -29,7 +30,7 @@ export class AddAgentComponent {
   }
 
   getAllAgents(){
-    this.adminService.getUnverifiedAgents(this.page, this.pageSize, this.searchQuery).subscribe({
+    this.agentService.getUnverifiedAgents(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
         this.agents = data.agents;
         this.filteredAgents = this.agents;
@@ -43,7 +44,7 @@ export class AddAgentComponent {
   }
 
   verifyAgent(id: any) {
-    this.adminService.verifyAgent(id).subscribe(
+    this.agentService.verifyAgent(id).subscribe(
       (data) => {
         console.log('Agent verified:', data);
         alert('Agent verified successfully!');

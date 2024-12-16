@@ -1,42 +1,80 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Subtle light gray for background */
+  padding: 20px; /* Ensure spacing for small screens */
+}
+
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px; /* Smooth rounded corners */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  padding: 20px;
+  max-width: 600px; /* Restrict max width for readability */
+  width: 100%; /* Full width for small screens */
+}
+
+.profile-img {
+  margin-bottom: 20px;
+}
+
+.profile-img i {
+  font-size: 4rem;
+  color: #0056b3; /* Primary blue for icon */
+}
+
+.card-title {
+  font-size: 1.8rem;
+  color: #333; /* Neutral dark color for title */
+  margin-bottom: 1rem;
+}
+
+.info p {
+  font-size: 1rem;
+  color: #555; /* Softer gray for text */
+  margin: 0.5rem 0;
+}
+
+.info p strong {
+  color: #0056b3; /* Emphasize field labels with primary blue */
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
   .card {
-    background-color: #fff;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 15px;
   }
-  
-  .profile-img {
-    margin-bottom: 20px;
+
+  .card-title {
+    font-size: 1.5rem;
   }
-  
+
   .info p {
-    font-size: 1rem;
-    color: #333;
-    margin: 0.5rem 0;
+    font-size: 0.9rem; /* Slightly smaller font for small screens */
   }
-  
+
   .btn-primary {
-    background-color: #0056b3;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  
-  .btn-primary:hover {
-    background-color: #004494;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
+}

@@ -15,12 +15,12 @@ export class ViewPlansComponent {
 
   constructor(private router: Router, private adminService: AdminService, private planService: PlanService) {}
   ngOnInit() {
-    this.adminService.getPlan().subscribe({
-      next: (data) => {
+    this.planService.getAllPlans().subscribe({
+      next: (data:any) => {
         this.plansData = data;
         console.log(this.plansData);
       },
-      error: (error) => {
+      error: (error:any) => {
         console.log(error);
       }
     } );

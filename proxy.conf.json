@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://api.cloudinary.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

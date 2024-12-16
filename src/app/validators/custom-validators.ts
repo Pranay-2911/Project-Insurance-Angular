@@ -50,3 +50,30 @@ export function planNameValidator(existingPlans: string[]): ValidatorFn {
     return null;
   };
 }
+
+export function dateOfBirthValidator(control: AbstractControl): ValidationErrors | null {
+  const today = new Date();
+  const dob = new Date(control.value);
+
+  // Check if the entered date is in the future
+  if (dob > today) {
+    return { futureDate: true };
+  }
+
+  // Calculate the age
+  var age = today.getFullYear() - dob.getFullYear();
+  const monthDiff = today.getMonth() - dob.getMonth();
+  const dayDiff = today.getDate() - dob.getDate();
+
+  // Adjust the age if the current date is before the birth date in the current year
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    age--;
+  }
+
+  // Check if the user is under 18
+  if (age < 18) {
+    return { underage: true };
+  }
+
+  return null; // Validation passed
+}

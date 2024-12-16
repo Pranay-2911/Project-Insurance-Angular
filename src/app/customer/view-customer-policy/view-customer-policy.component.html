@@ -25,7 +25,7 @@
           <th>Nominee</th>
           <th>Nominee Relation</th>
           <th>Policy Amount</th>
-          <th>Policy Duration (Months)</th>
+          <th>Policy Duration (Years)</th>
           <th>Document Verification</th>
           <th>Action Required</th>
         </tr>
@@ -39,7 +39,7 @@
           <td>{{ policy.nominee }}</td>
           <td>{{ nomineeRelationMap[policy.nomineeRelation] || 'Unknown' }}</td>
           <td>Rs.{{ policy.policyAmount }}</td>
-          <td>{{ policy.policyDuration }} months</td>
+          <td>{{ policy.policyDuration }} Years</td>
           <td>
             <span *ngIf="policy.isVerified === 1" class="approved">Approved</span>
             <span *ngIf="policy.isVerified === 2" class="not-approved">Rejected</span>

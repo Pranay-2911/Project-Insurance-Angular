@@ -161,3 +161,9 @@ select:focus, input:focus {
     padding: 10px 15px;
   }
 }
+#row{
+  display: flex;
+}
+span{
+  color: red;
+}

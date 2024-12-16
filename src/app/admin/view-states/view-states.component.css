@@ -1,137 +1,70 @@
-/* Container Styling */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Align content from the top */
-    min-height: 80vh; /* Ensure container takes up enough height */
-    text-align: center; /* Center align text in children */
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 200px auto;
     padding: 20px;
-    background-color: #f7f7f7; /* Light background for better contrast */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
-}
-
-/* Heading Styling */
-.heading {
-    font-size: 2rem;
-    margin-bottom: 20px; /* Spacing below the heading */
-    color: #333; /* Dark color for better readability */
-}
-
-/* Table Wrapper */
-ul {
+   
+    border-radius: 10px;
+    background-color: #f0f8ff; /* Light blue background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .heading {
+    font-size: 1.8em;
+    color: #0056b3; /* Dark blue */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
-    width: 50%; /* Adjust width as needed */
-    margin-top: 20px; /* Adds margin on top */
-}
-
-/* State Item Styling */
-li {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+  }
+  
+  li {
+    margin-bottom: 15px;
+    background-color: #e7f1ff; /* Light blue highlight */
+    padding: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  li div {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-}
-
-/* State Name Styling */
-span {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-/* View Cities and Add Cities Button Styling */
-button {
-    padding: 10px 20px;
+  }
+  
+  button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    margin: 5px 0; /* Space between buttons */
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* View Cities Button - Specific Styling */
-button:nth-child(2) {
-    background-color: #ffc107;
-}
-
-button:nth-child(2):hover {
-    background-color: #e0a800;
-}
-
-/* Add Cities Button - Specific Styling */
-button:nth-child(3) {
-    background-color: #28a745;
-}
-
-button:nth-child(3):hover {
-    background-color: #218838;
-}
-
-/* Cities List Styling */
-div > h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 20px;
-    color: #555;
-}
-
-ul > li {
-    font-size: 1rem;
-    margin: 5px 0;
-    color: #555;
-}
-
-/* Add New State Button Styling */
-.add-state-btn {
-    margin-top: 30px;
-    padding: 12px 25px;
-    background-color: #007bff;
-    font-size: 1.1rem;
-    border-radius: 6px;
-    color: white;
+    padding: 5px 10px;
+    font-size: 0.9em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.add-state-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        min-height: 70vh;
-    }
-
-    .heading {
-        font-size: 1.5rem;
-    }
-
-    ul {
-        width: 90%;
-    }
-
-    button {
-        padding: 8px 18px;
-    }
-
-    .add-state-btn {
-        padding: 10px 20px;
-    }
-}
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  button:active {
+    background-color: #003d80; /* Even darker blue when clicked */
+  }
+  
+  h3 {
+    color: #0056b3;
+    margin-top: 10px;
+  }
+  
+  ul ul {
+    margin-left: 20px;
+  }
+  
+  ul ul li {
+    background-color: #f0f8ff; /* Slightly lighter blue for nested lists */
+    box-shadow: none;
+  }
+  

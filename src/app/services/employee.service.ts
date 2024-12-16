@@ -43,5 +43,18 @@ updateEmployee(data : any)
 {
   return this.http.put(this.url, data);
 }
+activeEmployee(id: any)
+{
+  return this.http.put(this.url+'Active/'+id, null);
+}
+deleteEmployee(id: any) {
+  return this.http.delete(this.url+ "/" +id);
+}
+addEmployee(employee:any){
+  return this.http.post(this.url, employee);
+}
+getEmployees(page:number, pageSize:number, searchQuery:string=''){
+  return this.http.get(this.url+`?pageNumber=${page}&pageSize=${pageSize}&searchQuery=${searchQuery}`);
+}
 
 }

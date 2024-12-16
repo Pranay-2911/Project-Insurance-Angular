@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup,FormControl,FormsModule, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 import { EmailService } from 'src/app/services/email.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AddEmployeeComponent {
   password: any;
   mail: any;
 
-  constructor(private adminService: AdminService, private emailService: EmailService) {
+  constructor(private adminService: AdminService, private emailService: EmailService, private employeeService: EmployeeService) {
     this.newEmployeeForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -34,7 +35,7 @@ export class AddEmployeeComponent {
 
   addEmployee()
   {
-    this.adminService.addEmployee(this.newEmployeeForm.value).subscribe({
+    this.employeeService.addEmployee(this.newEmployeeForm.value).subscribe({
       next:(data:any)=>{
         console.log(this.newEmployeeForm.value);
         this.showNotification("Employee added successfully", 'success');

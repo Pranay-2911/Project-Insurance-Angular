@@ -20,7 +20,7 @@ export class ViewAgentComponent {
   }
 
   getAllAgents(){
-    this.adminService.getAgent(this.page, this.pageSize, this.searchQuery).subscribe({
+    this.agentService.getAgents(this.page, this.pageSize, this.searchQuery).subscribe({
       next: (data:any) => {
         this.agents = data.agents;
         this.filteredDocuments = this.agents;
@@ -43,7 +43,7 @@ export class ViewAgentComponent {
   }
   
   deleteAgent(id: any){
-    this.adminService.deleteAgent(id).subscribe(()=>{});
+    this.agentService.deleteAgent(id).subscribe(()=>{});
     alert('Agent deleted successfully!');
     location.reload();
   }

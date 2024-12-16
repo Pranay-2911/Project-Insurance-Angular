@@ -4,6 +4,8 @@ import { CustomerService } from '../services/customer.service';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { EmailService } from '../services/email.service';
+import { dateOfBirthValidator } from '../validators/custom-validators';
+import { StateCityService } from '../services/state-city.service';
 
 @Component({
   selector: 'app-register-customer',
@@ -17,24 +19,27 @@ export class RegisterCustomerComponent {
   mail: any ;
   username: any
   password: any;
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
 
   newCustomerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    mobileNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    mobileNumber: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{10}$') ]),
     state: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl('', [Validators.required]),
+    dateOfBirth: new FormControl('', [Validators.required, dateOfBirthValidator]),
     username: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)])
 
   });
 
-  constructor(private customerService: CustomerService, private adminService: AdminService, private router: Router, private emailService: EmailService) {}
+  constructor(private customerService: CustomerService, private adminService: AdminService, private router: Router, private emailService: EmailService, private stateCityService: StateCityService) {}
 
   ngOnInit(){
-    this.adminService.getState().subscribe({
+    this.stateCityService.getState().subscribe({
       next: (data) => {
         this.states = data;
         console.log(data);
@@ -74,8 +79,8 @@ export class RegisterCustomerComponent {
         this.newCustomerForm.reset();  // Reset form after successful submission
 
         // Show alert after successful registration
-        window.alert('Customer registered successfully!');
-
+        // window.alert('Customer registered successfully!');
+        this.showNotification('Customer registered successfully!','success');
         
 
         // Redirect to the login page
@@ -83,10 +88,23 @@ export class RegisterCustomerComponent {
       },
       error: (error) => {
         console.error('Error during registration:', error);
-        window.alert('Registration failed. Please try again.');
+        // window.alert('Registration failed. Please try again.');
+        this.showNotification('Registration failed. Username, email or mobile number already exist!.', 'error');
       }
     });
   }
 
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
 
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
+  }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { StateCityService } from 'src/app/services/state-city.service';
 
 @Component({
   selector: 'app-update-customer',
@@ -32,7 +33,8 @@ export class UpdateCustomerComponent {
   constructor(
     private customerService: CustomerService,
     private router: Router,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private stateCityService: StateCityService
   ) {}
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class UpdateCustomerComponent {
   }
 
   loadStates(selectedStateName: string): void {
-    this.adminService.getState().subscribe({
+    this.stateCityService.getState().subscribe({
       next: (data) => {
         this.states = data;
         this.newCustomerForm.controls['state'].setValue(selectedStateName);
@@ -82,7 +84,7 @@ export class UpdateCustomerComponent {
         this.showNotification('Customer profile updated successfully!', 'success');
 
         // Redirect to the customer dashboard page
-        this.router.navigate(['/customer-dashboard']);
+        this.router.navigate(['/customer-dashboard/customer-tabs']);
       },
       error: (error) => {
         console.log(error)

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
+import { AgentService } from 'src/app/services/agent.service';
 import { EmailService } from 'src/app/services/email.service';
 
 @Component({
@@ -29,11 +30,11 @@ export class EmpAddAgentComponent {
 
   });
 
-  constructor(private adminService: AdminService, private emailService: EmailService) {}
+  constructor(private adminService: AdminService, private emailService: EmailService, private agentService: AgentService) {}
 
   addAgent()
   {
-    this.adminService.addAgent(this.newAgentForm.value).subscribe({
+    this.agentService.addAgent(this.newAgentForm.value).subscribe({
       next: () => {
         // alert('Agent added successfully');
         this.showNotification('Agent added successfully','success');
