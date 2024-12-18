@@ -1,6 +1,141 @@
-#row{
-    display: flex;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
-span{
+
+/* Container Styling */
+.container {
+    max-width: 600px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Heading */
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Labels */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Form Fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Placeholder Text */
+input::placeholder {
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* Error Messages */
+div[ngIf] {
     color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Required Indicator */
+#row {
+    display: flex;
+    align-items: center;
+}
+
+#row span {
+    color: red;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Toast Styles */
+.toast-container {
+    z-index: 1055;
+}
+
+.toast {
+    display: none;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.95;
+    animation: fade-in 0.3s forwards;
+}
+
+.toast.show {
+    display: block;
+}
+
+.toast-body {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Success Toast */
+.toast.bg-success {
+    background-color: #28a745;
+}
+
+/* Error Toast */
+.toast.bg-danger {
+    background-color: #dc3545;
+}
+
+/* Fade-in Animation */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

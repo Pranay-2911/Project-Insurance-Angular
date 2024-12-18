@@ -39,7 +39,13 @@ export class PayPremiumComponent {
   isDueDatePassed(dueDate: string): boolean {
     const today = new Date();
     const dueDateObj = new Date(dueDate);
-    return dueDateObj <= today;
+  
+    // Calculate the date one month before the due date
+    const oneMonthBeforeDueDate = new Date(dueDateObj);
+    oneMonthBeforeDueDate.setMonth(oneMonthBeforeDueDate.getMonth() - 1);
+  
+    // Check if today is within the valid range (one month before the due date and not after it)
+    return today >= oneMonthBeforeDueDate && today > dueDateObj;
   }
   onPay(amount:any, id:any){
     console.log(amount);
@@ -53,5 +59,15 @@ export class PayPremiumComponent {
     // this.page = page;
     this.getAllPremiums();
   }
+
+  selectedReceipt: any = null; // Added for storing the selected receipt
+
+showReceipt(premium: any) {
+  this.selectedReceipt = premium; // Store the selected premium details
+}
+
+closeReceipt() {
+  this.selectedReceipt = null; // Clear the selected receipt
+}
 }
 

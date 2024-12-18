@@ -88,6 +88,7 @@ import { UpdateAgentComponent } from './agent/update-agent/update-agent.componen
 import { AgentProfileComponent } from './agent/agent-profile/agent-profile.component';
 import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 import { ProjectInterceptor } from './project.interceptor';
+import { CustomerReceiptComponent } from './customer/customer-receipt/customer-receipt.component';
 
 @NgModule({
   declarations: [
@@ -167,6 +168,7 @@ import { ProjectInterceptor } from './project.interceptor';
     UpdateAgentComponent,
     AgentProfileComponent,
     EmployeeProfileComponent,
+    CustomerReceiptComponent,
   
     
  

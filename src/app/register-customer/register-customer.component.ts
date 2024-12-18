@@ -24,8 +24,8 @@ export class RegisterCustomerComponent {
   toastType: 'success' | 'error' = 'success';
 
   newCustomerForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
     email: new FormControl('', [Validators.required, Validators.email]),
     mobileNumber: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]{10}$') ]),
     state: new FormControl('', [Validators.required]),

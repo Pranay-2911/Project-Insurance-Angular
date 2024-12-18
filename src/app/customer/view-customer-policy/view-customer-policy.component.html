@@ -46,8 +46,9 @@
             <span *ngIf="policy.isVerified === 0" class="pending">Pending</span>
           </td>
           <td>
+            <div *ngIf="policy.isVerified !== 2">NA</div>
             <!-- Reupload button displayed only when policy is rejected -->
-            <button [disabled]="policy.isVerified !== 2" class="btn btn-warning" (click)="reUpload(policy.policyId, policy.id)">Reupload</button>
+            <button *ngIf="policy.isVerified === 2" class="btn btn-warning" (click)="reUpload(policy.policyId, policy.id)">Reupload</button>
           </td>
         </tr>
       </tbody>

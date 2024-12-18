@@ -20,6 +20,9 @@
       <div *ngIf="newCustomerForm.get('firstName')?.errors?.['minlength']">
         First name must be 2 characters long.
       </div>
+      <div *ngIf="newCustomerForm.get('firstName')?.errors?.['pattern']">
+        First name must contain only characters.
+      </div>
       </div>
   
       <!-- Last Name -->
@@ -39,6 +42,9 @@
       </div>
       <div *ngIf="newCustomerForm.get('lastName')?.errors?.['minlength']">
         Last name must be 2 characters long.
+      </div>
+      <div *ngIf="newCustomerForm.get('lastName')?.errors?.['pattern']">
+        Last name must contain only characters.
       </div>
       </div>
   

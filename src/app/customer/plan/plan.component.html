@@ -115,19 +115,20 @@
     </form>
 
     <div *ngIf="calculator.monthlyPremium !== null" class="premium-result">
-      <h3>Total Premiums: {{ totalInstallments }} Premium<br> Rs. {{ calculator.monthlyPremium.toFixed(2) }} per premium <br> Total Amount Get: {{totalWithInterest}}</h3>
+      <h3>Total Premiums: {{ totalInstallments }} Premium<br> Rs. {{ calculator.monthlyPremium.toFixed(2) }} per premium</h3>
     </div>
   </div>
 
   <div *ngIf="selectedScheme" class="buy-section">
+    <p *ngIf="!isEligible" class="eligibility-message">
+      {{ eligibilityMessage }}
+    </p>
     <button 
       class="buy-btn" 
       (click)="buyScheme(selectedScheme.id)" 
       [disabled]="!isEligible">
       Buy Policy
     </button>
-    <p *ngIf="!isEligible" class="eligibility-message">
-      {{ eligibilityMessage }}
-    </p>
+    
   </div>
 </div>

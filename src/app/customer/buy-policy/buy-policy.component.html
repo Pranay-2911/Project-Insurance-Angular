@@ -13,7 +13,9 @@
   <div *ngIf="newPolicyForm.get('totalAmount')?.errors?.['max']">
     Amount cannot exceed Rs {{ scheme.maxAmount }}.
   </div>
-
+  <div *ngIf="newPolicyForm.get('totalAmount')?.errors?.['pattern']">
+    Amount cannot be in decimal.
+  </div>
   <br>
   <br>
 
@@ -28,6 +30,9 @@
   </div>
   <div *ngIf="newPolicyForm.get('durationInYears')?.errors?.['max']">
     Duration cannot exceed {{ scheme.maxPolicyTerm }} months.
+  </div>
+  <div *ngIf="newPolicyForm.get('durationInYears')?.errors?.['pattern']">
+    Duration must not be in decimal.
   </div>
   <br>
   <br>

@@ -34,6 +34,7 @@ export class PlanComponent implements OnInit {
     { label: 'Monthly', value: 12 },
     { label: 'Quarterly', value: 3 },
     { label: 'Yearly', value: 1 },
+    { label: 'HalfYearly', value: 2 },
   ];
 
   premiumForm = new FormGroup({
@@ -146,10 +147,7 @@ export class PlanComponent implements OnInit {
             Mobile Number: ${data.mobileNumber}
             Policy Name: ${this.selectedScheme.title}
 
-            Please reach out to the customer promptly to assist them further.
-
-            Best regards,
-            Monocept`
+            Please reach out to the customer promptly to assist them further.`
           ).subscribe({
             next: () => console.log('Email sent successfully!'),
             error: (err) => console.error('Error sending email:', err),

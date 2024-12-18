@@ -11,6 +11,9 @@ import { EmailService } from '../services/email.service';
 export class ForgetPasswordComponent {
 
   link = 'http://localhost:4200/update-password';
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
 
   newRequestForm = new FormGroup({
     userName: new FormControl(),
@@ -26,11 +29,31 @@ export class ForgetPasswordComponent {
       this.emailService.sendEmail(
         'pranayraut129@gmail.com',
         'Change Password Request',
-        'Hello Agent, Your withdraw request is approved. Your withdraw amount is credited in 2 to 3 working days.' + this.link
+        'Hello Agent, Your change password request is get. You can change the password through this link' + this.link
       ).subscribe({
-        next: () => console.log('Email sent successfully!'),
-        error: (err) => console.error('Error sending email:', err),
+        next: () => {
+          console.log('Email sent successfully!')
+          this.showNotification('Password reset link sent to your registered email.', 'success');
+        },
+        error: (err) => {
+          console.error('Error sending email:', err)
+        
+          this.showNotification('Error sending email. Please try again later.', 'error');},
       });
     });
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000); // Hide toast after 3 seconds
+  }
+
+  hideToast() {
+    this.showToast = false;
   }
 }

@@ -42,7 +42,7 @@
                       <button
                           class="btn"
                           [ngClass]="policy.isVerified === 1 ? 'btn-danger' : 'btn-secondary'"
-                          [disabled]="policy.isVerified !== 1"
+                          [disabled]="policy.isVerified !== 1 || policy.isMatured !==0"
                           (click)="PayPremium(policy)">
                           Pay Premium
                       </button>

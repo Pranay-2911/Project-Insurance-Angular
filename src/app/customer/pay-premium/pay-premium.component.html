@@ -35,9 +35,32 @@
           Pay
         </button>
       </td>
+      
     </tr>
   </tbody>
 </table>
 
 <mat-paginator [length]="totalPremium" pageSize="pageSize" [pageSizeOptions]="[5, 10, 15, 20]" aria-label="Select page" (page)="onPageChange($event)">
 </mat-paginator>
+
+<!-- Modal for Receipt -->
+<!-- <div class="receipt-overlay" *ngIf="selectedReceipt">
+  <div class="receipt-container">
+    <div class="receipt-header">
+      <h2>Payment Receipt</h2>
+      <button class="close-btn" (click)="closeReceipt()">&times;</button>
+    </div>
+    <div class="receipt-content">
+      <p><strong>Amount:</strong> Rs. {{ selectedReceipt.amount.toFixed(2) }}</p>
+      <p><strong>Due Date:</strong> {{ selectedReceipt.dueDate | date }}</p>
+      <p><strong>Payment Date:</strong> {{ selectedReceipt.paymentDate | date: 'MMM d, y' }}</p>
+      <p><strong>Status:</strong> {{ selectedReceipt.status }}</p>
+    </div>
+    <div class="receipt-footer">
+      <button (click)="closeReceipt()">Close</button>
+    </div>
+  </div>
+</div> -->
+
+
+

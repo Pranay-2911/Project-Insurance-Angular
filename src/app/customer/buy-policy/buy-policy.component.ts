@@ -23,6 +23,7 @@ export class BuyPolicyComponent {
     { label: 'Monthly', value: 12 },
     { label: 'Quarterly', value: 3 },
     { label: 'Yearly', value: 1 },
+    {label: 'HalfYearly', value:2},
   ];
 
   constructor(
@@ -36,7 +37,7 @@ export class BuyPolicyComponent {
   ) {
     this.newPolicyForm = this.fb.group({
       policyId: [null],
-      totalAmount: [null],
+      totalAmount: [null, Validators.pattern('^[0-9]*$')],
       durationInYears: [null],
       nominee: [''],
       nomineeRelation: [''],
@@ -70,7 +71,8 @@ export class BuyPolicyComponent {
         [
           Validators.required,
           Validators.min(this.scheme.minAmount),
-          Validators.max(this.scheme.maxAmount)
+          Validators.max(this.scheme.maxAmount),
+          Validators.pattern('^[0-9]*$')
         ]
       ],
       durationInYears: [
@@ -78,7 +80,8 @@ export class BuyPolicyComponent {
         [
           Validators.required,
           Validators.min(this.scheme.minPolicyTerm),
-          Validators.max(this.scheme.maxPolicyTerm)
+          Validators.max(this.scheme.maxPolicyTerm),
+          Validators.pattern('^[0-9]*$')
         ]
       ],
       nominee: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],

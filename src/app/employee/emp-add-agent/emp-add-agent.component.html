@@ -6,12 +6,18 @@
   </div>
     <div *ngIf="newAgentForm.get('firstName')?.invalid && newAgentForm.get('firstName')?.touched">First Name is required.</div> 
       <div *ngIf="newAgentForm.get('firstName')?.errors?.['minlength']">First Name must be 2 characters long.</div>
+      <div *ngIf="newAgentForm.get('firstName')?.errors?.['pattern']">
+        First name must contain only characters.
+      </div>
     <br /><br />
     <div id="row">
     <input type="text" placeholder="Enter Last Name" formControlName="lastName" /><span>*</span>
   </div>
     <div *ngIf="newAgentForm.get('lastName')?.invalid && newAgentForm.get('lastName')?.touched">Last Name is required.</div> 
       <div *ngIf="newAgentForm.get('lastName')?.errors?.['minlength']">Last Name must be 2 characters long.</div>
+      <div *ngIf="newAgentForm.get('lastName')?.errors?.['pattern']">
+        Last name must contain only characters.
+      </div>
     <br /><br />
     <div id="row">
     <input type="text" placeholder="Enter Qualification" formControlName="qualification" /><span>*</span>
@@ -29,6 +35,9 @@
   </div>
     <div *ngIf="newAgentForm.get('mobileNumber')?.invalid && newAgentForm.get('mobileNumber')?.touched">Mobile Number is required.</div>
     <div *ngIf="newAgentForm.get('userName')?.errors?.['minlength'] && newAgentForm.get('userName')?.errors?.['maxlength']">Mobile Number must be 10 digits long.</div> 
+    <div *ngIf="newAgentForm.get('mobileNumber')?.errors?.['pattern']">
+      Mobile Number must be 10 digits long.
+    </div>
     <br /><br />
     <div id="row">
     <input type="text" placeholder="Enter User Name" formControlName="username" /><span>*</span>

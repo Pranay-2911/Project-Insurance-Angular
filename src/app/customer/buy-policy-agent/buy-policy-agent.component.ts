@@ -23,6 +23,7 @@ export class BuyPolicyAgentComponent {
     { label: 'Monthly', value: 12 },
     { label: 'Quarterly', value: 3 },
     { label: 'Yearly', value: 1 },
+    {label: 'HalfYearly', value:2}
   ];
  
   constructor(

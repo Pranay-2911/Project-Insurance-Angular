@@ -20,11 +20,11 @@ export class EmpAddAgentComponent {
 
 
   newAgentForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
     qualification: new FormControl('',[Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    mobileNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    mobileNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
 

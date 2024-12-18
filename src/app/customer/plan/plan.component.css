@@ -75,6 +75,7 @@ select:focus, input:focus {
   font-size: 1.1em;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  margin: 10px auto;
 }
 
 .buy-btn:hover {
@@ -166,4 +167,9 @@ select:focus, input:focus {
 }
 span{
   color: red;
+}
+.eligibility-message{
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
 }
